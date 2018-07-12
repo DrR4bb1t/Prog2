@@ -12,11 +12,17 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        gameStates gamestate = gameStates.Start;
+
         public OD()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-        }
+            
+    }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -59,6 +65,25 @@ namespace Project_OD
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            switch (gamestate)
+            {
+                case gameStates.Start:
+                    break;
+                case gameStates.Splash:
+                    break;
+                case gameStates.GameMenu:
+                    break;
+                case gameStates.StartGame:
+                    break;
+                case gameStates.GameOptions:
+                    break;
+                case gameStates.InGame:
+                    break;
+                case gameStates.Exit:
+                    break;
+                default:
+                    break;
+            }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
