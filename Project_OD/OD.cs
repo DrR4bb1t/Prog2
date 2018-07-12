@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Project_OD
 {
@@ -11,6 +12,16 @@ namespace Project_OD
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        List<Texture2D> tile = new List<Texture2D>();
+
+        int[,] tileMap = new int[,]
+        {
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        };
+
+        int tileWidth = 64;
+        int tileHeight = 64;
 
         gameStates gamestate = gameStates.Start;
 
@@ -45,6 +56,12 @@ namespace Project_OD
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Texture2D texture;
+
+            texture = Content.Load<Texture2D>("Tiles/stone.jpg");
+            tile.Add(texture);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -99,6 +116,26 @@ namespace Project_OD
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+
+            int tileMapWidth = tileMap.GetLength(1);
+            int tileMapHeight = tileMap.GetLength(0);
+
+            for (int x = 0; x < tileMapWidth; x++)
+            {
+                for (int y = 0; y < tileMapHeight; y++)
+                {
+                    int textureIndex = tileMap[y, x];
+                    Texture2D texture = tile[textureIndex];
+
+                    spriteBatch.Draw(texture, new Rectangle(x, y, tileWidth, tileHeight), Color.White);
+                }
+            }
+
+
+
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
