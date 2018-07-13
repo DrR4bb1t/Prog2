@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using System.Collections.Generic;
+
 
 namespace Project_OD
 {
@@ -12,16 +14,31 @@ namespace Project_OD
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Map map;
+        
+        //List<Texture2D> tile = new List<Texture2D>();
 
-        List<Texture2D> tile = new List<Texture2D>();
+        //int[,] tileMap = new int[,]
+        //{
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, },
+        //};
 
-        int[,] tileMap = new int[,]
-        {
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-        };
-
-        int tileWidth = 64;
-        int tileHeight = 64;
+        //int tileWidth = 64;
+        //int tileHeight = 64;
 
         gameStates gamestate = gameStates.Start;
 
@@ -29,9 +46,10 @@ namespace Project_OD
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
             
     }
 
@@ -56,11 +74,15 @@ namespace Project_OD
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            map = new Map();
 
             Texture2D texture;
 
-            texture = Content.Load<Texture2D>("Tiles/stone.jpg");
-            tile.Add(texture);
+            texture = Content.Load<Texture2D>("Tiles/empty");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/grass");
+            map.tile.Add(texture);
 
 
             // TODO: use this.Content to load your game content here
@@ -119,19 +141,21 @@ namespace Project_OD
 
             spriteBatch.Begin();
 
-            int tileMapWidth = tileMap.GetLength(1);
-            int tileMapHeight = tileMap.GetLength(0);
+            map.Draw(spriteBatch);
 
-            for (int x = 0; x < tileMapWidth; x++)
-            {
-                for (int y = 0; y < tileMapHeight; y++)
-                {
-                    int textureIndex = tileMap[y, x];
-                    Texture2D texture = tile[textureIndex];
+            //int tileMapWidth = tileMap.GetLength(1);
+            //int tileMapHeight = tileMap.GetLength(0);
 
-                    spriteBatch.Draw(texture, new Rectangle(x, y, tileWidth, tileHeight), Color.White);
-                }
-            }
+            //for (int x = 0; x < tileMapWidth; x++)
+            //{
+            //    for (int y = 0; y < tileMapHeight; y++)
+            //    {
+            //        int textureIndex = tileMap[y, x];
+            //        Texture2D texture = tile[textureIndex];
+
+            //        spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+            //    }
+            //}
 
 
 

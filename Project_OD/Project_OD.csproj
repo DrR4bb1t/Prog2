@@ -78,13 +78,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Tiles\grass.png" />
     <Content Include="Content\Tiles\stone.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\Tiles\grass.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
