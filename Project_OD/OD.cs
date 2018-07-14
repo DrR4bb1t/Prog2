@@ -78,6 +78,8 @@ namespace Project_OD
 
             Texture2D texture;
 
+            //map.LoadTextures();
+
             texture = Content.Load<Texture2D>("Tiles/empty");
             map.tile.Add(texture);
 
