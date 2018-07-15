@@ -78,13 +78,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Tiles\stone.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\Tiles\empty.xnb" />
+    <None Include="Content\Tiles\fenceLeft.xnb" />
+    <None Include="Content\Tiles\fenceRight.xnb" />
     <None Include="Content\Tiles\grass.xnb" />
+    <None Include="Content\Tiles\mushroomBrown.xnb" />
+    <None Include="Content\Tiles\mushroomRed.xnb" />
+    <None Include="Content\Tiles\signRight.xnb" />
+    <None Include="Content\Tiles\stone.xnb" />
+    <None Include="Content\Tiles\tree1Bottom.xnb" />
+    <None Include="Content\Tiles\tree1Top.xnb" />
+    <None Include="Content\Tiles\tree2Bottom.xnb" />
+    <None Include="Content\Tiles\tree2Top.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

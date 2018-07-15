@@ -86,6 +86,17 @@ namespace Project_OD
             texture = Content.Load<Texture2D>("Tiles/grass");
             map.tile.Add(texture);
 
+            texture = Content.Load<Texture2D>("Tiles/mushroomRed");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/tree2Bottom");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/tree2Top");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/signRight");
+            map.tile.Add(texture);
 
             // TODO: use this.Content to load your game content here
         }
@@ -143,7 +154,8 @@ namespace Project_OD
 
             spriteBatch.Begin();
 
-            map.Draw(spriteBatch);
+            map.DrawBackgroundLayer(spriteBatch);
+            map.DrawForegroundLayer(spriteBatch);
 
             //int tileMapWidth = tileMap.GetLength(1);
             //int tileMapHeight = tileMap.GetLength(0);
