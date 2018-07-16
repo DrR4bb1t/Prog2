@@ -83,6 +83,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\Tiles\earth.xnb" />
     <None Include="Content\Tiles\empty.xnb" />
     <None Include="Content\Tiles\fenceLeft.xnb" />
     <None Include="Content\Tiles\fenceRight.xnb" />
