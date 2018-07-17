@@ -1,9 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+<<<<<<< HEAD
+using System.Collections.Generic;
+=======
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using System;
+>>>>>>> Map
 
 namespace Project_OD
 {
@@ -15,7 +19,7 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
-        public static ContentManager asset;
+
 
         //List<Texture2D> tile = new List<Texture2D>();
 
@@ -43,15 +47,19 @@ namespace Project_OD
 
         gameStates gamestate = gameStates.Start;
 
-        public OD(ContentManager content)
+        public OD()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+<<<<<<< HEAD
+        
+=======
             IsMouseVisible = true;
             
+>>>>>>> Map
     }
 
         /// <summary>
@@ -62,8 +70,7 @@ namespace Project_OD
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -74,6 +81,9 @@ namespace Project_OD
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+<<<<<<< HEAD
+            
+=======
             spriteBatch = new SpriteBatch(GraphicsDevice);
             map = new Map();
 
@@ -101,8 +111,9 @@ namespace Project_OD
 
             texture = Content.Load<Texture2D>("Tiles/signRight");
             map.tile.Add(texture);
+>>>>>>> Map
 
-            // TODO: use this.Content to load your game content here
+            
         }
 
         /// <summary>
@@ -140,10 +151,11 @@ namespace Project_OD
                 default:
                     break;
             }
+
+            InputManager.Update();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -156,6 +168,8 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+<<<<<<< HEAD
+=======
             spriteBatch.Begin();
 
             map.DrawBackgroundLayer(spriteBatch);
@@ -181,7 +195,9 @@ namespace Project_OD
 
             // TODO: Add your drawing code here
 
+>>>>>>> Map
             base.Draw(gameTime);
+
         }
     }
 }

@@ -76,8 +76,7 @@ namespace Project_OD
 };
         public void LoadTextures()
         {
-            texture = OD.asset.Load<Texture2D>("Tiles/empty");
-            tile.Add(texture);
+
 
         }
 
