@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    public class Map : Game
+    public class Map
     {
         public List<Texture2D> tile = new List<Texture2D>();
         Texture2D texture;
