@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
-
+using System;
 
 namespace Project_OD
 {
@@ -15,7 +15,8 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
-        
+        public static ContentManager asset;
+
         //List<Texture2D> tile = new List<Texture2D>();
 
         //int[,] tileMap = new int[,]
@@ -42,7 +43,7 @@ namespace Project_OD
 
         gameStates gamestate = gameStates.Start;
 
-        public OD()
+        public OD(ContentManager content)
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window

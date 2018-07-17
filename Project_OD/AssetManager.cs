@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    class ContentManager
+    class AssetManager
     {
     }
 }

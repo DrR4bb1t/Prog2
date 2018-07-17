@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Entities\Boss.cs" />
     <Compile Include="Buttons.cs" />
-    <Compile Include="Managers\ContentManager.cs" />
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Npc.cs" />
