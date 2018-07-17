@@ -8,13 +8,14 @@ namespace Project_OD
     /// </summary>
     public static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            using (var game = new OD())
+            using (var game = new OD(OD.asset))
                 game.Run();
         }
     }

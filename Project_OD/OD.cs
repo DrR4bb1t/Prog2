@@ -1,6 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+<<<<<<< HEAD
+using System.Collections.Generic;
+=======
+using Microsoft.Xna.Framework.Content;
+using System.Collections.Generic;
+using System;
+>>>>>>> Map
 
 namespace Project_OD
 {
@@ -11,6 +18,32 @@ namespace Project_OD
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Map map;
+
+
+        //List<Texture2D> tile = new List<Texture2D>();
+
+        //int[,] tileMap = new int[,]
+        //{
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
+        //    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, },
+        //};
+
+        //int tileWidth = 64;
+        //int tileHeight = 64;
 
         gameStates gamestate = gameStates.Start;
 
@@ -18,10 +51,15 @@ namespace Project_OD
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+<<<<<<< HEAD
+        
+=======
+            IsMouseVisible = true;
             
+>>>>>>> Map
     }
 
         /// <summary>
@@ -32,8 +70,7 @@ namespace Project_OD
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -44,9 +81,39 @@ namespace Project_OD
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+<<<<<<< HEAD
+            
+=======
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            map = new Map();
 
-            // TODO: use this.Content to load your game content here
+            Texture2D texture;
+
+            //map.LoadTextures();
+
+            texture = Content.Load<Texture2D>("Tiles/empty");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/earth");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/grass");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/mushroomRed");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/tree2Bottom");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/tree2Top");
+            map.tile.Add(texture);
+
+            texture = Content.Load<Texture2D>("Tiles/signRight");
+            map.tile.Add(texture);
+>>>>>>> Map
+
+            
         }
 
         /// <summary>
@@ -84,10 +151,11 @@ namespace Project_OD
                 default:
                     break;
             }
+
+            InputManager.Update();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -100,9 +168,36 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+<<<<<<< HEAD
+=======
+            spriteBatch.Begin();
+
+            map.DrawBackgroundLayer(spriteBatch);
+            map.DrawForegroundLayer(spriteBatch);
+
+            //int tileMapWidth = tileMap.GetLength(1);
+            //int tileMapHeight = tileMap.GetLength(0);
+
+            //for (int x = 0; x < tileMapWidth; x++)
+            //{
+            //    for (int y = 0; y < tileMapHeight; y++)
+            //    {
+            //        int textureIndex = tileMap[y, x];
+            //        Texture2D texture = tile[textureIndex];
+
+            //        spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+            //    }
+            //}
+
+
+
+            spriteBatch.End();
+
             // TODO: Add your drawing code here
 
+>>>>>>> Map
             base.Draw(gameTime);
+
         }
     }
 }
