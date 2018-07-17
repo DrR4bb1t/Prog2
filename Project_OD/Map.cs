@@ -99,13 +99,60 @@ namespace Project_OD
         /// Draws the background layer.
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void DrawBackgroundLayer(SpriteBatch spriteBatch)
+        //public void DrawBackgroundLayer(SpriteBatch spriteBatch)
+        //{
+
+
+        //    LoadMap(lvl1_Background);
+
+
+
+        //    for (int x = 0; x < tileMapWidth; x++)
+        //    {
+        //        for (int y = 0; y < tileMapHeight; y++)
+        //        {
+        //            int textureIndex = map[y, x];
+        //            Texture2D texture = tile[textureIndex];
+
+        //            spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// Draws the foreground layer.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        //public void DrawForegroundLayer(SpriteBatch spriteBatch)
+        //{
+
+
+        //    LoadMap(lvl1_Foreground);
+
+       
+
+        //    for (int x = 0; x < tileMapWidth; x++)
+        //    {
+        //        for (int y = 0; y < tileMapHeight; y++)
+        //        {
+        //            int textureIndex = map[y, x];
+        //            Texture2D texture = tile[textureIndex];
+
+        //            spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+        //        }
+        //    }
+        //}
+
+        public void DrawMap(SpriteBatch spriteBatch, int lvlID)
         {
-
-
-            LoadMap(lvl1_Background);
-
-
+            switch (lvlID)
+            {
+                case 1:
+                    LoadMap(lvl1_Background);
+                    break;
+                default:
+                    break;
+            }
 
             for (int x = 0; x < tileMapWidth; x++)
             {
@@ -117,19 +164,15 @@ namespace Project_OD
                     spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
                 }
             }
-        }
 
-        /// <summary>
-        /// Draws the foreground layer.
-        /// </summary>
-        /// <param name="spriteBatch"></param>
-        public void DrawForegroundLayer(SpriteBatch spriteBatch)
-        {
-
-
-            LoadMap(lvl1_Foreground);
-
-       
+            switch (lvlID)
+            {
+                case 1:
+                    LoadMap(lvl1_Foreground);
+                    break;
+                default:
+                    break;
+            }
 
             for (int x = 0; x < tileMapWidth; x++)
             {

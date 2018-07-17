@@ -28,7 +28,7 @@ namespace Project_OD
             graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            
             
         }
 
@@ -138,8 +138,10 @@ namespace Project_OD
 
             spriteBatch.Begin();
 
-            map.DrawBackgroundLayer(spriteBatch);
-            map.DrawForegroundLayer(spriteBatch);
+            map.DrawMap(spriteBatch, 1);
+
+            //map.DrawBackgroundLayer(spriteBatch);
+            //map.DrawForegroundLayer(spriteBatch);
 
             spriteBatch.End();
 
