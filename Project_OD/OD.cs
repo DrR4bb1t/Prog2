@@ -56,8 +56,6 @@ namespace Project_OD
             spriteBatch = new SpriteBatch(GraphicsDevice);
             map = new Map();
 
-            Texture2D texture;
-
             map.LoadTextures();
 
 

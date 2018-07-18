@@ -10,8 +10,8 @@ namespace Project_OD
 {
     public class Map
     {
-        public List<Texture2D> tile = new List<Texture2D>();
-        Texture2D texture;
+        //public List<Texture2D> tile = new List<Texture2D>();
+        //Texture2D texture;
 
         /// <summary>
         /// Size of one tile in pixel.
@@ -55,7 +55,7 @@ namespace Project_OD
         };
 
         private static int[,] lvl1_Background = new int[,]
-{
+        {
 
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
@@ -72,29 +72,32 @@ namespace Project_OD
             { 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-};
+        };
+
+        public Map() { }
         public void LoadTextures()
         {
-            texture = OD.content.Load<Texture2D>("Tiles/empty");
-            tile.Add(texture);
+            TextureManager.StoreTexture();
+            //texture = OD.content.Load<Texture2D>("Tiles/empty");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/earth");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/earth");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/grass");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/grass");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/mushroomRed");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/mushroomRed");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/tree2Bottom");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/tree2Bottom");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/tree2Top");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/tree2Top");
+            //tile.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/signRight");
-            tile.Add(texture);
+            //texture = OD.content.Load<Texture2D>("Tiles/signRight");
+            //tile.Add(texture);
         }
 
         /// <summary>
@@ -124,9 +127,9 @@ namespace Project_OD
             {
                 case 1:
                     LoadArray(lvl1_Background);
-                    LoadMap(spriteBatch);
+                    LoadMap(spriteBatch, TextureManager.tile);
                     LoadArray(lvl1_Foreground);
-                    LoadMap(spriteBatch);
+                    LoadMap(spriteBatch, TextureManager.tile);
                     break;
                 default:
                     break;
@@ -136,7 +139,7 @@ namespace Project_OD
         /// Draws the textures of the map.
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void LoadMap(SpriteBatch spriteBatch)
+        public void LoadMap(SpriteBatch spriteBatch, List<Texture2D> tile)
         {
             for (int x = 0; x < tileMapWidth; x++)
             {
