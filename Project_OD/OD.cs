@@ -13,6 +13,7 @@ namespace Project_OD
     /// </summary>
     public class OD : Game
     {
+        public static ContentManager content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
@@ -28,7 +29,7 @@ namespace Project_OD
             graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-            
+            content = Content;
             
         }
 
@@ -57,28 +58,9 @@ namespace Project_OD
 
             Texture2D texture;
 
-            //map.LoadTextures();
+            map.LoadTextures();
 
-            texture = Content.Load<Texture2D>("Tiles/empty");
-            map.tile.Add(texture);
 
-            texture = Content.Load<Texture2D>("Tiles/earth");
-            map.tile.Add(texture);
-
-            texture = Content.Load<Texture2D>("Tiles/grass");
-            map.tile.Add(texture);
-
-            texture = Content.Load<Texture2D>("Tiles/mushroomRed");
-            map.tile.Add(texture);
-
-            texture = Content.Load<Texture2D>("Tiles/tree2Bottom");
-            map.tile.Add(texture);
-
-            texture = Content.Load<Texture2D>("Tiles/tree2Top");
-            map.tile.Add(texture);
-
-            texture = Content.Load<Texture2D>("Tiles/signRight");
-            map.tile.Add(texture);
 
 
             
