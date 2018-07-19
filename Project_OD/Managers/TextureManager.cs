@@ -9,31 +9,31 @@ namespace Project_OD
 {
     public class TextureManager
     {
-        public static List<Texture2D> tile = new List<Texture2D>();
+        public static List<Texture2D> mapTile = new List<Texture2D>();
         private static Texture2D texture;
         public TextureManager() { }
         public static void StoreTexture()
         {
             texture = OD.content.Load<Texture2D>("Tiles/empty");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/earth");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/grass");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/mushroomRed");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/tree2Bottom");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/tree2Top");
-            tile.Add(texture);
+            mapTile.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/signRight");
-            tile.Add(texture);
+            mapTile.Add(texture);
         }
     }
 }

@@ -127,9 +127,9 @@ namespace Project_OD
             {
                 case 1:
                     LoadArray(lvl1_Background);
-                    LoadMap(spriteBatch, TextureManager.tile);
+                    LoadMap(spriteBatch, TextureManager.mapTile);
                     LoadArray(lvl1_Foreground);
-                    LoadMap(spriteBatch, TextureManager.tile);
+                    LoadMap(spriteBatch, TextureManager.mapTile);
                     break;
                 default:
                     break;
