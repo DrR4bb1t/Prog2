@@ -148,7 +148,14 @@ namespace Project_OD
                     int textureIndex = map[y, x];
                     Texture2D texture = tile[textureIndex];
 
-                    spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+                    spriteBatch.Draw(
+                        texture, 
+                        new Rectangle(
+                        x * tileWidth, 
+                        y * tileHeight, 
+                        tileWidth, 
+                        tileHeight), 
+                        Color.White);
                 }
             }
         }
