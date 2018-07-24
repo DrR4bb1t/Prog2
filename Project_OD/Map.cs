@@ -10,9 +10,8 @@ namespace Project_OD
 {
     public class Map
     {
-        public List<Texture2D> tile = new List<Texture2D>();
-        Texture2D texture;
-
+        //public List<Texture2D> tile = new List<Texture2D>();
+        //Texture2D texture;
 
         /// <summary>
         /// Size of one tile in pixel.
@@ -56,7 +55,7 @@ namespace Project_OD
         };
 
         private static int[,] lvl1_Background = new int[,]
-{
+        {
 
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
@@ -73,18 +72,39 @@ namespace Project_OD
             { 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, },
             { 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-};
+        };
+
+        public Map() { }
         public void LoadTextures()
         {
+            TextureManager.StoreTexture();
+            //texture = OD.content.Load<Texture2D>("Tiles/empty");
+            //tile.Add(texture);
 
+            //texture = OD.content.Load<Texture2D>("Tiles/earth");
+            //tile.Add(texture);
 
+            //texture = OD.content.Load<Texture2D>("Tiles/grass");
+            //tile.Add(texture);
+
+            //texture = OD.content.Load<Texture2D>("Tiles/mushroomRed");
+            //tile.Add(texture);
+
+            //texture = OD.content.Load<Texture2D>("Tiles/tree2Bottom");
+            //tile.Add(texture);
+
+            //texture = OD.content.Load<Texture2D>("Tiles/tree2Top");
+            //tile.Add(texture);
+
+            //texture = OD.content.Load<Texture2D>("Tiles/signRight");
+            //tile.Add(texture);
         }
 
         /// <summary>
         /// Loads the array of the grid.
         /// </summary>
         /// <param name="arr">Initialize the choosen map.</param>
-        public void LoadMap(int[,] arr)
+        public void LoadArray(int[,] arr)
         {
             for (int x = 0; x < tileMapWidth; x++)
             {
@@ -94,43 +114,33 @@ namespace Project_OD
                 }
             }
         }
-
         /// <summary>
-        /// Draws the background layer.
+        /// Draws the wished map choosen by lvlID via switch.
+        /// First: Drawing the background layer.
+        /// Then: Drawing the foreground layer.
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void DrawBackgroundLayer(SpriteBatch spriteBatch)
+        /// <param name="lvlID">Choses a level-design</param>
+        public void DrawMap(SpriteBatch spriteBatch, int lvlID)
         {
-
-
-            LoadMap(lvl1_Background);
-
-
-
-            for (int x = 0; x < tileMapWidth; x++)
+            switch (lvlID)
             {
-                for (int y = 0; y < tileMapHeight; y++)
-                {
-                    int textureIndex = map[y, x];
-                    Texture2D texture = tile[textureIndex];
-
-                    spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
-                }
+                case 1:
+                    LoadArray(lvl1_Background);
+                    LoadMap(spriteBatch, TextureManager.mapTile);
+                    LoadArray(lvl1_Foreground);
+                    LoadMap(spriteBatch, TextureManager.mapTile);
+                    break;
+                default:
+                    break;
             }
         }
-
         /// <summary>
-        /// Draws the foreground layer.
+        /// Draws the textures of the map.
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public void DrawForegroundLayer(SpriteBatch spriteBatch)
+        public void LoadMap(SpriteBatch spriteBatch, List<Texture2D> tile)
         {
-
-
-            LoadMap(lvl1_Foreground);
-
-       
-
             for (int x = 0; x < tileMapWidth; x++)
             {
                 for (int y = 0; y < tileMapHeight; y++)
@@ -138,7 +148,14 @@ namespace Project_OD
                     int textureIndex = map[y, x];
                     Texture2D texture = tile[textureIndex];
 
-                    spriteBatch.Draw(texture, new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight), Color.White);
+                    spriteBatch.Draw(
+                        texture, 
+                        new Rectangle(
+                        x * tileWidth, 
+                        y * tileHeight, 
+                        tileWidth, 
+                        tileHeight), 
+                        Color.White);
                 }
             }
         }
