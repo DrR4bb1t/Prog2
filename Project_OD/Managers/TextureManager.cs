@@ -13,7 +13,9 @@ namespace Project_OD
         /// Creates a specified list.
         /// One list for specified texture type.
         /// </summary>
-        public static List<Texture2D> mapTile = new List<Texture2D>();
+        public static List<Texture2D> mapTileBacklayer = new List<Texture2D>();
+        public static List<Texture2D> mapTileMiddlelayer = new List<Texture2D>();
+        public static List<Texture2D> mapTileForelayer = new List<Texture2D>();
         private static Texture2D texture;
         public TextureManager() { }
         /// <summary>
@@ -23,25 +25,33 @@ namespace Project_OD
         public static void StoreTexture()
         {
             texture = OD.content.Load<Texture2D>("Tiles/empty");
-            mapTile.Add(texture);
+            mapTileBacklayer.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/earth");
-            mapTile.Add(texture);
-
-            texture = OD.content.Load<Texture2D>("Tiles/grass");
-            mapTile.Add(texture);
+            texture = OD.content.Load<Texture2D>("Tiles/empty");
+            mapTileMiddlelayer.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/mushroomRed");
-            mapTile.Add(texture);
+            mapTileMiddlelayer.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/tree2Bottom");
-            mapTile.Add(texture);
+            mapTileMiddlelayer.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/tree2Top");
-            mapTile.Add(texture);
+            mapTileMiddlelayer.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/signRight");
-            mapTile.Add(texture);
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/empty");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/earth");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/grass");
+            mapTileForelayer.Add(texture);
+
+   
         }
     }
 }
