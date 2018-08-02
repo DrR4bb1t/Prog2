@@ -47,6 +47,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Npc.cs" />
     <Compile Include="Managers\Animation.cs" />
+    <Compile Include="Managers\Collision.cs" />
     <Compile Include="Managers\FadeAnimation.cs" />
     <Compile Include="States\Exit.cs" />
     <Compile Include="States\GameMenu.cs" />
