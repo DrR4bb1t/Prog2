@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,16 @@ namespace Project_OD
             mapTileForelayer.Add(texture);
 
    
+        }
+
+        public static void LoadTexture()
+        {
+            texture = OD.content.Load<Texture2D>("spritesheet3");
+        }
+
+        public static void Draw(Texture2D texture, SpriteBatch spriteBatch, Vector2 position, int x, int y, int width, int height)
+        {
+            spriteBatch.Draw(texture, position, new Rectangle(x, y, width, height), Color.White);
         }
     }
 }

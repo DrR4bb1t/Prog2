@@ -16,8 +16,10 @@ namespace Project_OD
         public static ContentManager content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManager input;
         Map map;
-
+        Player player;
+        Texture2D avatar;
 
 
         gameStates gamestate = gameStates.Start;
@@ -55,9 +57,19 @@ namespace Project_OD
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             map = new Map();
-
+            avatar = Content.Load<Texture2D>("spritesheet-test");
+            player = new Player(avatar, 2, 7);
+            //player = new Player()
+            //{
+            //    Texture = avatar,
+            //    Position = new Vector2(0, 850),
+            //    Speed = 100,
+            //    SWidth = 1
+            //};
+            //player.LoadTexture();
+            //player = new Player(content.Load<Texture2D>("spritesheet-demo"), 1, 53, 48);
+            //player.Position = new Vector2(0, 850);
             map.LoadTextures();
-
 
 
 
@@ -71,6 +83,8 @@ namespace Project_OD
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
+            
         }
 
         /// <summary>
@@ -100,7 +114,9 @@ namespace Project_OD
                     break;
             }
 
-            InputManager.Update();
+            //InputManager.Update();
+            //player.Update(gameTime);
+            player.Update(gameTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -116,14 +132,19 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
             spriteBatch.Begin();
 
+            //player.Draw(spriteBatch);
+            //spriteBatch.Draw(player.Texture, player.Position, player.SrcRect, Color.White, 0f, player.Origin, 1.0f, SpriteEffects.None, 0);
             map.DrawMap(spriteBatch, 1);
+            
 
             //map.DrawBackgroundLayer(spriteBatch);
             //map.DrawForegroundLayer(spriteBatch);
 
             spriteBatch.End();
+            player.Draw(spriteBatch, new Vector2(0, 850));
 
             // TODO: Add your drawing code here
 
