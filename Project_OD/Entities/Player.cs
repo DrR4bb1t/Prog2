@@ -31,45 +31,21 @@ namespace Project_OD
         private int sWidth;
 
         public int SWidth { get => sWidth; set => sWidth = value; }
-
-
-        //public override void LoadContent(ContentManager content, InputManager input)
-        //{
-        //    //base.LoadContent(content, input);
-        //    TextureManager.LoadTexture(texture, "spritesheet3");
-        //    //moveAnimation = new SpriteSheetAnimation();
-        //    ////texture = content.Load<Texture2D>("spritesheet3");
-        //    //Vector2 tempFrames = Vector2.Zero;
-        //    //moveAnimation.LoadContent(content, texture, "", positionTest);
-        //}
+        public int Rows { get; set; }
+        public int Columns { get; set; }
+        
+        private int totalFrames;
+        private int posXRect;
+        private int posYRect;
+        private bool activeRight;
+        private bool activeLeft;
 
         public void LoadTexture()
         {
             texture = OD.content.Load<Texture2D>("spritesheet3");
         }
-
-        //public override void UnloadContent()
-        //{
-        //    base.UnloadContent();
-        //    moveAnimation.UnloadContent();
-        //}
-
-        //public override void Update(GameTime gameTime)
-        //{
-        //    moveAnimation.Update(gameTime);
-        //}
-
-        //public override void Draw(SpriteBatch spriteBatch)
-        //{
-        //    //moveAnimation.Draw(spriteBatch);
-        //    TextureManager.Draw(texture, spriteBatch, positionTest, 1, 1, 100, 100);
-        //}
-
         
-        public int Rows { get; set; }
-        public int Columns { get; set; }
-        
-        private int totalFrames;
+
 
         public Player(Texture2D texture, int rows, int columns)
         {
@@ -78,7 +54,7 @@ namespace Project_OD
             Rows = rows;
             Columns = columns;
             currentFrame = 0;
-            totalFrames = Rows * Columns;
+            totalFrames = 7;
         }
 
         public void Update(GameTime gameTime)
@@ -88,9 +64,29 @@ namespace Project_OD
             if (state.IsKeyDown(Keys.Right))
             {
                 position.X += (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);
+                activeRight = true;
                 currentFrame++;
                 if (currentFrame == totalFrames)
                     currentFrame = 0;
+            }
+
+            if (state.IsKeyUp(Keys.Right))
+            {
+                activeRight = false;
+            }
+
+            if (state.IsKeyDown(Keys.Left))
+            {
+                position.X -= (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);
+                activeLeft = true;
+                currentFrame++;
+                if (currentFrame == totalFrames)
+                    currentFrame = 0;
+            }
+
+            if (state.IsKeyUp(Keys.Left))
+            {
+                activeLeft = false;
             }
         }
 
@@ -101,7 +97,22 @@ namespace Project_OD
             int row = (int)((float)currentFrame / (float)Columns);
             int column = currentFrame % Columns;
 
-            Rectangle sourceRectangle = new Rectangle(width * column, /*height * row*/ 0, width, height);
+
+
+            if (activeRight == true)
+            {
+                posXRect = width * column;
+                posYRect = 0;
+            }
+
+            if (activeLeft == true)
+            {
+                posXRect = 345 - (width * column);
+                posYRect = 51;
+
+            }
+
+            Rectangle sourceRectangle = new Rectangle(posXRect, posYRect, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)location.Y, width, height);
 
             spriteBatch.Begin();
