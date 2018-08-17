@@ -43,7 +43,7 @@ namespace Project_OD
         }
 
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, int fps)
         {
             KeyboardState state = Keyboard.GetState();
 
@@ -51,13 +51,13 @@ namespace Project_OD
             {
                 sprite.animation = "R";
                 sprite.position.X += (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);
-                sprite.Update(gameTime, true, 20);
+                sprite.Update(gameTime, true, fps);
             }
             else if (state.IsKeyDown(Keys.Left))
             {
                 sprite.animation = "L";
                 sprite.position.X -= (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);
-                sprite.Update(gameTime, true, 20);
+                sprite.Update(gameTime, true, fps);
             }
             
 

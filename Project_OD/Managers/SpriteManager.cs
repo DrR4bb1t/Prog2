@@ -11,7 +11,7 @@ namespace Project_OD
     public abstract class SpriteManager
     {
         protected Texture2D texture;
-        protected Rectangle[] recs;
+        protected Rectangle[] rectangles;
         protected int frameIndex = 0;
         protected Dictionary<string, Rectangle[]> Animations = new Dictionary<string, Rectangle[]>();
         protected int frames;
@@ -19,17 +19,13 @@ namespace Project_OD
         private int height;
         public Vector2 position = Vector2.Zero;
         public Color color = Color.White;
-        public Vector2 origin;
-        public float rotation = 0f;
-        public float scale = 1f;
-        public SpriteEffect spriteEffect;
         public string animation;
 
         public SpriteManager(Texture2D texture, Vector2 position, string startAnimation, int frames, int animations)
         {
             this.texture = texture;
             this.position = position;
-            this.animation = startAnimation;
+            animation = startAnimation;
             this.frames = frames;
             width = texture.Width / frames;
             height = texture.Height / animations;
@@ -38,14 +34,14 @@ namespace Project_OD
 
         public void AddAnimation(string name, int row)
         {
-            recs = new Rectangle[frames];
+            rectangles = new Rectangle[frames];
 
             for (int i = 0; i < frames; i++)
             {
-                recs[i] = new Rectangle(i * width, (row - 1) * height, width, height);
+                rectangles[i] = new Rectangle(i * width, (row - 1) * height, width, height);
             }
 
-            Animations.Add(name, recs);
+            Animations.Add(name, rectangles);
         }
 
         public void Draw(SpriteBatch spriteBatch)

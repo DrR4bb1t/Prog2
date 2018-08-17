@@ -28,7 +28,7 @@ namespace Project_OD
             {
                 timeElapsed -= timeToUpdate;
 
-                if (frameIndex < recs.Length - 1)
+                if (frameIndex < rectangles.Length - 1)
                 {
                     frameIndex++;
                 }

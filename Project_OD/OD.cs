@@ -103,7 +103,7 @@ namespace Project_OD
             InputManager.Update();
 
             
-            player.Update(gameTime);
+            player.Update(gameTime, 20);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
