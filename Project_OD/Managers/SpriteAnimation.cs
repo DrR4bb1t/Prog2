@@ -14,13 +14,14 @@ namespace Project_OD
         private float timeToUpdate = 0.5f;
         public bool isLooping = false;
         public int FPS { set => timeToUpdate = (1f / value); }
-        public SpriteAnimation(Texture2D texture, int frames, int animations) : base(texture, frames, animations)
+        public SpriteAnimation(Texture2D texture, Vector2 position, string startAnimation, int frames, int animations) : base(texture, position, startAnimation, frames, animations)
         {
             
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, bool isLooping, int fps)
         {
+            FPS = fps;
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (timeElapsed > timeToUpdate)

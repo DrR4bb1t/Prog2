@@ -56,46 +56,12 @@ namespace Project_OD
 
         //Modifiers required to be changeable
         public Vector2 Position { get => position; set => position = value; }
-        //public float Speed { get => speed; set { if (value <= maxSpeed) speed = value; } }
+        public float Speed { get => speed; set { if (value <= maxSpeed) speed = value; } }
         //Add Acceleration if slows
         public float JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
         public int Hp { get => hp; set => hp = value; }
         public int Atk { get => atk; set => atk = value; }
         public float AtkRange { get => atkRange; set => atkRange = value; }
 
-        #region test for playeranimation
-
-        protected int currentFrame;
-
-
-        public float Speed { get; set; }
-        public Texture2D Texture { get; set; }
-
-
-
-        //protected ContentManager content;
-
-        //public virtual void LoadContent(ContentManager content, InputManager input)
-        //{
-        //    this.content = new ContentManager(content.ServiceProvider, "Content");
-
-        //}
-
-        //public virtual void UnloadContent()
-        //{
-        //    content.Unload();
-        //}
-
-        //public virtual void Update(GameTime gameTime)
-        //{
-
-        //}
-
-        //public virtual void Draw(SpriteBatch spriteBatch)
-        //{
-
-        //}
-
-        #endregion
     }
 }

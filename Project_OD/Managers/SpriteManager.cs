@@ -25,9 +25,11 @@ namespace Project_OD
         public SpriteEffect spriteEffect;
         public string animation;
 
-        public SpriteManager(Texture2D texture, int frames, int animations)
+        public SpriteManager(Texture2D texture, Vector2 position, string startAnimation, int frames, int animations)
         {
             this.texture = texture;
+            this.position = position;
+            this.animation = startAnimation;
             this.frames = frames;
             width = texture.Width / frames;
             height = texture.Height / animations;
@@ -49,6 +51,12 @@ namespace Project_OD
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, Animations[animation][frameIndex], color);
+        }
+
+        public void StoreAnimations()
+        {
+            AddAnimation("R", 1);
+            AddAnimation("L", 2);
         }
     }
 }

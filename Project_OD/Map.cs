@@ -96,7 +96,10 @@ namespace Project_OD
         };
 
 
-        public Map() { }
+        public Map()
+        {
+            LoadTextures();
+        }
         /// <summary>
         /// Loads the needed textures
         /// </summary>
