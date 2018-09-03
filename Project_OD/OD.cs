@@ -18,15 +18,16 @@ namespace Project_OD
         SpriteBatch spriteBatch;
         Map map;
 
-
+        public static int ScreenWidth = 1600;
+        public static int ScreenHeight = 960;
 
         gameStates gamestate = gameStates.Start;
 
         public OD()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = ScreenWidth;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = ScreenHeight;   // set this value to the desired height of your window
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             content = Content;
