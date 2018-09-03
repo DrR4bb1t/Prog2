@@ -11,9 +11,11 @@ namespace Project_OD
     class InputManager
     {
         /// <summary>
-        /// Keyboard InputManger
+        /// Tutorial Keyboard Manager:
+        /// Snippet -
+        /// if(InputManager.IsKeyPressed(Keys.Enter) {do Something }
+        /// call the Input Managers 'isKeyPressed' Method and pass 'Keys.YourKey'
         /// </summary>
-        
         private static KeyboardState currentKeyboardState;
         private static KeyboardState lastKeyboardState;
 
@@ -24,20 +26,16 @@ namespace Project_OD
 
         public static bool IsKeyPressed(Keys key)
         {
+
             return currentKeyboardState.IsKeyDown(key);
         }
-        
+
         public static bool IsKeyTriggered(Keys key)
         {
             return (currentKeyboardState.IsKeyDown(key)) &&
                 (!lastKeyboardState.IsKeyDown(key));
         }
 
-        /// <summary>
-        /// Mouse InputManager
-        /// </summary>
-
-        
         private static MouseState currentMouseState;
         private static MouseState lastMouseState;
 
@@ -86,10 +84,6 @@ namespace Project_OD
             MiddleButton,
             RightButton
         }
-
-        /// <summary>
-        /// Update Method for Keyboard- and MouseState
-        /// </summary>
 
         public static void Update()
         {
