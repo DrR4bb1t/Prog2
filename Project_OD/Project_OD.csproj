@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
     <Compile Include="Entities\Boss.cs" />
     <Compile Include="Buttons.cs" />
     <Compile Include="Entities\Enemy.cs" />

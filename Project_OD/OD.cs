@@ -16,7 +16,8 @@ namespace Project_OD
         public static ContentManager content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        Camera camera;
         Map map;
         Player player;
 
@@ -56,6 +57,7 @@ namespace Project_OD
             // Create a new SpriteBatch, which can be used to draw textures.
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            camera = new Camera();
             map = new Map();
             player = new Player(0, 850, 7, 2);
 
@@ -102,7 +104,7 @@ namespace Project_OD
 
             InputManager.Update();
 
-            
+            camera.Update(player.Position);
             player.Update(gameTime, 20);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -120,7 +122,10 @@ namespace Project_OD
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                              BlendState.AlphaBlend,
+                              null, null, null, null,
+                              camera.ViewMatrix);
 
             map.DrawMap(spriteBatch, 1);
             player.Draw(spriteBatch);

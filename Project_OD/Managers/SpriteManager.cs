@@ -13,7 +13,13 @@ namespace Project_OD
         protected Texture2D texture;
         protected Rectangle[] rectangles;
         protected int frameIndex = 0;
+        /// <summary>
+        /// Creates a dictionary to store and call the different animations.
+        /// </summary>
         protected Dictionary<string, Rectangle[]> Animations = new Dictionary<string, Rectangle[]>();
+        /// <summary>
+        /// Initialize variables.
+        /// </summary>
         protected int frames;
         private int width;
         private int height;
@@ -32,6 +38,11 @@ namespace Project_OD
 
         }
 
+        /// <summary>
+        /// Adds a animation to the dictionary.
+        /// </summary>
+        /// <param name="name">Name of the animation.</param>
+        /// <param name="row">Row of the needed sprites.</param>
         public void AddAnimation(string name, int row)
         {
             rectangles = new Rectangle[frames];
@@ -49,6 +60,9 @@ namespace Project_OD
             spriteBatch.Draw(texture, position, Animations[animation][frameIndex], color);
         }
 
+        /// <summary>
+        /// Stores all animations.
+        /// </summary>
         public void StoreAnimations()
         {
             AddAnimation("R", 1);
