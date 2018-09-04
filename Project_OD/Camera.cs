@@ -43,6 +43,10 @@ namespace Project_OD
             {
                 position.Y = 0;
             }
+            if (position.X > 1600)
+            {
+                position.X = 1600;
+            }
 
             viewMatrix = Matrix.CreateTranslation(new Vector3(-position, 0));
         }
