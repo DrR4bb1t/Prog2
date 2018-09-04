@@ -15,7 +15,8 @@ namespace Project_OD
         /// </summary>
         private Vector2 position;
         private Matrix viewMatrix;
-
+        private int maxCamWidth;
+        private float camStartPoint = 1.3f;
         /// <summary>
         /// Cameramatrix
         /// </summary>
@@ -26,13 +27,18 @@ namespace Project_OD
         public int ScreenWidth { get => GraphicsDeviceManager.DefaultBackBufferWidth; }
         public int ScreenHeight { get => GraphicsDeviceManager.DefaultBackBufferHeight; }
 
+        public Camera(int viewportWidth)
+        {
+            ViewportCalc(viewportWidth);
+        }
+
         /// <summary>
         /// Updates the camera.
         /// </summary>
         /// <param name="playerPos">position of the camera is set nby player's position.</param>
         public void Update(Vector2 playerPos)
         {
-            position.X = playerPos.X - (ScreenWidth / 2);
+            position.X = playerPos.X - (ScreenWidth / camStartPoint);
             position.Y = playerPos.Y - (ScreenHeight * 2);
 
             if (position.X < 0)
@@ -43,12 +49,17 @@ namespace Project_OD
             {
                 position.Y = 0;
             }
-            if (position.X > 1600)
+            if (position.X > maxCamWidth)
             {
-                position.X = 1600;
+                position.X = maxCamWidth;
             }
 
             viewMatrix = Matrix.CreateTranslation(new Vector3(-position, 0));
+        }
+
+        public void ViewportCalc(int viewportWidth)
+        {
+            maxCamWidth = viewportWidth;
         }
 
     }

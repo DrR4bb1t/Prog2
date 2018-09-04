@@ -57,7 +57,7 @@ namespace Project_OD
             // Create a new SpriteBatch, which can be used to draw textures.
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            camera = new Camera();
+            camera = new Camera(1600);
             map = new Map();
             player = new Player(0, 850, 7, 2);
 
