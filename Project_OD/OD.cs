@@ -60,9 +60,11 @@ namespace Project_OD
             spriteBatch = new SpriteBatch(GraphicsDevice);
             camera = new Camera(1600);
             map = new Map();
-            player = new Player(0, 850, 7, 2);
+            player = new Player();
+            player.SetEntity(new Vector2(0, 850), 0, 0, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2);
+            Physics physics = new Physics();
 
-            
+
         }
 
         /// <summary>

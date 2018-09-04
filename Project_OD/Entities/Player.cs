@@ -23,25 +23,25 @@ namespace Project_OD
 
         #region test for playeranimation
 
-        SpriteAnimation sprite;
+        //SpriteAnimation sprite;
 
 
-        public void LoadTexture()
-        {
-            texture = OD.content.Load<Texture2D>("spritesheet-test2_1.png");
-        }
+        //public void LoadTexture()
+        //{
+        //    texture = OD.content.Load<Texture2D>("spritesheet-test2_1.png");
+        //}
         
 
 
-        public Player(int coordX, int coordY, int frames, int animations)
-        {
-            LoadTexture();
+        //public Player(int coordX, int coordY, int frames, int animations)
+        //{
+        //    LoadTexture();
 
-            sprite = new SpriteAnimation(texture, new Vector2(coordX, coordY), "R", frames, animations);
-            sprite.StoreAnimations();
+        //    sprite = new SpriteAnimation(texture, new Vector2(coordX, coordY), "R", frames, animations);
+        //    sprite.StoreAnimations();
             
             
-        }
+        //}
 
 
         public void Update(GameTime gameTime, int fps)
@@ -57,18 +57,19 @@ namespace Project_OD
             }
             moveTo = physics.Update(this, gameTime,dir);
             Position += moveTo;
-            if (moveTo.X > 0)
-            {
-                sprite.animation = "R";
-                sprite.Update(gameTime, true, fps);
-            }
-            else if (moveTo.X < 0)
-            {
-                sprite.animation = "L";
-                sprite.Update(gameTime, true, fps);
-            }
-            sprite.position.X = Position.X;
-            sprite.position.Y = Position.Y;
+            spriteanim(gameTime, fps);
+            //if (moveTo.X > 0)
+            //{
+            //    sprite.animation = "R";
+            //    sprite.Update(gameTime, true, fps);
+            //}
+            //else if (moveTo.X < 0)
+            //{
+            //    sprite.animation = "L";
+            //    sprite.Update(gameTime, true, fps);
+            //}
+            //sprite.position.X = Position.X;
+            //sprite.position.Y = Position.Y;
             
             //if (state.IsKeyDown(Keys.Right))
             //{
@@ -86,12 +87,12 @@ namespace Project_OD
             Console.WriteLine("X: {0}, Y: {1}", position.X, position.Y);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
+        //public void Draw(SpriteBatch spriteBatch)
+        //{
 
-            sprite.Draw(spriteBatch);
+        //    sprite.Draw(spriteBatch);
 
-        }
+        //}
 
            #endregion
     }

@@ -15,31 +15,50 @@ namespace Project_OD
     {
         public Entity() { }
         //Create Entity
-        public void SetEntity(Vector2 position, int width, int height, Texture2D texture, Texture2D deathTexture, float maxSpeed, float jumpMaxSpeed, int maxHp, int baseAtk,float atkRange, float atkTimeout)
+        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk,float atkRange, float atkTimeout,int frames, int animations)
         {
             this.position = position;
             this.width = width;
             this.height = height;
-            this.texture = texture;
+            this.texture = OD.content.Load<Texture2D>(texture);
             this.deathTexture = deathTexture;
+            this.speed = Speed;
             this.jumpMaxSpeed = jumpMaxSpeed;
             this.maxHp = maxHp;
             this.baseAtk = baseAtk;
             this.atkRange = atkRange;
             this.atkTimeout = atkTimeout;
+            this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
+            sprite.StoreAnimations();
         }
-        public void Update()
+        public void spriteanim(GameTime gameTime,int fps)
         {
-            
-           
-            //Animated Sprite
-
+            if (moveTo.X > 0)
+            {
+                sprite.animation = "R";
+                sprite.Update(gameTime, true, fps);
+            }
+            else if (moveTo.X < 0)
+            {
+                sprite.animation = "L";
+                sprite.Update(gameTime, true, fps);
+            }
+            sprite.position.X = Position.X;
+            sprite.position.Y = Position.Y;
         }
+        public void Update(GameTime gameTime, int fps)
+        {
+            spriteanim(gameTime,fps);
+            //Animated Sprite
+        }
+
         public void Destroy() { }
+
+        SpriteAnimation sprite;
         //Private Properties
         protected Vector2 moveTo;
         //Physics physics = new Physics();    //create generally
-        protected Vector2 position=new Vector2(0, 850);
+        protected Vector2 position=new Vector2(0, 0);
         protected int width=1;
         protected int height=1;
         protected Texture2D texture;
@@ -54,7 +73,7 @@ namespace Project_OD
         protected float atkRange;
         protected float atkTimeout;
 
-        //?Add Frame for Animated?
+        
 
         //Modifiers required to be changeable
         public Vector2 Position { get => position; set => position = value; }
@@ -66,5 +85,12 @@ namespace Project_OD
         public float AtkRange { get => atkRange; set => atkRange = value; }
         public float GetjumpMaxSpeed() { return jumpMaxSpeed; }
 
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
+            sprite.Draw(spriteBatch);
+
+        }
     }
 }
