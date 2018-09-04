@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Project_OD
 {
-    class InputManager
+    public class InputManager
     {
         /// <summary>
         /// Tutorial Keyboard Manager:

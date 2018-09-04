@@ -16,7 +16,10 @@ namespace Project_OD
         public static ContentManager content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Camera camera;
         Map map;
+        Player player;
 
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 960;
@@ -55,12 +58,9 @@ namespace Project_OD
             // Create a new SpriteBatch, which can be used to draw textures.
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            camera = new Camera(1600);
             map = new Map();
-
-            map.LoadTextures();
-
-
-
+            player = new Player(0, 850, 7, 2);
 
             
         }
@@ -72,6 +72,8 @@ namespace Project_OD
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
+            
         }
 
         /// <summary>
@@ -103,6 +105,9 @@ namespace Project_OD
 
             InputManager.Update();
 
+            camera.Update(player.Position);
+            player.Update(gameTime, 20);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -117,14 +122,19 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                              BlendState.AlphaBlend,
+                              null, null, null, null,
+                              camera.ViewMatrix);
 
             map.DrawMap(spriteBatch, 1);
+            player.Draw(spriteBatch);
 
-            //map.DrawBackgroundLayer(spriteBatch);
-            //map.DrawForegroundLayer(spriteBatch);
+
 
             spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
