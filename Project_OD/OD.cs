@@ -106,7 +106,7 @@ namespace Project_OD
             InputManager.Update();
 
             camera.Update(player.Position);
-            player.Update(gameTime, 20);
+            player.Update(gameTime, 15);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
