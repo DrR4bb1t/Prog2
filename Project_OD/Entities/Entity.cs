@@ -43,6 +43,7 @@ namespace Project_OD
         protected int width=1;
         protected int height=1;
         protected Texture2D texture;
+        protected Texture2D texture2;
         protected Texture2D deathTexture;
         protected float speed=200;
         protected float jumpMaxSpeed=1;

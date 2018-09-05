@@ -17,7 +17,7 @@ namespace Project_OD
         Vector2 exitVector;
         Vector2 changeVector;
 
-        public Vector2 Update(Entity entity, GameTime gameTime,string dir)
+        public Vector2 Update(Entity entity, GameTime gameTime, string dir)
         {
             exitVector = new Vector2(0, 0);
             if (dir == "R") {

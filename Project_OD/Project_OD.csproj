@@ -88,6 +88,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\spritesheet-atk.xnb" />
     <None Include="Content\spritesheet-demo.xnb" />
     <None Include="Content\spritesheet-test2_1.png.xnb" />
     <None Include="Content\Tiles\earth.xnb" />

@@ -63,10 +63,23 @@ namespace Project_OD
         /// <summary>
         /// Stores all animations.
         /// </summary>
-        public void StoreAnimations()
+        public void StoreAnimations(int moveset)
         {
+            switch (moveset)
+            {
+                case 1:
             AddAnimation("R", 1);
             AddAnimation("L", 2);
+                    break;
+                case 2:
+            AddAnimation("atk-R", 1);
+            AddAnimation("atk-L", 2);
+                    break;
+                default:
+                    break;
+            }
+
+
         }
     }
 }

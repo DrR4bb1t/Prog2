@@ -129,7 +129,7 @@ namespace Project_OD
                               camera.ViewMatrix);
 
             map.DrawMap(spriteBatch, 1);
-            player.Draw(spriteBatch);
+            player.Draw(spriteBatch, player.ATK);
 
 
 
