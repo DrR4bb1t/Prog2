@@ -20,6 +20,7 @@ namespace Project_OD
         Camera camera;
         Map map;
         Player player;
+        Enemy enemy;
 
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 960;
@@ -61,7 +62,10 @@ namespace Project_OD
             camera = new Camera(1600);
             map = new Map();
             player = new Player();
+            enemy = new Enemy();
+            enemy.enemyinit(new Vector2(100, 850));
             player.SetEntity(new Vector2(0, 850), 0, 0, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2);
+            enemy.SetEntity(new Vector2(100, 850), 0, 0, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2);
             Physics physics = new Physics();
 
 
@@ -109,6 +113,7 @@ namespace Project_OD
 
             camera.Update(player.Position);
             player.Update(gameTime, 20);
+            enemy.Update(gameTime, 20);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -132,6 +137,7 @@ namespace Project_OD
 
             map.DrawMap(spriteBatch, 1);
             player.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
 
 
 

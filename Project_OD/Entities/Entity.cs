@@ -15,6 +15,7 @@ namespace Project_OD
     {
         public Entity() { }
         //Create Entity
+
         public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk,float atkRange, float atkTimeout,int frames, int animations)
         {
             this.position = position;
