@@ -21,7 +21,6 @@ namespace Project_OD
             this.width = width;
             this.height = height;
             this.texture = texture;
-            this.deathTexture = deathTexture;
             this.jumpMaxSpeed = jumpMaxSpeed;
             this.maxHp = maxHp;
             this.baseAtk = baseAtk;
@@ -42,9 +41,13 @@ namespace Project_OD
         protected Vector2 position=new Vector2(0, 850);
         protected int width=1;
         protected int height=1;
+
+        #region Textures
         protected Texture2D texture;
         protected Texture2D texture2;
-        protected Texture2D deathTexture;
+        protected Texture2D texture3;
+        #endregion
+
         protected float speed=200;
         protected float jumpMaxSpeed=1;
         protected float jumpSpeed=0;

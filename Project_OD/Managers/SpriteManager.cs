@@ -68,12 +68,16 @@ namespace Project_OD
             switch (moveset)
             {
                 case 1:
-            AddAnimation("R", 1);
-            AddAnimation("L", 2);
+                    AddAnimation("R", 1);
+                    AddAnimation("L", 2);
                     break;
                 case 2:
-            AddAnimation("atk-R", 1);
-            AddAnimation("atk-L", 2);
+                    AddAnimation("atk-R", 1);
+                    AddAnimation("atk-L", 2);
+                    break;
+                case 3:
+                    AddAnimation("dash-R", 1);
+                    AddAnimation("dash-L", 2);
                     break;
                 default:
                     break;
