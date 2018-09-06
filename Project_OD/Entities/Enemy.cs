@@ -10,7 +10,7 @@ namespace Project_OD
     class Enemy:Entity
     {
         Physics physics = new Physics();
-        public Enemy() { }
+        
         public void enemyinit(Vector2 startpos)
         {
             target1 = startpos;

@@ -65,7 +65,7 @@ namespace Project_OD
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(100, 850));
             player.SetEntity(new Vector2(0, 850), 0, 0, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2);
-            enemy.SetEntity(new Vector2(100, 850), 0, 0, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2);
+            enemy.SetEntity(new Vector2(100, 850), 0, 0, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 1, 0, 7, 2);
             Physics physics = new Physics();
 
 

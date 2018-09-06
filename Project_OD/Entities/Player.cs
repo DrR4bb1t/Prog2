@@ -34,6 +34,10 @@ namespace Project_OD
             {
                 dir = "L";
             }
+            if (state.IsKeyDown(Keys.Up))
+            {
+                
+            }
             moveTo = physics.Update(this, gameTime,dir);
             Position += moveTo;
             spriteanim(gameTime, fps);

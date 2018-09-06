@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
+
     class Physics
     {
+
         public Physics() { }
         bool collision = false;
         bool midAir = false;
@@ -27,7 +29,22 @@ namespace Project_OD
             {
                 exitVector += new Vector2(-(float)gameTime.ElapsedGameTime.TotalSeconds * entity.Speed, 0);
             }
+            if (midAir)
+            {
+                exitVector += falldown(entity);
+            }
             return exitVector;
+        }
+
+
+    public Vector2 falldown(Entity entity)
+        {
+            if ((entity.JumpSpeed-0.01) > -entity.GetjumpMaxSpeed())
+            {
+                entity.JumpSpeed -= 0.01f;
+            }
+            changeVector = new Vector2(0,entity.JumpSpeed);
+            return changeVector;
         }
     }
 }
