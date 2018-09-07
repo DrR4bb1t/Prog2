@@ -16,9 +16,11 @@ namespace Project_OD
         private int armorValue;
         private int weaponValue;
         private int skillCnt;
+        private int cooldown;
         private string dir;
         private bool atkMove;
         private bool skill1;
+        private bool skill1Cooldown;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -112,19 +114,28 @@ namespace Project_OD
             #region Dash-Attack
             if (state.IsKeyDown(Keys.W) && dirR == true)
             {
-                skill = 1;
-                atkMove = true;
-                skill1 = true;        
+                if (cooldown == 0)
+                {                    
+                    skill = 1;
+                    cooldown = 180;
+                    atkMove = true;
+                    skill1 = true;
+                }
             }
             else if (state.IsKeyDown(Keys.W) && dirL == true)
             {
-                skill = 1;
-                atkMove = true;
-                skill1 = true;
+                if (cooldown == 0)
+                {
+                    skill = 1;
+                    cooldown = 180;
+                    atkMove = true;
+                    skill1 = true;
+                }
             }
 
             if (skill1 == true)
             {
+                
                 if (dirR == true)
                 {
                     sprite3.animation = "dash-R";
@@ -140,10 +151,21 @@ namespace Project_OD
                     skillCnt++;
                 }
 
-                if (skillCnt > 20)
+                if (skillCnt == 20)
                 {
                     skill1 = false;
                     skillCnt = 0;
+                    skill1Cooldown = true;
+                }
+            }
+
+            if (skill1Cooldown == true)
+            {
+                --cooldown;
+                if (cooldown == 0)
+                {
+                    cooldown = 0;
+                    skill1Cooldown = false;
                 }
             }
             #endregion
