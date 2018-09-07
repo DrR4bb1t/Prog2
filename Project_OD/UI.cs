@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    class UI
+    public class UI
     {
+    }
+
+    public void Update()
+    {
+        
+    }
+    public void Draw()
+    {
+        
     }
 }
