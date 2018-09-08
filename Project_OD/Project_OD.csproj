@@ -91,6 +91,10 @@
     <None Include="Content\spritesheet-atk.xnb" />
     <None Include="Content\spritesheet-dash.xnb" />
     <None Include="Content\spritesheet-demo.xnb" />
+    <None Include="Content\spritesheet-smash.xnb" />
+    <None Include="Content\spritesheet-smash2.xnb" />
+    <None Include="Content\spritesheet-smash3.xnb" />
+    <None Include="Content\spritesheet-smash4.xnb" />
     <None Include="Content\spritesheet-test2_1.png.xnb" />
     <None Include="Content\Tiles\earth.xnb" />
     <None Include="Content\Tiles\empty.xnb" />

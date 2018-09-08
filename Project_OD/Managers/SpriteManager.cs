@@ -79,6 +79,10 @@ namespace Project_OD
                     AddAnimation("dash-R", 1);
                     AddAnimation("dash-L", 2);
                     break;
+                case 4:
+                    AddAnimation("smash-R", 1);
+                    AddAnimation("smash-L", 2);
+                    break;
                 default:
                     break;
             }

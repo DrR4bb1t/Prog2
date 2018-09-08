@@ -15,12 +15,16 @@ namespace Project_OD
         //public Player() { }
         private int armorValue;
         private int weaponValue;
-        private int skillCnt;
-        private int cooldown;
+        private int skillCnt1;
+        private int cooldown1;
+        private int skillCnt2;
+        private int cooldown2;
         private string dir;
         private bool atkMove;
         private bool skill1;
+        private bool skill2;
         private bool skill1Cooldown;
+        private bool skill2Cooldown;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -37,6 +41,7 @@ namespace Project_OD
         SpriteAnimation sprite;
         SpriteAnimation sprite2;
         SpriteAnimation sprite3;
+        SpriteAnimation sprite4;
 
 
         public void LoadTexture()
@@ -44,6 +49,7 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("spritesheet-test2_1.png");
             texture2 = OD.content.Load<Texture2D>("spritesheet-atk");
             texture3 = OD.content.Load<Texture2D>("spritesheet-dash");
+            texture4 = OD.content.Load<Texture2D>("spritesheet-smash");
         }
         
 
@@ -57,9 +63,11 @@ namespace Project_OD
             sprite = new SpriteAnimation(texture, new Vector2(coordX, coordY), "R", frames, animations);
             sprite2 = new SpriteAnimation(texture2, new Vector2(coordX, coordY), "atk-R", frames, animations);
             sprite3 = new SpriteAnimation(texture3, new Vector2(coordX, coordY), "dash-R", frames, animations);
+            sprite4 = new SpriteAnimation(texture4, new Vector2(coordX, coordY), "smash-R", frames, animations);
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
             sprite3.StoreAnimations(3);
+            sprite4.StoreAnimations(4);
             
             
         }
@@ -114,20 +122,20 @@ namespace Project_OD
             #region Dash-Attack
             if (state.IsKeyDown(Keys.W) && dirR == true)
             {
-                if (cooldown == 0)
+                if (cooldown1 == 0)
                 {                    
                     skill = 1;
-                    cooldown = 180;
+                    cooldown1 = 180;
                     atkMove = true;
                     skill1 = true;
                 }
             }
             else if (state.IsKeyDown(Keys.W) && dirL == true)
             {
-                if (cooldown == 0)
+                if (cooldown1 == 0)
                 {
                     skill = 1;
-                    cooldown = 180;
+                    cooldown1 = 180;
                     atkMove = true;
                     skill1 = true;
                 }
@@ -141,38 +149,96 @@ namespace Project_OD
                     sprite3.animation = "dash-R";
                     sprite3.Update(gameTime, true, 25);
                     position.X += 10.0f;
-                    skillCnt++;
+                    skillCnt1++;
                 }
                 else if (dirL == true)
                 {
                     sprite3.animation = "dash-L";
                     sprite3.Update(gameTime, true, 25);
                     position.X -= 10.0f;
-                    skillCnt++;
+                    skillCnt1++;
                 }
 
-                if (skillCnt == 20)
+                if (skillCnt1 == 20)
                 {
                     skill1 = false;
-                    skillCnt = 0;
+                    skillCnt1 = 0;
                     skill1Cooldown = true;
                 }
             }
 
             if (skill1Cooldown == true)
             {
-                --cooldown;
-                if (cooldown == 0)
+                --cooldown1;
+                if (cooldown1 == 0)
                 {
-                    cooldown = 0;
+                    cooldown1 = 0;
                     skill1Cooldown = false;
                 }
             }
             #endregion
 
-            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W))
+            ///Smash-Attack
+            #region Smash-Attack
+            if (state.IsKeyDown(Keys.E) && dirR == true)
             {
-                if (skill1 == false)
+                if (cooldown2 == 0)
+                {
+                    skill = 2;
+                    cooldown2 = 180;
+                    atkMove = true;
+                    skill2 = true;
+                }
+            }
+            else if (state.IsKeyDown(Keys.E) && dirL == true)
+            {
+                if (cooldown2 == 0)
+                {
+                    skill = 2;
+                    cooldown2 = 180;
+                    atkMove = true;
+                    skill2 = true;
+                }
+            }
+
+            if (skill2 == true)
+            {
+
+                if (dirR == true)
+                {
+                    sprite4.animation = "smash-R";
+                    sprite4.Update(gameTime, true, 10);
+                    skillCnt2++;
+                }
+                else if (dirL == true)
+                {
+                    sprite4.animation = "smash-L";
+                    sprite4.Update(gameTime, true, 10);
+                    skillCnt2++;
+                }
+
+                if (skillCnt2 == 30)
+                {
+                    skill2 = false;
+                    skillCnt2 = 0;
+                    skill2Cooldown = true;
+                }
+            }
+
+            if (skill2Cooldown == true)
+            {
+                --cooldown2;
+                if (cooldown2 == 0)
+                {
+                    cooldown2 = 0;
+                    skill2Cooldown = false;
+                }
+            }
+            #endregion
+
+            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E))
+            {
+                if (skill1 == false && skill2 == false)
                 {
                     atkMove = false;
                 }
@@ -183,6 +249,8 @@ namespace Project_OD
             sprite2.position.Y = Position.Y;
             sprite3.position.X = Position.X;
             sprite3.position.Y = Position.Y;
+            sprite4.position.X = Position.X;
+            sprite4.position.Y = Position.Y;
             
             //if (state.IsKeyDown(Keys.Right))
             //{
@@ -213,6 +281,9 @@ namespace Project_OD
                         break;
                     case 1:
                         sprite3.Draw(spriteBatch);
+                        break;
+                    case 2:
+                        sprite4.Draw(spriteBatch);
                         break;
                     default:
                         break;
