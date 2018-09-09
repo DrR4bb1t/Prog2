@@ -19,12 +19,16 @@ namespace Project_OD
         private int cooldown1;
         private int skillCnt2;
         private int cooldown2;
+        private int skillCnt3;
+        private int cooldown3;
         private string dir;
         private bool atkMove;
         private bool skill1;
         private bool skill2;
+        private bool skill3;
         private bool skill1Cooldown;
         private bool skill2Cooldown;
+        private bool skill3Cooldown;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -42,6 +46,7 @@ namespace Project_OD
         SpriteAnimation sprite2;
         SpriteAnimation sprite3;
         SpriteAnimation sprite4;
+        SpriteAnimation sprite5;
 
 
         public void LoadTexture()
@@ -50,6 +55,7 @@ namespace Project_OD
             texture2 = OD.content.Load<Texture2D>("spritesheet-atk");
             texture3 = OD.content.Load<Texture2D>("spritesheet-dash");
             texture4 = OD.content.Load<Texture2D>("spritesheet-smash");
+            texture5 = OD.content.Load<Texture2D>("spritesheet-stamp2");
         }
         
 
@@ -64,10 +70,12 @@ namespace Project_OD
             sprite2 = new SpriteAnimation(texture2, new Vector2(coordX, coordY), "atk-R", frames, animations);
             sprite3 = new SpriteAnimation(texture3, new Vector2(coordX, coordY), "dash-R", frames, animations);
             sprite4 = new SpriteAnimation(texture4, new Vector2(coordX, coordY), "smash-R", frames, animations);
+            sprite5 = new SpriteAnimation(texture5, new Vector2(coordX, coordY), "stamp-R", 8, animations);
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
             sprite3.StoreAnimations(3);
             sprite4.StoreAnimations(4);
+            sprite5.StoreAnimations(5);
             
             
         }
@@ -207,17 +215,17 @@ namespace Project_OD
                 if (dirR == true)
                 {
                     sprite4.animation = "smash-R";
-                    sprite4.Update(gameTime, true, 10);
+                    sprite4.Update(gameTime, true, 7);
                     skillCnt2++;
                 }
                 else if (dirL == true)
                 {
                     sprite4.animation = "smash-L";
-                    sprite4.Update(gameTime, true, 10);
+                    sprite4.Update(gameTime, true, 7);
                     skillCnt2++;
                 }
 
-                if (skillCnt2 == 30)
+                if (skillCnt2 == 60)
                 {
                     skill2 = false;
                     skillCnt2 = 0;
@@ -236,9 +244,67 @@ namespace Project_OD
             }
             #endregion
 
-            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E))
+            ///Stamp-Attack
+            #region Stamp-Attack
+            if (state.IsKeyDown(Keys.R) && dirR == true)
             {
-                if (skill1 == false && skill2 == false)
+                if (cooldown3 == 0)
+                {
+                    skill = 3;
+                    cooldown3 = 180;
+                    atkMove = true;
+                    skill3 = true;
+                }
+            }
+            else if (state.IsKeyDown(Keys.R) && dirL == true)
+            {
+                if (cooldown3 == 0)
+                {
+                    skill = 3;
+                    cooldown3 = 180;
+                    atkMove = true;
+                    skill3 = true;
+                }
+            }
+
+            if (skill3 == true)
+            {
+
+                if (dirR == true)
+                {
+                    sprite5.animation = "stamp-R";
+                    sprite5.Update(gameTime, true, 8);
+                    skillCnt3++;
+                }
+                else if (dirL == true)
+                {
+                    sprite5.animation = "stamp-L";
+                    sprite5.Update(gameTime, true, 8);
+                    skillCnt3++;
+                }
+
+                if (skillCnt3 == 60)
+                {
+                    skill3 = false;
+                    skillCnt3 = 0;
+                    skill3Cooldown = true;
+                }
+            }
+
+            if (skill3Cooldown == true)
+            {
+                --cooldown3;
+                if (cooldown3 == 0)
+                {
+                    cooldown3 = 0;
+                    skill3Cooldown = false;
+                }
+            }
+            #endregion
+
+            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E) && state.IsKeyUp(Keys.R))
+            {
+                if (skill1 == false && skill2 == false && skill3 == false)
                 {
                     atkMove = false;
                 }
@@ -251,6 +317,8 @@ namespace Project_OD
             sprite3.position.Y = Position.Y;
             sprite4.position.X = Position.X;
             sprite4.position.Y = Position.Y;
+            sprite5.position.X = Position.X;
+            sprite5.position.Y = Position.Y;
             
             //if (state.IsKeyDown(Keys.Right))
             //{
@@ -284,6 +352,9 @@ namespace Project_OD
                         break;
                     case 2:
                         sprite4.Draw(spriteBatch);
+                        break;
+                    case 3:
+                        sprite5.Draw(spriteBatch);
                         break;
                     default:
                         break;

@@ -83,6 +83,10 @@ namespace Project_OD
                     AddAnimation("smash-R", 1);
                     AddAnimation("smash-L", 2);
                     break;
+                case 5:
+                    AddAnimation("stamp-R", 1);
+                    AddAnimation("stamp-L", 2);
+                    break;
                 default:
                     break;
             }
