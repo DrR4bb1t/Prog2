@@ -20,8 +20,6 @@ namespace Project_OD
 
         public int ArmorValue { get => armorValue; set => armorValue = value; }
         public int WeaponValue { get => weaponValue; set => weaponValue = value; }
-
-        #region test for playeranimation
         
         public new void Update(GameTime gameTime, int fps)
         {
@@ -38,13 +36,12 @@ namespace Project_OD
             {
                 
             }
-            moveTo = physics.Update(this, gameTime,dir);
+            moveTo = physics.moveVector(this, gameTime,dir);
             Position += moveTo;
             spriteanim(gameTime, fps);
            
             Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
         }
 
-           #endregion
     }
 }

@@ -29,6 +29,8 @@ namespace Project_OD
             this.baseAtk = baseAtk;
             this.atkRange = atkRange;
             this.atkTimeout = atkTimeout;
+            this.rect = new Rectangle((int)position.X, (int)position.Y, width, height);
+
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
             sprite.StoreAnimations();
         }
@@ -46,10 +48,13 @@ namespace Project_OD
             }
             sprite.position.X = Position.X;
             sprite.position.Y = Position.Y;
+            rect.X = (int)Position.X;
+            rect.Y = (int)Position.Y;
         }
         public void Update(GameTime gameTime, int fps)
         {
             spriteanim(gameTime,fps);
+            
             //Animated Sprite
         }
 
@@ -60,6 +65,7 @@ namespace Project_OD
         protected Vector2 moveTo;
         //Physics physics = new Physics();    //create generally
         protected Vector2 position=new Vector2(0, 0);
+        protected Rectangle rect;
         protected int width=1;
         protected int height=1;
         protected Texture2D texture;
@@ -85,6 +91,8 @@ namespace Project_OD
         public int Atk { get => atk; set => atk = value; }
         public float AtkRange { get => atkRange; set => atkRange = value; }
         public float GetjumpMaxSpeed() { return jumpMaxSpeed; }
+        public int GetWith() { return width; }
+        public int GetHeight() { return height; }
 
 
         public void Draw(SpriteBatch spriteBatch)

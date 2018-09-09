@@ -19,10 +19,16 @@ namespace Project_OD
         Vector2 exitVector;
         Vector2 changeVector;
 
-        public Vector2 Update(Entity entity, GameTime gameTime,string dir)
+        public Vector2 Update(Entity entity, GameTime gameTime,string dir, Map map)
+        {
+            exitVector = moveVector(entity, gameTime, dir);
+            return exitVector;
+        }
+        public Vector2 moveVector(Entity entity, GameTime gameTime, string dir)
         {
             exitVector = new Vector2(0, 0);
-            if (dir == "R") {
+            if (dir == "R")
+            {
                 exitVector += new Vector2((float)gameTime.ElapsedGameTime.TotalSeconds * entity.Speed, 0);
             }
             else if (dir == "L")
