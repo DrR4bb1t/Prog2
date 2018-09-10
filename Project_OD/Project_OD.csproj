@@ -98,6 +98,8 @@
     <None Include="Content\spritesheet-stamp.xnb" />
     <None Include="Content\spritesheet-stamp2.xnb" />
     <None Include="Content\spritesheet-test2_1.png.xnb" />
+    <None Include="Content\spritesheet-thorns2_1.xnb" />
+    <None Include="Content\spritesheet-thorns_summon.xnb" />
     <None Include="Content\Tiles\earth.xnb" />
     <None Include="Content\Tiles\empty.xnb" />
     <None Include="Content\Tiles\fenceLeft.xnb" />

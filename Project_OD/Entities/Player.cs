@@ -29,6 +29,9 @@ namespace Project_OD
         private bool skill1Cooldown;
         private bool skill2Cooldown;
         private bool skill3Cooldown;
+        private bool predator2 = false;
+        private bool technokrat2 = true;
+        private bool technoMage2 = false;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -47,6 +50,8 @@ namespace Project_OD
         SpriteAnimation sprite3;
         SpriteAnimation sprite4;
         SpriteAnimation sprite5;
+        SpriteAnimation sprite5_1;
+        SpriteAnimation sprite5_1_1;
 
 
         public void LoadTexture()
@@ -56,6 +61,8 @@ namespace Project_OD
             texture3 = OD.content.Load<Texture2D>("spritesheet-dash");
             texture4 = OD.content.Load<Texture2D>("spritesheet-smash");
             texture5 = OD.content.Load<Texture2D>("spritesheet-stamp2");
+            texture5_1 = OD.content.Load<Texture2D>("spritesheet-thorns2_1");
+            texture5_1_1 = OD.content.Load<Texture2D>("spritesheet-thorns_summon");
         }
         
 
@@ -71,11 +78,16 @@ namespace Project_OD
             sprite3 = new SpriteAnimation(texture3, new Vector2(coordX, coordY), "dash-R", frames, animations);
             sprite4 = new SpriteAnimation(texture4, new Vector2(coordX, coordY), "smash-R", frames, animations);
             sprite5 = new SpriteAnimation(texture5, new Vector2(coordX, coordY), "stamp-R", 8, animations);
+            sprite5_1 = new SpriteAnimation(texture5_1, new Vector2(coordX, coordY), "stamp-R", frames, animations);
+            sprite5_1_1 = new SpriteAnimation(texture5_1_1, new Vector2(coordX, coordY), "atk-R", frames, animations);
+
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
             sprite3.StoreAnimations(3);
             sprite4.StoreAnimations(4);
             sprite5.StoreAnimations(5);
+            sprite5_1.StoreAnimations(5);
+            sprite5_1_1.StoreAnimations(2);
             
             
         }
@@ -269,25 +281,56 @@ namespace Project_OD
 
             if (skill3 == true)
             {
+                if (predator2 == true)
+                {
 
-                if (dirR == true)
-                {
-                    sprite5.animation = "stamp-R";
-                    sprite5.Update(gameTime, true, 8);
-                    skillCnt3++;
-                }
-                else if (dirL == true)
-                {
-                    sprite5.animation = "stamp-L";
-                    sprite5.Update(gameTime, true, 8);
-                    skillCnt3++;
+
+                    if (dirR == true)
+                    {
+                        sprite5.animation = "stamp-R";
+                        sprite5.Update(gameTime, true, 8);
+                        skillCnt3++;
+                    }
+                    else if (dirL == true)
+                    {
+                        sprite5.animation = "stamp-L";
+                        sprite5.Update(gameTime, true, 8);
+                        skillCnt3++;
+                    }
+
+                    if (skillCnt3 == 60)
+                    {
+                        skill3 = false;
+                        skillCnt3 = 0;
+                        skill3Cooldown = true;
+                    }
                 }
 
-                if (skillCnt3 == 60)
+                if (technokrat2 == true)
                 {
-                    skill3 = false;
-                    skillCnt3 = 0;
-                    skill3Cooldown = true;
+                    if (dirR == true)
+                    {
+                        sprite5_1_1.animation = "atk-R";
+                        sprite5_1_1.Update(gameTime, true, 7);
+                        sprite5_1.animation = "stamp-R";
+                        sprite5_1.Update(gameTime, true, 7);
+                        skillCnt3++;
+                    }
+                    else if (dirL == true)
+                    {
+                        sprite5_1_1.animation = "atk-R";
+                        sprite5_1_1.Update(gameTime, true, 7);
+                        sprite5_1.animation = "stamp-R";
+                        sprite5_1.Update(gameTime, true, 7);
+                        skillCnt3++;
+                    }
+
+                    if (skillCnt3 == 60)
+                    {
+                        skill3 = false;
+                        skillCnt3 = 0;
+                        skill3Cooldown = true;
+                    }
                 }
             }
 
@@ -319,6 +362,10 @@ namespace Project_OD
             sprite4.position.Y = Position.Y;
             sprite5.position.X = Position.X;
             sprite5.position.Y = Position.Y;
+            sprite5_1.position.X = position.X + 100;
+            sprite5_1.position.Y = position.Y + 30;
+            sprite5_1_1.position.X = Position.X;
+            sprite5_1_1.position.Y = Position.Y;
             
             //if (state.IsKeyDown(Keys.Right))
             //{
@@ -354,7 +401,15 @@ namespace Project_OD
                         sprite4.Draw(spriteBatch);
                         break;
                     case 3:
-                        sprite5.Draw(spriteBatch);
+                        if (predator2 == true)
+                        {
+                            sprite5.Draw(spriteBatch);
+                        }
+                        else if (technokrat2 == true)
+                        {
+                            sprite5_1_1.Draw(spriteBatch);
+                            sprite5_1.Draw(spriteBatch);
+                        }
                         break;
                     default:
                         break;

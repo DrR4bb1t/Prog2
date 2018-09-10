@@ -48,6 +48,8 @@ namespace Project_OD
         protected Texture2D texture3;
         protected Texture2D texture4;
         protected Texture2D texture5;
+        protected Texture2D texture5_1;
+        protected Texture2D texture5_1_1;
         #endregion
 
         protected float speed=200;
