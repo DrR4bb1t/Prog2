@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    enum gameStates
+    public enum gameStates
     {
         Start = 0,
         Splash = 1,

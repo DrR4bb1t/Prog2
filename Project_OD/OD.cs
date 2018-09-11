@@ -17,14 +17,19 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Splash splash;
+        GameMenu gameMenu;
+
         Camera camera;
         Map map;
         Player player;
 
+        private static gameStates gamestate = gameStates.InGame;
+        public static gameStates getState() { return gamestate; }
+        public static void setState(gameStates state) { gamestate = state; }
+
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 960;
-
-        gameStates gamestate = gameStates.Start;
 
         public OD()
         {
@@ -58,6 +63,11 @@ namespace Project_OD
             // Create a new SpriteBatch, which can be used to draw textures.
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            splash = new Splash();
+            gameMenu = new GameMenu();
+            gameMenu.LoadButtonTextures();
+
             camera = new Camera(1600);
             map = new Map();
             player = new Player(0, 850, 7, 2);
@@ -86,28 +96,47 @@ namespace Project_OD
             switch (gamestate)
             {
                 case gameStates.Start:
+                    {
+                        setState(gameStates.Splash);
+                    }
                     break;
                 case gameStates.Splash:
+                    {
+                        setState(gameStates.Splash);
+                        splash.Update();
+                    }
                     break;
                 case gameStates.GameMenu:
+                    {
+                        setState(gameStates.GameMenu);
+                        gameMenu.Update();
+                    }
                     break;
                 case gameStates.StartGame:
                     break;
                 case gameStates.GameOptions:
                     break;
                 case gameStates.InGame:
+                    OD.setState(gameStates.InGame);
+                    {
+
+                    }
                     break;
                 case gameStates.Exit:
+                    Exit();
                     break;
                 default:
                     break;
             }
 
+
             InputManager.Update();
 
-            camera.Update(player.Position);
-            player.Update(gameTime, 20);
-
+            if (gamestate == gameStates.InGame)
+            {
+                camera.Update(player.Position);
+                player.Update(gameTime, 20);
+            }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -122,15 +151,19 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            if (gamestate == gameStates.GameMenu)
+            {
 
-            spriteBatch.Begin(SpriteSortMode.Deferred,
+                gameMenu.Draw(spriteBatch);
+            }
+
+                spriteBatch.Begin(SpriteSortMode.Deferred,
                               BlendState.AlphaBlend,
                               null, null, null, null,
                               camera.ViewMatrix);
 
-            map.DrawMap(spriteBatch, 1);
-            player.Draw(spriteBatch);
-
+                map.DrawMap(spriteBatch, 1);
+                player.Draw(spriteBatch);
 
 
             spriteBatch.End();
