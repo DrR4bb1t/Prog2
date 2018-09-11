@@ -30,8 +30,8 @@ namespace Project_OD
         private bool skill2Cooldown;
         private bool skill3Cooldown;
         private bool predator2 = false;
-        private bool technokrat2 = true;
-        private bool technoMage2 = false;
+        private bool technokrat2 = false;
+        private bool technoMage2 = true;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -52,6 +52,8 @@ namespace Project_OD
         SpriteAnimation sprite5;
         SpriteAnimation sprite5_1;
         SpriteAnimation sprite5_1_1;
+        SpriteAnimation sprite5_2;
+        SpriteAnimation sprite5_2_1;
 
 
         public void LoadTexture()
@@ -62,7 +64,9 @@ namespace Project_OD
             texture4 = OD.content.Load<Texture2D>("spritesheet-smash");
             texture5 = OD.content.Load<Texture2D>("spritesheet-stamp2");
             texture5_1 = OD.content.Load<Texture2D>("spritesheet-thorns2_1");
-            texture5_1_1 = OD.content.Load<Texture2D>("spritesheet-thorns_summon");
+            texture5_1_1 = OD.content.Load<Texture2D>("spritesheet-thorns_summon2");
+            texture5_2 = OD.content.Load<Texture2D>("spritesheet-explosion2");
+            texture5_2_1 = OD.content.Load<Texture2D>("spritesheet-explosion_summon");
         }
         
 
@@ -78,16 +82,20 @@ namespace Project_OD
             sprite3 = new SpriteAnimation(texture3, new Vector2(coordX, coordY), "dash-R", frames, animations);
             sprite4 = new SpriteAnimation(texture4, new Vector2(coordX, coordY), "smash-R", frames, animations);
             sprite5 = new SpriteAnimation(texture5, new Vector2(coordX, coordY), "stamp-R", 8, animations);
-            sprite5_1 = new SpriteAnimation(texture5_1, new Vector2(coordX, coordY), "stamp-R", frames, animations);
-            sprite5_1_1 = new SpriteAnimation(texture5_1_1, new Vector2(coordX, coordY), "atk-R", frames, animations);
+            sprite5_1 = new SpriteAnimation(texture5_1, new Vector2(coordX, coordY), "spikes-R", frames, 1);
+            sprite5_1_1 = new SpriteAnimation(texture5_1_1, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
+            sprite5_2 = new SpriteAnimation(texture5_2, new Vector2(coordX, coordY), "explosion-R", frames, 1);
+            sprite5_2_1 = new SpriteAnimation(texture5_2_1, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
 
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
             sprite3.StoreAnimations(3);
             sprite4.StoreAnimations(4);
             sprite5.StoreAnimations(5);
-            sprite5_1.StoreAnimations(5);
-            sprite5_1_1.StoreAnimations(2);
+            sprite5_1.StoreAnimations(7);
+            sprite5_1_1.StoreAnimations(6);
+            sprite5_2.StoreAnimations(9);
+            sprite5_2_1.StoreAnimations(8);
             
             
         }
@@ -310,18 +318,45 @@ namespace Project_OD
                 {
                     if (dirR == true)
                     {
-                        sprite5_1_1.animation = "atk-R";
+                        sprite5_1_1.animation = "spikeCast-R";
                         sprite5_1_1.Update(gameTime, true, 7);
-                        sprite5_1.animation = "stamp-R";
+                        sprite5_1.animation = "spikes-R";
                         sprite5_1.Update(gameTime, true, 7);
                         skillCnt3++;
                     }
                     else if (dirL == true)
                     {
-                        sprite5_1_1.animation = "atk-R";
+                        sprite5_1_1.animation = "spikeCast-L";
                         sprite5_1_1.Update(gameTime, true, 7);
-                        sprite5_1.animation = "stamp-R";
+                        sprite5_1.animation = "spikes-L";
                         sprite5_1.Update(gameTime, true, 7);
+                        skillCnt3++;
+                    }
+
+                    if (skillCnt3 == 60)
+                    {
+                        skill3 = false;
+                        skillCnt3 = 0;
+                        skill3Cooldown = true;
+                    }
+                }
+
+                if (technoMage2 == true)
+                {
+                    if (dirR == true)
+                    {
+                        sprite5_2_1.animation = "explosionCast-R";
+                        sprite5_2_1.Update(gameTime, true, 7);
+                        sprite5_2.animation = "explosion-R";
+                        sprite5_2.Update(gameTime, true, 7);
+                        skillCnt3++;
+                    }
+                    else if (dirL == true)
+                    {
+                        sprite5_2_1.animation = "explosionCast-L";
+                        sprite5_2_1.Update(gameTime, true, 7);
+                        sprite5_2.animation = "explosion-L";
+                        sprite5_2.Update(gameTime, true, 7);
                         skillCnt3++;
                     }
 
@@ -334,6 +369,9 @@ namespace Project_OD
                 }
             }
 
+                         
+            
+
             if (skill3Cooldown == true)
             {
                 --cooldown3;
@@ -343,6 +381,8 @@ namespace Project_OD
                     skill3Cooldown = false;
                 }
             }
+
+            
             #endregion
 
             if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E) && state.IsKeyUp(Keys.R))
@@ -362,10 +402,26 @@ namespace Project_OD
             sprite4.position.Y = Position.Y;
             sprite5.position.X = Position.X;
             sprite5.position.Y = Position.Y;
-            sprite5_1.position.X = position.X + 100;
-            sprite5_1.position.Y = position.Y + 30;
+
+            if (dirR == true)
+            {
+                sprite5_1.position.X = position.X + 100;
+                sprite5_1.position.Y = position.Y + 20;
+                sprite5_2.position.X = position.X + 100;
+                sprite5_2.position.Y = position.Y - 60;
+            }
+            else if (dirL == true)
+            {
+                sprite5_1.position.X = position.X - 100;
+                sprite5_1.position.Y = position.Y + 20;
+                sprite5_2.position.X = position.X - 200;
+                sprite5_2.position.Y = position.Y - 60;
+            }
+
             sprite5_1_1.position.X = Position.X;
             sprite5_1_1.position.Y = Position.Y;
+            sprite5_2_1.position.X = Position.X;
+            sprite5_2_1.position.Y = Position.Y;
             
             //if (state.IsKeyDown(Keys.Right))
             //{
@@ -409,6 +465,11 @@ namespace Project_OD
                         {
                             sprite5_1_1.Draw(spriteBatch);
                             sprite5_1.Draw(spriteBatch);
+                        }
+                        else if (technoMage2 == true)
+                        {
+                            sprite5_2_1.Draw(spriteBatch);
+                            sprite5_2.Draw(spriteBatch);
                         }
                         break;
                     default:

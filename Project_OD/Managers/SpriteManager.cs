@@ -87,6 +87,22 @@ namespace Project_OD
                     AddAnimation("stamp-R", 1);
                     AddAnimation("stamp-L", 2);
                     break;
+                case 6:
+                    AddAnimation("spikeCast-R", 1);
+                    AddAnimation("spikeCast-L", 2);
+                    break;
+                case 7:
+                    AddAnimation("spikes-R", 1);
+                    AddAnimation("spikes-L", 1);
+                    break;
+                case 8:
+                    AddAnimation("explosionCast-R", 1);
+                    AddAnimation("explosionCast-L", 2);
+                    break;
+                case 9:
+                    AddAnimation("explosion-R", 1);
+                    AddAnimation("explosion-L", 1);
+                    break;
                 default:
                     break;
             }
