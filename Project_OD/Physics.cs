@@ -44,7 +44,7 @@ namespace Project_OD
             if (entity.JumpSpeed==entity.GetjumpMaxSpeed())
             {
                 midAir = true;
-                exitVector += falldown(entity);
+                exitVector += falldown(entity,gameTime);
             }
             canMove(mapX + exitVector.X, mapY + exitVector.Y, "y", map, entity);
             
@@ -104,11 +104,13 @@ namespace Project_OD
             }
         }
 
-        public Vector2 falldown(Entity entity)
+        public Vector2 falldown(Entity entity,GameTime gameTime)
         {
             if ((entity.JumpSpeed-0.01) > -entity.GetjumpMaxSpeed())
             {
-                entity.JumpSpeed -= 0.01f;
+                entity.JumpSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds * 0.01f;
+                
+
             }
             changeVector = new Vector2(0,entity.JumpSpeed);
             return changeVector;
