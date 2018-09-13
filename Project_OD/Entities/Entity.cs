@@ -16,7 +16,7 @@ namespace Project_OD
         public Entity() { }
         //Create Entity
 
-        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk,float atkRange, float atkTimeout,int frames, int animations)
+        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk, float atkRange, float atkTimeout, int frames, int animations, Map map)
         {
             this.position = position;
             this.width = width;
@@ -29,7 +29,8 @@ namespace Project_OD
             this.baseAtk = baseAtk;
             this.atkRange = atkRange;
             this.atkTimeout = atkTimeout;
-            this.rect = new Rectangle((int)position.X, (int)position.Y, width, height);
+            //this.rect = new Rectangle((int)position.X, (int)position.Y, width, height);
+            this.map = map;
 
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
             sprite.StoreAnimations();
@@ -48,8 +49,8 @@ namespace Project_OD
             }
             sprite.position.X = Position.X;
             sprite.position.Y = Position.Y;
-            rect.X = (int)Position.X;
-            rect.Y = (int)Position.Y;
+            //rect.X = (int)Position.X;
+            //rect.Y = (int)Position.Y;
         }
         public void Update(GameTime gameTime, int fps)
         {
@@ -65,7 +66,7 @@ namespace Project_OD
         protected Vector2 moveTo;
         //Physics physics = new Physics();    //create generally
         protected Vector2 position=new Vector2(0, 0);
-        protected Rectangle rect;
+        //protected Rectangle rect;
         protected int width=1;
         protected int height=1;
         protected Texture2D texture;
@@ -79,6 +80,7 @@ namespace Project_OD
         protected int atk;
         protected float atkRange;
         protected float atkTimeout;
+        protected Map map;
 
         
 

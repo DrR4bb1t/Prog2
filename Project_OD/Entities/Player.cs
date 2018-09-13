@@ -34,9 +34,9 @@ namespace Project_OD
             }
             if (state.IsKeyDown(Keys.Up))
             {
-                
+                jumpSpeed = GetjumpMaxSpeed();
             }
-            moveTo = physics.moveVector(this, gameTime,dir);
+            moveTo = physics.moveVector(this, gameTime,dir,map);
             Position += moveTo;
             spriteanim(gameTime, fps);
            

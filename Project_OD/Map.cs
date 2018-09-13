@@ -81,7 +81,7 @@ namespace Project_OD
         };
 
 
-        private static int[,] lvl1_Forelayer = new int[,]
+        public int[,] lvl1_Forelayer = new int[,]
         {
 
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
