@@ -41,10 +41,12 @@ namespace Project_OD
                 exitVector += new Vector2(-(float)gameTime.ElapsedGameTime.TotalSeconds * entity.Speed, 0);
             }
             canMove(mapX + exitVector.X, mapY, "x", map, entity);
-            if (midAir)
+            if (entity.JumpSpeed==entity.GetjumpMaxSpeed())
             {
+                midAir = true;
                 exitVector += falldown(entity);
             }
+            canMove(mapX + exitVector.X, mapY + exitVector.Y, "y", map, entity);
             
             return exitVector;
         }
@@ -59,9 +61,18 @@ namespace Project_OD
                     {
                         exitVector.X = 0;
                     }
-                }else if(exitVector.X < 0)
+                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
+                    {
+                        exitVector.X = 0;
+                    }
+                }
+                else if(exitVector.X < 0)
                 {
                     if (map.lvl1_Forelayer[(int)(posX / 64), (int)(posY / 64)] == 2)
+                    {
+                        exitVector.X = 0;
+                    }
+                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
                     {
                         exitVector.X = 0;
                     }
@@ -69,7 +80,27 @@ namespace Project_OD
                 
             }else if (dir == "y")
             {
-
+                if (exitVector.Y > 0)
+                {
+                    if(map.lvl1_Forelayer[(int)(posX / 64), (int)(posY / 64)] == 2)
+                    {
+                        exitVector.Y = 0;
+                    }
+                    if (map.lvl1_Forelayer[(int)((posX+entity.GetWith()) / 64), (int)(posY / 64)] == 2)
+                    {
+                        exitVector.Y = 0;
+                    }
+                }else if (exitVector.Y < 0)
+                {
+                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
+                    {
+                        exitVector.Y = 0;
+                    }
+                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
+                    {
+                        exitVector.Y = 0;
+                    }
+                }
             }
         }
 
