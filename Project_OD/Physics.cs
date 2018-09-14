@@ -44,7 +44,10 @@ namespace Project_OD
             if (entity.JumpSpeed==entity.GetjumpMaxSpeed())
             {
                 midAir = true;
-                exitVector += falldown(entity,gameTime);
+            }
+            if (midAir)
+            {
+                exitVector += falldown(entity, gameTime);
             }
             canMove(mapX + exitVector.X, mapY + exitVector.Y, "y", map, entity);
             
@@ -92,13 +95,15 @@ namespace Project_OD
                     }
                 }else if (exitVector.Y < 0)
                 {
-                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
+                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY + entity.GetHeight()) / 64)] == 2)
                     {
                         exitVector.Y = 0;
+                        midAir = false;
                     }
-                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
+                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY + entity.GetHeight()) / 64)] == 2)
                     {
                         exitVector.Y = 0;
+                        midAir = false;
                     }
                 }
             }
@@ -108,11 +113,10 @@ namespace Project_OD
         {
             if ((entity.JumpSpeed-0.01) > -entity.GetjumpMaxSpeed())
             {
-                entity.JumpSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds * 0.01f;
-                
-
+                entity.JumpSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds * 1f;
+              
             }
-            changeVector = new Vector2(0,entity.JumpSpeed);
+            changeVector = new Vector2(0,-entity.JumpSpeed);
             return changeVector;
         }
     }
