@@ -36,12 +36,12 @@ namespace Project_OD
         public GameMenu()
         {
             //defines the position for buttons (modifiable)
-            startButtonPosition = new Vector2((OD.ScreenWidth / 2) - 2000, 200);
+            startButtonPosition = new Vector2((OD.ScreenWidth / 2) - 500, 200);
             optionButtonPosition = new Vector2((OD.ScreenWidth / 2) - 50, 220);
             exitButtonPosition = new Vector2((OD.ScreenWidth / 2) - 50, 250);
 
             startButtonRect = new Rectangle((int)startButtonPosition.X,
-            (int)startButtonPosition.Y, 2336, 591);
+            (int)startButtonPosition.Y, 250, 64);
 
             //optionButtonRect = new Rectangle((int)optionButtonPosition.X,
             //(int)optionButtonPosition.Y, 2336, 591);
@@ -74,7 +74,7 @@ namespace Project_OD
 
         public void LoadButtonTextures()
         {
-            //startButton = OD.content.Load<Texture2D>("Buttons/start");
+            startButton = OD.content.Load<Texture2D>("Textures/Button/start_EN");
             /*optionButton = OD.content.Load<Texture2D>("Buttons/option");
             exitButton = OD.content.Load<Texture2D>("Buttons/option"); */
 
@@ -82,8 +82,8 @@ namespace Project_OD
 
         public void Draw(SpriteBatch spriteBatch)
         {
-           // spriteBatch.Draw(startButton, startButtonPosition, null, Color.White, 0f,
-           // Vector2.Zero, 1.0f, SpriteEffects.None, 0f);
+           spriteBatch.Draw(startButton, startButtonPosition, null, Color.White, 0f,
+            Vector2.Zero, 1.0f, SpriteEffects.None, 0f);
 
             /*spriteBatch.Draw(optionButton, optionButtonPosition, null, Color.White, 0f,
             Vector2.Zero, 1.0f, SpriteEffects.None, 0f);
