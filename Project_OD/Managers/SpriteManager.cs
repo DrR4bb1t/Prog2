@@ -103,6 +103,10 @@ namespace Project_OD
                     AddAnimation("explosion-R", 1);
                     AddAnimation("explosion-L", 1);
                     break;
+                case 10:
+                    AddAnimation("activation-R", 1);
+                    AddAnimation("activation-L", 2);
+                    break;
                 default:
                     break;
             }

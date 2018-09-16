@@ -21,17 +21,29 @@ namespace Project_OD
         private int cooldown2;
         private int skillCnt3;
         private int cooldown3;
+        private int skillCnt4;
+        private int cooldown4;
+        private int uptime;
         private string dir;
         private bool atkMove;
         private bool skill1;
         private bool skill2;
         private bool skill3;
+        private bool skill4;
         private bool skill1Cooldown;
         private bool skill2Cooldown;
         private bool skill3Cooldown;
+        private bool skill4Cooldown;
         private bool predator2 = false;
         private bool technokrat2 = false;
         private bool technoMage2 = true;
+        private bool predator3 = false;
+        private bool technokrat3 = false;
+        private bool technoMage3 = true;
+        private bool rageMage = false;
+        private bool ragePred = false;
+        private bool rageTech = false;
+        private bool rageActive = false;
         private bool dirR;
         private bool dirL;
         public int skill;
@@ -54,6 +66,31 @@ namespace Project_OD
         SpriteAnimation sprite5_1_1;
         SpriteAnimation sprite5_2;
         SpriteAnimation sprite5_2_1;
+        SpriteAnimation sprite6;
+
+        SpriteAnimation sprite_Rage_Mage;
+        SpriteAnimation sprite2_Rage_Mage;
+        SpriteAnimation sprite3_Rage_Mage;
+        SpriteAnimation sprite4_Rage_Mage;
+        SpriteAnimation sprite5_Rage_Mage;
+        SpriteAnimation sprite5_1_1_Rage_Mage;
+        SpriteAnimation sprite5_2_1_Rage_Mage;
+
+        SpriteAnimation sprite_Rage_Pred;
+        SpriteAnimation sprite2_Rage_Pred;
+        SpriteAnimation sprite3_Rage_Pred;
+        SpriteAnimation sprite4_Rage_Pred;
+        SpriteAnimation sprite5_Rage_Pred;
+        SpriteAnimation sprite5_1_1_Rage_Pred;
+        SpriteAnimation sprite5_2_1_Rage_Pred;
+
+        SpriteAnimation sprite_Rage_Tech;
+        SpriteAnimation sprite2_Rage_Tech;
+        SpriteAnimation sprite3_Rage_Tech;
+        SpriteAnimation sprite4_Rage_Tech;
+        SpriteAnimation sprite5_Rage_Tech;
+        SpriteAnimation sprite5_1_1_Rage_Tech;
+        SpriteAnimation sprite5_2_1_Rage_Tech;
 
 
         public void LoadTexture()
@@ -67,6 +104,31 @@ namespace Project_OD
             texture5_1_1 = OD.content.Load<Texture2D>("spritesheet-thorns_summon2");
             texture5_2 = OD.content.Load<Texture2D>("spritesheet-explosion2");
             texture5_2_1 = OD.content.Load<Texture2D>("spritesheet-explosion_summon");
+            texture6 = OD.content.Load<Texture2D>("spritesheet-activation");
+
+            texture_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-walk_mage");
+            texture2_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-atk_mage");
+            texture3_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-dash_mage");
+            texture4_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-smash_mage");
+            texture5_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-jump_mage");
+            texture5_1_1_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-thorns_summon_mage");
+            texture5_2_1_Rage_Mage = OD.content.Load<Texture2D>("spritesheet-explosion_summon_RAGE_mage");
+
+            texture_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-walk_pred");
+            texture2_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-atk_pred");
+            texture3_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-dash_pred");
+            texture4_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-smash_pred");
+            texture5_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-jump_pred");
+            texture5_1_1_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-thorns_summon_pred");
+            texture5_2_1_Rage_Pred = OD.content.Load<Texture2D>("spritesheet-explosion_summon_RAGE_pred");
+
+            texture_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-walk_tech");
+            texture2_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-atk_tech");
+            texture3_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-dash_tech");
+            texture4_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-smash_tech");
+            texture5_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-jump_tech");
+            texture5_1_1_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-thorns_summon_tech");
+            texture5_2_1_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-explosion_summon_RAGE_tech");
         }
         
 
@@ -86,6 +148,31 @@ namespace Project_OD
             sprite5_1_1 = new SpriteAnimation(texture5_1_1, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
             sprite5_2 = new SpriteAnimation(texture5_2, new Vector2(coordX, coordY), "explosion-R", frames, 1);
             sprite5_2_1 = new SpriteAnimation(texture5_2_1, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+            sprite6 = new SpriteAnimation(texture6, new Vector2(coordX, coordY), "activation-R", frames, animations);
+
+            sprite_Rage_Mage = new SpriteAnimation(texture_Rage_Mage, new Vector2(coordX, coordY), "R", frames, animations);
+            sprite2_Rage_Mage = new SpriteAnimation(texture2_Rage_Mage, new Vector2(coordX, coordY), "atk-R", frames, animations);
+            sprite3_Rage_Mage = new SpriteAnimation(texture3_Rage_Mage, new Vector2(coordX, coordY), "dash-R", frames, animations);
+            sprite4_Rage_Mage = new SpriteAnimation(texture4_Rage_Mage, new Vector2(coordX, coordY), "smash-R", frames, animations);
+            sprite5_Rage_Mage = new SpriteAnimation(texture5_Rage_Mage, new Vector2(coordX, coordY), "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Mage = new SpriteAnimation(texture5_1_1_Rage_Mage, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Mage = new SpriteAnimation(texture5_2_1_Rage_Mage, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+
+            sprite_Rage_Pred = new SpriteAnimation(texture_Rage_Pred, new Vector2(coordX, coordY), "R", frames, animations);
+            sprite2_Rage_Pred = new SpriteAnimation(texture2_Rage_Pred, new Vector2(coordX, coordY), "atk-R", frames, animations);
+            sprite3_Rage_Pred = new SpriteAnimation(texture3_Rage_Pred, new Vector2(coordX, coordY), "dash-R", frames, animations);
+            sprite4_Rage_Pred = new SpriteAnimation(texture4_Rage_Pred, new Vector2(coordX, coordY), "smash-R", frames, animations);
+            sprite5_Rage_Pred = new SpriteAnimation(texture5_Rage_Pred, new Vector2(coordX, coordY), "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Pred = new SpriteAnimation(texture5_1_1_Rage_Pred, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Pred = new SpriteAnimation(texture5_2_1_Rage_Pred, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+
+            sprite_Rage_Tech = new SpriteAnimation(texture_Rage_Tech, new Vector2(coordX, coordY), "R", frames, animations);
+            sprite2_Rage_Tech = new SpriteAnimation(texture2_Rage_Tech, new Vector2(coordX, coordY), "atk-R", frames, animations);
+            sprite3_Rage_Tech = new SpriteAnimation(texture3_Rage_Tech, new Vector2(coordX, coordY), "dash-R", frames, animations);
+            sprite4_Rage_Tech = new SpriteAnimation(texture4_Rage_Tech, new Vector2(coordX, coordY), "smash-R", frames, animations);
+            sprite5_Rage_Tech = new SpriteAnimation(texture5_Rage_Tech, new Vector2(coordX, coordY), "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Tech = new SpriteAnimation(texture5_1_1_Rage_Tech, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Tech = new SpriteAnimation(texture5_2_1_Rage_Tech, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
 
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
@@ -96,6 +183,31 @@ namespace Project_OD
             sprite5_1_1.StoreAnimations(6);
             sprite5_2.StoreAnimations(9);
             sprite5_2_1.StoreAnimations(8);
+            sprite6.StoreAnimations(10);
+
+            sprite_Rage_Mage.StoreAnimations(1);
+            sprite2_Rage_Mage.StoreAnimations(2);
+            sprite3_Rage_Mage.StoreAnimations(3);
+            sprite4_Rage_Mage.StoreAnimations(4);
+            sprite5_Rage_Mage.StoreAnimations(5);
+            sprite5_1_1_Rage_Mage.StoreAnimations(6);
+            sprite5_2_1_Rage_Mage.StoreAnimations(8);
+
+            sprite_Rage_Pred.StoreAnimations(1);
+            sprite2_Rage_Pred.StoreAnimations(2);
+            sprite3_Rage_Pred.StoreAnimations(3);
+            sprite4_Rage_Pred.StoreAnimations(4);
+            sprite5_Rage_Pred.StoreAnimations(5);
+            sprite5_1_1_Rage_Pred.StoreAnimations(6);
+            sprite5_2_1_Rage_Pred.StoreAnimations(8);
+
+            sprite_Rage_Tech.StoreAnimations(1);
+            sprite2_Rage_Tech.StoreAnimations(2);
+            sprite3_Rage_Tech.StoreAnimations(3);
+            sprite4_Rage_Tech.StoreAnimations(4);
+            sprite5_Rage_Tech.StoreAnimations(5);
+            sprite5_1_1_Rage_Tech.StoreAnimations(6);
+            sprite5_2_1_Rage_Tech.StoreAnimations(8);
             
             
         }
@@ -382,12 +494,99 @@ namespace Project_OD
                 }
             }
 
-            
+
             #endregion
 
-            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E) && state.IsKeyUp(Keys.R))
+            #region Ragemode
+
+            if (state.IsKeyDown(Keys.T) && dirR == true)
             {
-                if (skill1 == false && skill2 == false && skill3 == false)
+                if (cooldown4 == 0)
+                {
+                    skill = 4;
+                    cooldown4 = 1800;
+                    atkMove = true;
+                    skill4 = true;
+                }
+            }
+            else if (state.IsKeyDown(Keys.T) && dirL == true)
+            {
+                if (cooldown4 == 0)
+                {
+                    skill = 4;
+                    cooldown3 = 1800;
+                    atkMove = true;
+                    skill4 = true;
+                }
+            }
+
+            if (skill4 == true)
+            {
+
+                    if (dirR == true)
+                    {
+                        sprite6.animation = "activation-R";
+                        sprite6.Update(gameTime, true, 8);
+                        skillCnt4++;
+                    }
+                    else if (dirL == true)
+                    {
+                        sprite6.animation = "activation-L";
+                        sprite6.Update(gameTime, true, 8);
+                        skillCnt4++;
+                    }
+
+                    if (skillCnt4 == 60)
+                    {
+                        skill4 = false;
+                        skillCnt4 = 0;
+                        skill4Cooldown = true;
+                    }
+
+                    uptime++;
+                
+            }
+
+            if (skill4Cooldown == true)
+            {
+                --cooldown4;
+                if (cooldown4 == 0)
+                {
+                    cooldown4 = 0;
+                    skill4Cooldown = false;
+                    rageActive = true;
+                }
+            }
+
+            if (rageActive == true)
+            {
+                if (uptime < 1200)
+                {
+                    if (technoMage3 == true)
+                    {
+                        rageMage = true;
+                    }
+                    else if (predator3 == true)
+                    {
+                        ragePred = true;
+                    }
+                    else if (technokrat3 == true)
+                    {
+                        rageTech = true;
+                    }
+                }
+                else if (uptime == 1200)
+                {
+                    uptime = 0;
+                    rageActive = false;
+                }
+            }
+
+            #endregion
+
+            if (state.IsKeyUp(Keys.Space) && state.IsKeyUp(Keys.W) && state.IsKeyUp(Keys.E) && state.IsKeyUp(Keys.R) && state.IsKeyUp(Keys.T))
+            {
+                if (skill1 == false && skill2 == false && skill3 == false && skill4 == false)
                 {
                     atkMove = false;
                 }
@@ -402,6 +601,8 @@ namespace Project_OD
             sprite4.position.Y = Position.Y;
             sprite5.position.X = Position.X;
             sprite5.position.Y = Position.Y;
+            sprite6.position.X = Position.X;
+            sprite6.position.Y = Position.Y;
 
             if (dirR == true)
             {
@@ -471,6 +672,9 @@ namespace Project_OD
                             sprite5_2_1.Draw(spriteBatch);
                             sprite5_2.Draw(spriteBatch);
                         }
+                        break;
+                    case 4:
+                        sprite6.Draw(spriteBatch);
                         break;
                     default:
                         break;
