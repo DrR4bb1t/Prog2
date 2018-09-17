@@ -14,6 +14,16 @@ namespace Project_OD
     {
         Entity entity;
 
+        public  enum itemState
+        {
+            OnGround,
+            Inventar,
+            Equipped,
+        }
+
+        private static itemState itemstate = itemState.OnGround;
+        public static itemState getItemState() { return itemstate; }
+        public static void setItemState(itemState state) { itemstate = state; }
 
         private Texture2D item;
 
@@ -31,9 +41,30 @@ namespace Project_OD
         public int ItemDMGValue { get; set; }
         public int ItemArmourValue { get; set; }
 
-        public Items(int itemID, Vector2 pos)
+        public Items(int itemID, Vector2 pos, state)
         {
-            
+            switch(itemstate)
+            {
+                case itemState.OnGround:
+                    {
+                        inInventar = false;
+                        isEquipped = false;
+                    }
+                    break;
+                case itemState.Inventar:
+                    {
+                        inInventar = true;
+                        isEquipped = false;
+                    }
+                    break;
+                case itemState.Equipped:
+                    {
+                        inInventar = false;
+                        isEquipped = true;
+                    }
+                    break;
+
+            }
 
             ItemDMGValue = itemDMGValue;
             ItemArmourValue = itemArmourValue;
