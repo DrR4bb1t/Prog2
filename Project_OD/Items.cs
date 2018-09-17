@@ -6,44 +6,71 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Project_OD
 {
     public class Items
     {
+        Entity entity;
+
+
         private Texture2D item;
 
         private int itemDMGValue;
         private int itemArmourValue;
 
-        private bool inIventar = false;
+        private Vector2 playerPos;
+
+        private Rectangle playerRect;
+        private Rectangle itemRect;
+
+        private bool inInventar = false;
+        private bool isEquipped = false;
 
         public int ItemDMGValue { get; set; }
         public int ItemArmourValue { get; set; }
 
         public Items(int itemID, Vector2 pos)
         {
-            //itemid
+            
+
             ItemDMGValue = itemDMGValue;
             ItemArmourValue = itemArmourValue;
             ItemDMGValue = itemDMGValue;
             ItemArmourValue = itemArmourValue;
 
-            Rectangle itemRect = new Rectangle((int)pos.X, (int)pos.Y, item.Width, item.Height);
+            itemRect = new Rectangle((int)pos.X, (int)pos.Y, item.Width, item.Height);
+            playerPos = new Vector2(10f, 200f);
+            playerRect = new Rectangle((int)playerPos.X, (int)playerPos.Y, 10, 10);
         }
 
         public void Update()
         {
-           //if item rect intersect with player position and button is pressed
-           //in inventar is true
+            if(itemRect.Intersects(playerRect) && InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.E))
+            {
+                inInventar = true;
 
-            //if in inventar and button is pressed
-            // is equipped is true
-            //and values get added to the players current stats
+            }
+
+            if(inInventar == true && InputManager.GetMouseBoundaries(true).Intersects(itemRect))
+            {
+                if(InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true))
+                {
+                    isEquipped = true;
+                    if(isEquipped == true)
+                    {
+                        entity.Hp = entity.Hp + ItemArmourValue;
+                        entity.Atk = entity.Atk + ItemDMGValue;
+                    }
+                }
+            }
         }
 
-        public void Draw()
-        {
 
+        public void Draw(SpriteBatch spritebatch)
+        {
+         
         }
     }
 }

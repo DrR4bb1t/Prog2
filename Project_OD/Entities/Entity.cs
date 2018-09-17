@@ -39,6 +39,7 @@ namespace Project_OD
         //Private Properties
         protected Vector2 moveTo;
         //Physics physics = new Physics();    //create generally
+        
         protected Vector2 position=new Vector2(0, 850);
         protected int width=1;
         protected int height=1;
@@ -65,6 +66,8 @@ namespace Project_OD
         public int Atk { get => atk; set => atk = value; }
         public float AtkRange { get => atkRange; set => atkRange = value; }
         public float GetjumpMaxSpeed() { return jumpMaxSpeed; }
+
+        public Vector2 GetPosition() { return position; }
 
     }
 }
