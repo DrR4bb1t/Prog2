@@ -32,9 +32,10 @@ namespace Project_OD
             {
                 dir = "L";
             }
-            if (state.IsKeyDown(Keys.Up))
+            if (state.IsKeyDown(Keys.Up)&onGround)
             {
                 jumpSpeed = GetjumpMaxSpeed();
+                onGround = false;
             }
             moveTo = physics.moveVector(this, gameTime,dir,map);
             Position += moveTo;

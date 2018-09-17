@@ -48,6 +48,7 @@ namespace Project_OD
             if (midAir)
             {
                 exitVector += falldown(entity, gameTime);
+                
             }
             canMove(mapX + exitVector.X, mapY + exitVector.Y, "y", map, entity);
             
@@ -88,10 +89,14 @@ namespace Project_OD
                     if(map.lvl1_Forelayer[(int)(posX / 64), (int)(posY / 64)] == 2)
                     {
                         exitVector.Y = 0;
+                        entity.JumpSpeed = 0;
+                        Console.WriteLine("Left-Top");
                     }
                     if (map.lvl1_Forelayer[(int)((posX+entity.GetWith()) / 64), (int)(posY / 64)] == 2)
                     {
                         exitVector.Y = 0;
+                        entity.JumpSpeed = 0;
+                        Console.WriteLine("Right-Top");
                     }
                 }else if (exitVector.Y < 0)
                 {
@@ -99,11 +104,13 @@ namespace Project_OD
                     {
                         exitVector.Y = 0;
                         midAir = false;
+                        Console.WriteLine("Left-Bottom");
                     }
                     if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY + entity.GetHeight()) / 64)] == 2)
                     {
                         exitVector.Y = 0;
                         midAir = false;
+                        Console.WriteLine("Right-Bottom");
                     }
                 }
             }
