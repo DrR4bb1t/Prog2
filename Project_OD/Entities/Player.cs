@@ -34,9 +34,9 @@ namespace Project_OD
         private bool skill2Cooldown;
         private bool skill3Cooldown;
         private bool skill4Cooldown;
-        private bool predator2 = false;
+        private bool predator2 = true;
         private bool technokrat2 = false;
-        private bool technoMage2 = true;
+        private bool technoMage2 = false;
         private bool predator3 = false;
         private bool technokrat3 = false;
         private bool technoMage3 = true;
@@ -234,28 +234,102 @@ namespace Project_OD
             Position += moveTo;
             if (moveTo.X > 0)
             {
-                sprite.animation = "R";
-                sprite.Update(gameTime, true, fps);
+                if (rageMage == true)
+                {
+                    sprite_Rage_Mage.animation = "R";
+                    sprite_Rage_Mage.Update(gameTime, true, fps);
+                }
+                else if (ragePred == true)
+                {
+                    sprite_Rage_Pred.animation = "R";
+                    sprite_Rage_Pred.Update(gameTime, true, fps);
+                }
+                else if (rageTech == true)
+                {
+                    sprite_Rage_Tech.animation = "R";
+                    sprite_Rage_Tech.Update(gameTime, true, fps);
+                }
+                else
+                {
+                    sprite.animation = "R";
+                    sprite.Update(gameTime, true, fps);
+                }
             }
             else if (moveTo.X < 0)
             {
-                sprite.animation = "L";
-                sprite.Update(gameTime, true, fps);
+                if (rageMage == true)
+                {
+                    sprite_Rage_Mage.animation = "L";
+                    sprite_Rage_Mage.Update(gameTime, true, fps);
+                }
+                else if (ragePred == true)
+                {
+                    sprite_Rage_Pred.animation = "L";
+                    sprite_Rage_Pred.Update(gameTime, true, fps);
+                }
+                else if (rageTech == true)
+                {
+                    sprite_Rage_Tech.animation = "L";
+                    sprite_Rage_Tech.Update(gameTime, true, fps);
+                }
+                else
+                {
+                    sprite.animation = "L";
+                    sprite.Update(gameTime, true, fps);
+                }
             }
 
             if (state.IsKeyDown(Keys.Space) && dirR == true)
             {
                 skill = 0;
                 atkMove = true;
-                sprite2.animation = "atk-R";
-                sprite2.Update(gameTime, true, fps);
+
+                if (rageMage == true)
+                {
+                    sprite2_Rage_Mage.animation = "atk-R";
+                    sprite2_Rage_Mage.Update(gameTime, true, fps);
+                }
+                else if (ragePred == true)
+                {
+                    sprite2_Rage_Pred.animation = "atk-R";
+                    sprite2_Rage_Pred.Update(gameTime, true, fps);
+                }
+                else if (rageTech == true)
+                {
+                    sprite2_Rage_Tech.animation = "atk-R";
+                    sprite2_Rage_Tech.Update(gameTime, true, fps);
+                }
+                else
+                {
+                    sprite2.animation = "atk-R";
+                    sprite2.Update(gameTime, true, fps);
+                }
             }
             else if (state.IsKeyDown(Keys.Space) && dirL == true)
             {
                 skill = 0;
                 atkMove = true;
-                sprite2.animation = "atk-L";
-                sprite2.Update(gameTime, true, fps);
+
+                if (rageMage == true)
+                {
+                    sprite2_Rage_Mage.animation = "atk-L";
+                    sprite2_Rage_Mage.Update(gameTime, true, fps);
+                }
+                else if (ragePred == true)
+                {
+                    sprite2_Rage_Pred.animation = "atk-L";
+                    sprite2_Rage_Pred.Update(gameTime, true, fps);
+                }
+                else if (rageTech == true)
+                {
+                    sprite2_Rage_Tech.animation = "atk-L";
+                    sprite2_Rage_Tech.Update(gameTime, true, fps);
+                }
+                else
+                {
+                    sprite2.animation = "atk-L";
+                    sprite2.Update(gameTime, true, fps);
+                }
             }
 
             ///Dash-Attack
@@ -286,15 +360,51 @@ namespace Project_OD
                 
                 if (dirR == true)
                 {
-                    sprite3.animation = "dash-R";
-                    sprite3.Update(gameTime, true, 25);
+                    if (rageMage == true)
+                    {
+                        sprite3_Rage_Mage.animation = "dash-R";
+                        sprite3_Rage_Mage.Update(gameTime, true, 25);
+                    }
+                    else if (ragePred == true)
+                    {
+                        sprite3_Rage_Pred.animation = "dash-R";
+                        sprite3_Rage_Pred.Update(gameTime, true, 25);
+                    }
+                    else if (rageTech == true)
+                    {
+                        sprite3_Rage_Tech.animation = "dash-R";
+                        sprite3_Rage_Tech.Update(gameTime, true, 25);
+                    }
+                    else
+                    {
+                        sprite3.animation = "dash-R";
+                        sprite3.Update(gameTime, true, 25);
+                    }
                     position.X += 10.0f;
                     skillCnt1++;
                 }
                 else if (dirL == true)
                 {
-                    sprite3.animation = "dash-L";
-                    sprite3.Update(gameTime, true, 25);
+                    if (rageMage == true)
+                    {
+                        sprite3_Rage_Mage.animation = "dash-L";
+                        sprite3_Rage_Mage.Update(gameTime, true, 25);
+                    }
+                    else if (ragePred == true)
+                    {
+                        sprite3_Rage_Pred.animation = "dash-L";
+                        sprite3_Rage_Pred.Update(gameTime, true, 25);
+                    }
+                    else if (rageTech == true)
+                    {
+                        sprite3_Rage_Tech.animation = "dash-L";
+                        sprite3_Rage_Tech.Update(gameTime, true, 25);
+                    }
+                    else
+                    {
+                        sprite3.animation = "dash-L";
+                        sprite3.Update(gameTime, true, 25);
+                    }
                     position.X -= 10.0f;
                     skillCnt1++;
                 }
@@ -346,14 +456,50 @@ namespace Project_OD
 
                 if (dirR == true)
                 {
-                    sprite4.animation = "smash-R";
-                    sprite4.Update(gameTime, true, 7);
+                    if (rageMage == true)
+                    {
+                        sprite4_Rage_Mage.animation = "smash-R";
+                        sprite4_Rage_Mage.Update(gameTime, true, 7);
+                    }
+                    else if (ragePred == true)
+                    {
+                        sprite4_Rage_Pred.animation = "smash-R";
+                        sprite4_Rage_Pred.Update(gameTime, true, 7);
+                    }
+                    else if (rageTech == true)
+                    {
+                        sprite4_Rage_Tech.animation = "smash-R";
+                        sprite4_Rage_Tech.Update(gameTime, true, 7);
+                    }
+                    else
+                    {
+                        sprite4.animation = "smash-R";
+                        sprite4.Update(gameTime, true, 7);
+                    }
                     skillCnt2++;
                 }
                 else if (dirL == true)
                 {
-                    sprite4.animation = "smash-L";
-                    sprite4.Update(gameTime, true, 7);
+                    if (rageMage == true)
+                    {
+                        sprite4_Rage_Mage.animation = "smash-L";
+                        sprite4_Rage_Mage.Update(gameTime, true, 7);
+                    }
+                    else if (ragePred == true)
+                    {
+                        sprite4_Rage_Pred.animation = "smash-L";
+                        sprite4_Rage_Pred.Update(gameTime, true, 7);
+                    }
+                    else if (rageTech == true)
+                    {
+                        sprite4_Rage_Tech.animation = "smash-L";
+                        sprite4_Rage_Tech.Update(gameTime, true, 7);
+                    }
+                    else
+                    {
+                        sprite4.animation = "smash-L";
+                        sprite4.Update(gameTime, true, 7);
+                    }
                     skillCnt2++;
                 }
 
@@ -407,14 +553,50 @@ namespace Project_OD
 
                     if (dirR == true)
                     {
-                        sprite5.animation = "stamp-R";
-                        sprite5.Update(gameTime, true, 8);
+                        if (rageMage == true)
+                        {
+                            sprite5_Rage_Mage.animation = "stamp-R";
+                            sprite5_Rage_Mage.Update(gameTime, true, 8);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_Rage_Pred.animation = "stamp-R";
+                            sprite5_Rage_Pred.Update(gameTime, true, 8);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_Rage_Tech.animation = "stamp-R";
+                            sprite5_Rage_Tech.Update(gameTime, true, 8);
+                        }
+                        else
+                        {
+                            sprite5.animation = "stamp-R";
+                            sprite5.Update(gameTime, true, 8);
+                        }
                         skillCnt3++;
                     }
                     else if (dirL == true)
                     {
-                        sprite5.animation = "stamp-L";
-                        sprite5.Update(gameTime, true, 8);
+                        if (rageMage == true)
+                        {
+                            sprite5_Rage_Mage.animation = "stamp-L";
+                            sprite5_Rage_Mage.Update(gameTime, true, 8);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_Rage_Pred.animation = "stamp-L";
+                            sprite5_Rage_Pred.Update(gameTime, true, 8);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_Rage_Tech.animation = "stamp-L";
+                            sprite5_Rage_Tech.Update(gameTime, true, 8);
+                        }
+                        else
+                        {
+                            sprite5.animation = "stamp-L";
+                            sprite5.Update(gameTime, true, 8);
+                        }
                         skillCnt3++;
                     }
 
@@ -430,16 +612,54 @@ namespace Project_OD
                 {
                     if (dirR == true)
                     {
-                        sprite5_1_1.animation = "spikeCast-R";
-                        sprite5_1_1.Update(gameTime, true, 7);
+                        if (rageMage == true)
+                        {
+                            sprite5_1_1_Rage_Mage.animation = "spikeCast-R";
+                            sprite5_1_1_Rage_Mage.Update(gameTime, true, 7);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_1_1_Rage_Pred.animation = "spikeCast-R";
+                            sprite5_1_1_Rage_Pred.Update(gameTime, true, 7);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_1_1_Rage_Tech.animation = "spikeCast-R";
+                            sprite5_1_1_Rage_Tech.Update(gameTime, true, 7);
+                        }
+                        else
+                        {
+                            sprite5_1_1.animation = "spikeCast-R";
+                            sprite5_1_1.Update(gameTime, true, 7);
+                        }
+
                         sprite5_1.animation = "spikes-R";
                         sprite5_1.Update(gameTime, true, 7);
                         skillCnt3++;
                     }
                     else if (dirL == true)
                     {
-                        sprite5_1_1.animation = "spikeCast-L";
-                        sprite5_1_1.Update(gameTime, true, 7);
+                        if (rageMage == true)
+                        {
+                            sprite5_1_1_Rage_Mage.animation = "spikeCast-L";
+                            sprite5_1_1_Rage_Mage.Update(gameTime, true, 7);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_1_1_Rage_Pred.animation = "spikeCast-L";
+                            sprite5_1_1_Rage_Pred.Update(gameTime, true, 7);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_1_1_Rage_Tech.animation = "spikeCast-L";
+                            sprite5_1_1_Rage_Tech.Update(gameTime, true, 7);
+                        }
+                        else
+                        {
+                            sprite5_1_1.animation = "spikeCast-L";
+                            sprite5_1_1.Update(gameTime, true, 7);
+                        }
+
                         sprite5_1.animation = "spikes-L";
                         sprite5_1.Update(gameTime, true, 7);
                         skillCnt3++;
@@ -457,16 +677,54 @@ namespace Project_OD
                 {
                     if (dirR == true)
                     {
-                        sprite5_2_1.animation = "explosionCast-R";
-                        sprite5_2_1.Update(gameTime, true, 7);
+                        if (rageMage == true)
+                        {
+                            sprite5_2_1_Rage_Mage.animation = "explosionCast-R";
+                            sprite5_2_1_Rage_Mage.Update(gameTime, true, 7);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_2_1_Rage_Pred.animation = "explosionCast-R";
+                            sprite5_2_1_Rage_Pred.Update(gameTime, true, 7);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_2_1_Rage_Tech.animation = "explosionCast-R";
+                            sprite5_2_1_Rage_Tech.Update(gameTime, true, 7);
+                        }
+                        else
+                        {
+                            sprite5_2_1.animation = "explosionCast-R";
+                            sprite5_2_1.Update(gameTime, true, 7);
+                        }
+
                         sprite5_2.animation = "explosion-R";
                         sprite5_2.Update(gameTime, true, 7);
                         skillCnt3++;
                     }
                     else if (dirL == true)
                     {
-                        sprite5_2_1.animation = "explosionCast-L";
-                        sprite5_2_1.Update(gameTime, true, 7);
+                        if (rageMage == true)
+                        {
+                            sprite5_2_1_Rage_Mage.animation = "explosionCast-L";
+                            sprite5_2_1_Rage_Mage.Update(gameTime, true, 7);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite5_2_1_Rage_Pred.animation = "explosionCast-L";
+                            sprite5_2_1_Rage_Pred.Update(gameTime, true, 7);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite5_2_1_Rage_Tech.animation = "explosionCast-L";
+                            sprite5_2_1_Rage_Tech.Update(gameTime, true, 7);
+                        }
+                        else
+                        {
+                            sprite5_2_1.animation = "explosionCast-L";
+                            sprite5_2_1.Update(gameTime, true, 7);
+                        }
+
                         sprite5_2.animation = "explosion-L";
                         sprite5_2.Update(gameTime, true, 7);
                         skillCnt3++;
@@ -504,7 +762,7 @@ namespace Project_OD
                 if (cooldown4 == 0)
                 {
                     skill = 4;
-                    cooldown4 = 1800;
+                    cooldown4 = 600;
                     atkMove = true;
                     skill4 = true;
                 }
@@ -514,7 +772,7 @@ namespace Project_OD
                 if (cooldown4 == 0)
                 {
                     skill = 4;
-                    cooldown3 = 1800;
+                    cooldown4 = 600;
                     atkMove = true;
                     skill4 = true;
                 }
@@ -541,10 +799,8 @@ namespace Project_OD
                         skill4 = false;
                         skillCnt4 = 0;
                         skill4Cooldown = true;
-                    }
-
-                    uptime++;
-                
+                        rageActive = true;
+                    }                
             }
 
             if (skill4Cooldown == true)
@@ -554,13 +810,12 @@ namespace Project_OD
                 {
                     cooldown4 = 0;
                     skill4Cooldown = false;
-                    rageActive = true;
                 }
             }
 
             if (rageActive == true)
             {
-                if (uptime < 1200)
+                if (uptime < 300)
                 {
                     if (technoMage3 == true)
                     {
@@ -574,11 +829,16 @@ namespace Project_OD
                     {
                         rageTech = true;
                     }
+
+                    ++uptime;
                 }
-                else if (uptime == 1200)
+                else if (uptime == 300)
                 {
                     uptime = 0;
                     rageActive = false;
+                    rageMage = false;
+                    ragePred = false;
+                    rageTech = false;
                 }
             }
 
@@ -623,7 +883,56 @@ namespace Project_OD
             sprite5_1_1.position.Y = Position.Y;
             sprite5_2_1.position.X = Position.X;
             sprite5_2_1.position.Y = Position.Y;
-            
+
+            sprite_Rage_Mage.position.X = Position.X;
+            sprite_Rage_Mage.position.Y = Position.Y;
+            sprite_Rage_Pred.position.X = Position.X;
+            sprite_Rage_Pred.position.Y = Position.Y;
+            sprite_Rage_Tech.position.X = Position.X;
+            sprite_Rage_Tech.position.Y = Position.Y;
+
+            sprite2_Rage_Mage.position.X = Position.X;
+            sprite2_Rage_Mage.position.Y = Position.Y;
+            sprite2_Rage_Pred.position.X = Position.X;
+            sprite2_Rage_Pred.position.Y = Position.Y;
+            sprite2_Rage_Tech.position.X = Position.X;
+            sprite2_Rage_Tech.position.Y = Position.Y;
+
+            sprite3_Rage_Mage.position.X = Position.X;
+            sprite3_Rage_Mage.position.Y = Position.Y;
+            sprite3_Rage_Pred.position.X = Position.X;
+            sprite3_Rage_Pred.position.Y = Position.Y;
+            sprite3_Rage_Tech.position.X = Position.X;
+            sprite3_Rage_Tech.position.Y = Position.Y;
+
+            sprite4_Rage_Mage.position.X = Position.X;
+            sprite4_Rage_Mage.position.Y = Position.Y;
+            sprite4_Rage_Pred.position.X = Position.X;
+            sprite4_Rage_Pred.position.Y = Position.Y;
+            sprite4_Rage_Tech.position.X = Position.X;
+            sprite4_Rage_Tech.position.Y = Position.Y;
+
+            sprite5_Rage_Mage.position.X = Position.X;
+            sprite5_Rage_Mage.position.Y = Position.Y;
+            sprite5_Rage_Pred.position.X = Position.X;
+            sprite5_Rage_Pred.position.Y = Position.Y;
+            sprite5_Rage_Tech.position.X = Position.X;
+            sprite5_Rage_Tech.position.Y = Position.Y;
+
+            sprite5_1_1_Rage_Mage.position.X = Position.X;
+            sprite5_1_1_Rage_Mage.position.Y = Position.Y;
+            sprite5_1_1_Rage_Pred.position.X = Position.X;
+            sprite5_1_1_Rage_Pred.position.Y = Position.Y;
+            sprite5_1_1_Rage_Tech.position.X = Position.X;
+            sprite5_1_1_Rage_Tech.position.Y = Position.Y;
+
+            sprite5_2_1_Rage_Mage.position.X = Position.X;
+            sprite5_2_1_Rage_Mage.position.Y = Position.Y;
+            sprite5_2_1_Rage_Pred.position.X = Position.X;
+            sprite5_2_1_Rage_Pred.position.Y = Position.Y;
+            sprite5_2_1_Rage_Tech.position.X = Position.X;
+            sprite5_2_1_Rage_Tech.position.Y = Position.Y;
+
             //if (state.IsKeyDown(Keys.Right))
             //{
             //    sprite.animation = "R";
@@ -649,28 +958,124 @@ namespace Project_OD
                 switch (skill)
                 {
                     case 0:
-                        sprite2.Draw(spriteBatch);
+                        if (rageMage == true)
+                        {
+                            sprite2_Rage_Mage.Draw(spriteBatch);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite2_Rage_Pred.Draw(spriteBatch);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite2_Rage_Tech.Draw(spriteBatch);
+                        }
+                        else
+                        {
+                            sprite2.Draw(spriteBatch);
+                        }
                         break;
                     case 1:
-                        sprite3.Draw(spriteBatch);
+                        if (rageMage == true)
+                        {
+                            sprite3_Rage_Mage.Draw(spriteBatch);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite3_Rage_Pred.Draw(spriteBatch);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite3_Rage_Tech.Draw(spriteBatch);
+                        }
+                        else
+                        {
+                            sprite3.Draw(spriteBatch);
+                        }
                         break;
                     case 2:
-                        sprite4.Draw(spriteBatch);
+                        if (rageMage == true)
+                        {
+                            sprite4_Rage_Mage.Draw(spriteBatch);
+                        }
+                        else if (ragePred == true)
+                        {
+                            sprite4_Rage_Pred.Draw(spriteBatch);
+                        }
+                        else if (rageTech == true)
+                        {
+                            sprite4_Rage_Tech.Draw(spriteBatch);
+                        }
+                        else
+                        {
+                            sprite4.Draw(spriteBatch);
+                        }
                         break;
                     case 3:
                         if (predator2 == true)
                         {
-                            sprite5.Draw(spriteBatch);
+                            if (rageMage == true)
+                            {
+                                sprite5_Rage_Mage.Draw(spriteBatch);
+                            }
+                            else if (ragePred == true)
+                            {
+                                sprite5_Rage_Pred.Draw(spriteBatch);
+                            }
+                            else if (rageTech == true)
+                            {
+                                sprite5_Rage_Tech.Draw(spriteBatch);
+                            }
+                            else
+                            {
+                                sprite5.Draw(spriteBatch);
+                            }
                         }
                         else if (technokrat2 == true)
                         {
-                            sprite5_1_1.Draw(spriteBatch);
-                            sprite5_1.Draw(spriteBatch);
+                            if (rageMage == true)
+                            {
+                                sprite5_1_1_Rage_Mage.Draw(spriteBatch);
+                                sprite5_1.Draw(spriteBatch);
+                            }
+                            else if (ragePred == true)
+                            {
+                                sprite5_1_1_Rage_Pred.Draw(spriteBatch);
+                                sprite5_1.Draw(spriteBatch);
+                            }
+                            else if (rageTech == true)
+                            {
+                                sprite5_1_1_Rage_Tech.Draw(spriteBatch);
+                                sprite5_1.Draw(spriteBatch);
+                            }
+                            else
+                            {
+                                sprite5_1_1.Draw(spriteBatch);
+                                sprite5_1.Draw(spriteBatch);
+                            }
                         }
                         else if (technoMage2 == true)
                         {
-                            sprite5_2_1.Draw(spriteBatch);
-                            sprite5_2.Draw(spriteBatch);
+                            if (rageMage == true)
+                            {
+                                sprite5_2_1_Rage_Mage.Draw(spriteBatch);
+                                sprite5_2.Draw(spriteBatch);
+                            }
+                            else if (ragePred == true)
+                            {
+                                sprite5_2_1_Rage_Pred.Draw(spriteBatch);
+                                sprite5_2.Draw(spriteBatch);
+                            }
+                            else if (rageTech == true)
+                            {
+                                sprite5_2_1_Rage_Tech.Draw(spriteBatch);
+                                sprite5_2.Draw(spriteBatch);
+                            }
+                            else
+                            {
+                                sprite5_2_1.Draw(spriteBatch);
+                                sprite5_2.Draw(spriteBatch);
+                            }
                         }
                         break;
                     case 4:
@@ -682,7 +1087,22 @@ namespace Project_OD
             }
             else
             {
-                sprite.Draw(spriteBatch);
+                if (rageMage == true)
+                {
+                    sprite_Rage_Mage.Draw(spriteBatch);
+                }
+                else if (ragePred == true)
+                {
+                    sprite_Rage_Pred.Draw(spriteBatch);
+                }
+                else if (rageTech == true)
+                {
+                    sprite_Rage_Tech.Draw(spriteBatch);
+                }
+                else
+                {
+                    sprite.Draw(spriteBatch);
+                }
                 //sprite3.Draw(spriteBatch);
             }
         }
