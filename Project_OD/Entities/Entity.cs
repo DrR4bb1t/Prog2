@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Project_OD
 {
 
-    public class Entity
+    public abstract class Entity
     {
         public Entity() { }
         //Create Entity
