@@ -22,12 +22,12 @@ namespace Project_OD
         Vector2 exitVector;
         Vector2 changeVector;
 
-        public Vector2 Update(Entity entity, GameTime gameTime,string dir, Map map)
+        public Vector2 Update(Entity entity, GameTime gameTime,string dir, List<Rectangle> rectangles)
         {
-            exitVector = moveVector(entity, gameTime, dir,map);
+            exitVector = moveVector(entity, gameTime, dir,rectangles);
             return exitVector;
         }
-        public Vector2 moveVector(Entity entity, GameTime gameTime, string dir,Map map)
+        public Vector2 moveVector(Entity entity, GameTime gameTime, string dir,List<Rectangle> rectangles)
         {
             mapX = entity.Position.X;
             mapY = entity.Position.Y;
@@ -40,18 +40,7 @@ namespace Project_OD
             {
                 exitVector += new Vector2(-(float)gameTime.ElapsedGameTime.TotalSeconds * entity.Speed, 0);
             }
-            canMove(mapX + exitVector.X, mapY, "x", map, entity);
-            if (entity.JumpSpeed==entity.GetjumpMaxSpeed())
-            {
-                midAir = true;
-            }
-            if (midAir)
-            {
-                exitVector += falldown(entity, gameTime);
-                
-            }
-            canMove(mapX + exitVector.X, mapY + exitVector.Y, "y", map, entity);
-            
+                        
             return exitVector;
         }
 

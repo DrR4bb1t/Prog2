@@ -40,7 +40,7 @@ namespace Project_OD
         public new void Update(GameTime gameTime, int fps)
         {
             patrol();
-            moveTo = physics.moveVector(this, gameTime, direction,map);
+            moveTo = physics.moveVector(this, gameTime, direction,rectangles);
             Position += moveTo;
             spriteanim(gameTime, fps);
 

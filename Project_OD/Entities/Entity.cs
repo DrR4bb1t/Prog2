@@ -16,7 +16,7 @@ namespace Project_OD
         public Entity() { }
         //Create Entity
 
-        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk, float atkRange, float atkTimeout, int frames, int animations, Map map)
+        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk, float atkRange, float atkTimeout, int frames, int animations,List<Rectangle> rectangles )
         {
             this.position = position;
             this.width = width;
@@ -30,7 +30,7 @@ namespace Project_OD
             this.atkRange = atkRange;
             this.atkTimeout = atkTimeout;
             this.rect = new Rectangle((int)position.X, (int)position.Y, width, height);
-            this.map = map;
+            this.rectangles = rectangles;
 
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
             sprite.StoreAnimations();
@@ -80,7 +80,7 @@ namespace Project_OD
         protected int atk;
         protected float atkRange;
         protected float atkTimeout;
-        protected Map map;
+        protected List<Rectangle> rectangles;
 
         
 

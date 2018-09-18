@@ -26,8 +26,8 @@ namespace Project_OD
         /// <summary>
         /// Size of map in tiles.
         /// </summary>
-        private int tileMapWidth = 50;
-        private int tileMapHeight = 15;
+        public int tileMapWidth = 50;
+        public int tileMapHeight = 15;
 
         private int width, height;
 

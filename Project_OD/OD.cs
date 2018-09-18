@@ -19,6 +19,8 @@ namespace Project_OD
 
         Camera camera;
         Map map;
+        int mapNmbr = 1;
+        private List<Rectangle> rectangles;
         Player player;
         Enemy enemy;
 
@@ -61,11 +63,22 @@ namespace Project_OD
             spriteBatch = new SpriteBatch(GraphicsDevice);
             camera = new Camera(1600);
             map = new Map();
+            rectangles = new List<Rectangle>(){};
+            for (int y = 0; y < map.tileMapHeight; y++)
+            {
+                for (int x = 0; x < map.tileMapWidth; x++)
+                {
+                    if (map.lvl1_Forelayer[y, x] == 2)
+                    {
+                        rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
+                    }
+                }
+            }
             player = new Player();
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(100, 850));
-            player.SetEntity(new Vector2(0, 850), 50, 50, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2,map);
-            enemy.SetEntity(new Vector2(100, 850), 0, 0, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 1, 0, 7, 2,map);
+            player.SetEntity(new Vector2(0, 850), 50, 50, "spritesheet-test2_1.png", null, 200, 1, 1, 1, 1, 0, 7, 2,rectangles);
+            enemy.SetEntity(new Vector2(100, 850), 0, 0, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 1, 0, 7, 2,rectangles);
             Physics physics = new Physics();
 
 
@@ -110,7 +123,7 @@ namespace Project_OD
             }
 
             InputManager.Update();
-
+            
             camera.Update(player.Position);
             player.Update(gameTime, 20);
             enemy.Update(gameTime, 20);
@@ -138,7 +151,6 @@ namespace Project_OD
             map.DrawMap(spriteBatch, 1);
             player.Draw(spriteBatch);
             enemy.Draw(spriteBatch);
-
 
 
             spriteBatch.End();

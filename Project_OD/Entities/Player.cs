@@ -37,7 +37,7 @@ namespace Project_OD
                 jumpSpeed = GetjumpMaxSpeed();
                 onGround = false;
             }
-            moveTo = physics.moveVector(this, gameTime,dir,map);
+            moveTo = physics.moveVector(this, gameTime,dir,rectangles);
             Position += moveTo;
             spriteanim(gameTime, fps);
            
