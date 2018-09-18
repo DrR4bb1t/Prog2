@@ -34,8 +34,9 @@ namespace Project_OD
         public int ItemDMGValue { get; set; }
         public int ItemArmourValue { get; set; }
 
-        public Items(int itemID, Vector2 pos, int itemstate)
+        public Items(int itemID, Vector2 pos, int state)
         {
+            itemstate = (itemState) state;
             itemRect = new Rectangle((int)pos.X, (int)pos.Y, item.Width, item.Height);
 
         }
