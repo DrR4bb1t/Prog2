@@ -12,96 +12,58 @@ namespace Project_OD
 {
     public class Items
     {
-        Entity entity;
-
-        public  enum itemState
+        public enum itemState
         {
-            OnGround,
-            Inventar,
-            Equipped,
+            notInInventar = 0,
+            Inventar = 1,
+            Equipped = 2
         }
 
-        private static itemState itemstate = itemState.OnGround;
-        public static itemState getItemState() { return itemstate; }
-        public static void setItemState(itemState state) { itemstate = state; }
+        private itemState itemstate;
+        public itemState getItemState() { return itemstate; }
+        public void setItemState(itemState state) { itemstate = state; }
 
-        private Texture2D item;
 
         private int itemDMGValue;
         private int itemArmourValue;
 
-        private Vector2 playerPos;
-
-        private Rectangle playerRect;
         private Rectangle itemRect;
 
-        private bool inInventar = false;
-        private bool isEquipped = false;
+        Texture2D item;
 
         public int ItemDMGValue { get; set; }
         public int ItemArmourValue { get; set; }
 
-        public Items(int itemID, Vector2 pos, state)
+        public Items(int itemID, Vector2 pos, int itemstate)
         {
-            switch(itemstate)
-            {
-                case itemState.OnGround:
-                    {
-                        inInventar = false;
-                        isEquipped = false;
-                    }
-                    break;
-                case itemState.Inventar:
-                    {
-                        inInventar = true;
-                        isEquipped = false;
-                    }
-                    break;
-                case itemState.Equipped:
-                    {
-                        inInventar = false;
-                        isEquipped = true;
-                    }
-                    break;
-
-            }
-
-            ItemDMGValue = itemDMGValue;
-            ItemArmourValue = itemArmourValue;
-            ItemDMGValue = itemDMGValue;
-            ItemArmourValue = itemArmourValue;
-
             itemRect = new Rectangle((int)pos.X, (int)pos.Y, item.Width, item.Height);
-            playerPos = new Vector2(10f, 200f);
-            playerRect = new Rectangle((int)playerPos.X, (int)playerPos.Y, 10, 10);
+
         }
 
         public void Update()
         {
-            if(itemRect.Intersects(playerRect) && InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.E))
+            if(itemstate == itemState.Inventar)
             {
-                inInventar = true;
-
+                
             }
 
-            if(inInventar == true && InputManager.GetMouseBoundaries(true).Intersects(itemRect))
+            if(itemstate == itemState.Equipped)
             {
-                if(InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true))
-                {
-                    isEquipped = true;
-                    if(isEquipped == true)
-                    {
-                        entity.Hp = entity.Hp + ItemArmourValue;
-                        entity.Atk = entity.Atk + ItemDMGValue;
-                    }
-                }
+                
             }
         }
 
+        public void LoadItemTextures()
+        {
+
+        }
+    
 
         public void Draw(SpriteBatch spritebatch)
         {
-         
+
         }
     }
 }
+
+
