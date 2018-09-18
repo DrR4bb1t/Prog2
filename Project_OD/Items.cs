@@ -36,6 +36,7 @@ namespace Project_OD
 
         public Items(int itemID, Vector2 pos, int state)
         {
+            //explicit casting
             itemstate = (itemState) state;
             itemRect = new Rectangle((int)pos.X, (int)pos.Y, item.Width, item.Height);
 
@@ -45,7 +46,10 @@ namespace Project_OD
         {
             if(itemstate == itemState.Inventar)
             {
-                
+                if(InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true) && InputManager.GetMouseBoundaries(true).Intersects(itemRect))
+                {
+                    setItemState(itemState.Equipped);
+                }
             }
 
             if(itemstate == itemState.Equipped)
