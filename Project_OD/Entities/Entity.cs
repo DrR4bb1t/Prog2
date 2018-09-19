@@ -59,12 +59,20 @@ namespace Project_OD
                 if ((this.moveTo.X > 0 && this.IsTouchingLeft(rects)) ||
             (this.moveTo.X < 0 && this.IsTouchingRight(rects)))
                     this.moveTo.X = 0;
-                Console.WriteLine("Collided at {0}, {1}", rect.X, rect.Y);
+                
 
-                if (this.moveTo.Y > 0 && this.IsTouchingTop(rects))
+                if (this.moveTo.Y > 0)
                 {
-                    this.moveTo.Y = 0;
-                    onGround = true;
+                    if (this.IsTouchingTop(rects))
+                    {
+                        this.moveTo.Y = 0;
+                        onGround = true;
+                        jumpSpeed = 0;
+                    }
+                    else
+                    {
+                        onGround = false;
+                    }
                 }
                 else if(this.moveTo.Y < 0 && this.IsTouchingBottom(rects))
                 {

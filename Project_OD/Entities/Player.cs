@@ -42,7 +42,7 @@ namespace Project_OD
             Position += moveTo;
             spriteanim(gameTime, fps);
            
-            Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
+            //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
         }
 
     }

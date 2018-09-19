@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//todo: add attack
 namespace Project_OD
 {
     class Enemy:Entity
@@ -22,23 +22,54 @@ namespace Project_OD
         protected Vector2 target2;
         protected Vector2 playerPos;
         protected Vector2 currTarget;
+        protected float distance=10000;
         protected int triggerRange;
+        public void getDistance()
+        {
+            distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
+        }
         public void patrol()
         {
-            if (direction == "R" && position.X >= target2.X)
+            if (distance < 50)
             {
-                currTarget = target1;
-                direction = "L";
+                direction = "S";
+                //attack
             }
-            if (direction == "L" && position.X <= target1.X)
+            else if (distance<150)
             {
-                currTarget = target2;
-                direction = "R";
+                currTarget = playerPos;
+                if (playerPos.X > position.X)
+                {
+                    direction = "R";
+                }
+                else if (playerPos.X>position.X)
+                {
+                    direction = "L";
+                }
+                Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
+            }
+            else {
+                if (direction == "S")
+                {
+                    direction = "R";
+                }
+                if (direction == "R" && position.X >= target2.X)
+                {
+                    currTarget = target1;
+                    direction = "L";
+                }
+                if (direction == "L" && position.X <= target1.X)
+                {
+                    currTarget = target2;
+                    direction = "R";
+                }
             }
         }
 
-        public new void Update(GameTime gameTime, int fps)
+        public void Update(GameTime gameTime, int fps,Player player)
         {
+            playerPos = player.Position;
+            getDistance();
             patrol();
             moveTo = physics.moveVector(this, gameTime, direction,rectangles);
             this.collisionCheck();

@@ -78,7 +78,7 @@ namespace Project_OD
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(100, 850));
             player.SetEntity(new Vector2(0, 850), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 1, 1, 1, 0, 7, 2,rectangles);
-            enemy.SetEntity(new Vector2(100, 850), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 1, 0, 7, 2,rectangles);
+            enemy.SetEntity(new Vector2(200, 850), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 1, 0, 7, 2,rectangles);
             Physics physics = new Physics();
 
 
@@ -126,7 +126,7 @@ namespace Project_OD
             
             camera.Update(player.Position);
             player.Update(gameTime, 20);
-            enemy.Update(gameTime, 20);
+            enemy.Update(gameTime, 20,player);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

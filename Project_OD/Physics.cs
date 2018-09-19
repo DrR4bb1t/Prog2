@@ -14,8 +14,6 @@ namespace Project_OD
     {
 
         public Physics() { }
-        bool collision = false;
-        bool midAir = false;
         string activeButton = null;
         float mapX;
         float mapY;
