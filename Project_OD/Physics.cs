@@ -40,70 +40,13 @@ namespace Project_OD
             {
                 exitVector += new Vector2(-(float)gameTime.ElapsedGameTime.TotalSeconds * entity.Speed, 0);
             }
+            exitVector.Y -= entity.JumpSpeed;
+            falldown(entity, gameTime);
                         
             return exitVector;
         }
 
-        public void canMove(float posX, float posY, string dir,Map map, Entity entity)
-        {
-            if (dir == "x")
-            {
-                if (exitVector.X > 0)
-                {
-                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)(posY / 64)] == 2)
-                    {
-                        exitVector.X = 0;
-                    }
-                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
-                    {
-                        exitVector.X = 0;
-                    }
-                }
-                else if(exitVector.X < 0)
-                {
-                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)(posY / 64)] == 2)
-                    {
-                        exitVector.X = 0;
-                    }
-                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY - entity.GetHeight()) / 64)] == 2)
-                    {
-                        exitVector.X = 0;
-                    }
-                }
-                
-            }else if (dir == "y")
-            {
-                if (exitVector.Y > 0)
-                {
-                    if(map.lvl1_Forelayer[(int)(posX / 64), (int)(posY / 64)] == 2)
-                    {
-                        exitVector.Y = 0;
-                        entity.JumpSpeed = 0;
-                        Console.WriteLine("Left-Top");
-                    }
-                    if (map.lvl1_Forelayer[(int)((posX+entity.GetWith()) / 64), (int)(posY / 64)] == 2)
-                    {
-                        exitVector.Y = 0;
-                        entity.JumpSpeed = 0;
-                        Console.WriteLine("Right-Top");
-                    }
-                }else if (exitVector.Y < 0)
-                {
-                    if (map.lvl1_Forelayer[(int)(posX / 64), (int)((posY + entity.GetHeight()) / 64)] == 2)
-                    {
-                        exitVector.Y = 0;
-                        midAir = false;
-                        Console.WriteLine("Left-Bottom");
-                    }
-                    if (map.lvl1_Forelayer[(int)((posX + entity.GetWith()) / 64), (int)((posY + entity.GetHeight()) / 64)] == 2)
-                    {
-                        exitVector.Y = 0;
-                        midAir = false;
-                        Console.WriteLine("Right-Bottom");
-                    }
-                }
-            }
-        }
+        
 
         public Vector2 falldown(Entity entity,GameTime gameTime)
         {

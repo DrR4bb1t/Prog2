@@ -52,17 +52,28 @@ namespace Project_OD
             rect.X = (int)Position.X;
             rect.Y = (int)Position.Y;
         }
-        public void collisionCheck(GameTime gameTime)
+        public void collisionCheck()
         {
             foreach (var rects in rectangles)
             {
                 if ((this.moveTo.X > 0 && this.IsTouchingLeft(rects)) ||
-            (this.moveTo.X < 0 & this.IsTouchingRight(rects)))
+            (this.moveTo.X < 0 && this.IsTouchingRight(rects)))
                     this.moveTo.X = 0;
+                Console.WriteLine("Collided at {0}, {1}", rect.X, rect.Y);
 
-                if ((this.moveTo.Y > 0 && this.IsTouchingTop(rects)) ||
-                    (this.moveTo.Y < 0 & this.IsTouchingBottom(rects)))
+                if (this.moveTo.Y > 0 && this.IsTouchingTop(rects))
+                {
                     this.moveTo.Y = 0;
+                    onGround = true;
+                }
+                else if(this.moveTo.Y < 0 && this.IsTouchingBottom(rects))
+                {
+                    this.moveTo.Y = 0;
+                }
+                else
+                {
+
+                }
             }
         }
         #region Collision
