@@ -41,6 +41,7 @@ namespace Project_OD
         {
             patrol();
             moveTo = physics.moveVector(this, gameTime, direction,rectangles);
+            this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
 

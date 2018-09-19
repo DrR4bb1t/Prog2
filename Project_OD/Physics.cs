@@ -52,7 +52,7 @@ namespace Project_OD
         {
             if ((entity.JumpSpeed-0.01) > -entity.GetjumpMaxSpeed())
             {
-                entity.JumpSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds * 1f;
+                entity.JumpSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds * 3f;
               
             }
             changeVector = new Vector2(0,-entity.JumpSpeed);
