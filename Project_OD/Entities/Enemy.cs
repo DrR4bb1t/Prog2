@@ -23,19 +23,19 @@ namespace Project_OD
         protected Vector2 playerPos;
         protected Vector2 currTarget;
         protected float distance=10000;
-        protected int triggerRange;
+        protected int triggerRange=150;
         public void getDistance()
         {
             distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
         }
         public void patrol()
         {
-            if (distance < 50)
+            if (distance < atkRange)
             {
                 direction = "S";
                 //attack
             }
-            else if (distance<150)
+            else if (distance<triggerRange)
             {
                 currTarget = playerPos;
                 if (playerPos.X > position.X)
