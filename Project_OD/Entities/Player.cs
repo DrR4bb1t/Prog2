@@ -38,6 +38,7 @@ namespace Project_OD
                 onGround = false;
             }
             moveTo = physics.moveVector(this, gameTime,dir,rectangles);
+            this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
            

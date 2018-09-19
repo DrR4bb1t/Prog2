@@ -52,6 +52,52 @@ namespace Project_OD
             rect.X = (int)Position.X;
             rect.Y = (int)Position.Y;
         }
+        public void collisionCheck(GameTime gameTime)
+        {
+            foreach (var rects in rectangles)
+            {
+                if ((this.moveTo.X > 0 && this.IsTouchingLeft(rects)) ||
+            (this.moveTo.X < 0 & this.IsTouchingRight(rects)))
+                    this.moveTo.X = 0;
+
+                if ((this.moveTo.Y > 0 && this.IsTouchingTop(rects)) ||
+                    (this.moveTo.Y < 0 & this.IsTouchingBottom(rects)))
+                    this.moveTo.Y = 0;
+            }
+        }
+        #region Collision
+        protected bool IsTouchingLeft(Rectangle rectangle)
+        {
+            return this.rect.Right + this.moveTo.X > rectangle.Left &&
+              this.rect.Left < rectangle.Left &&
+              this.rect.Bottom > rectangle.Top &&
+              this.rect.Top < rectangle.Bottom;
+        }
+
+        protected bool IsTouchingRight(Rectangle rectangle)
+        {
+            return this.rect.Left + this.moveTo.X < rectangle.Right &&
+              this.rect.Right > rectangle.Right &&
+              this.rect.Bottom > rectangle.Top &&
+              this.rect.Top < rectangle.Bottom;
+        }
+
+        protected bool IsTouchingTop(Rectangle rectangle)
+        {
+            return this.rect.Bottom + this.moveTo.Y > rectangle.Top &&
+              this.rect.Top < rectangle.Top &&
+              this.rect.Right > rectangle.Left &&
+              this.rect.Left < rectangle.Right;
+        }
+
+        protected bool IsTouchingBottom(Rectangle rectangle)
+        {
+            return this.rect.Top + this.moveTo.Y < rectangle.Bottom &&
+              this.rect.Bottom > rectangle.Bottom &&
+              this.rect.Right > rectangle.Left &&
+              this.rect.Left < rectangle.Right;
+        }
+        #endregion
         public void Update(GameTime gameTime, int fps)
         {
             spriteanim(gameTime,fps);
