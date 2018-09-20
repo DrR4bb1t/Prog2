@@ -943,20 +943,8 @@ namespace Project_OD
             sprite5_2_1_Rage_Tech.position.X = Position.X;
             sprite5_2_1_Rage_Tech.position.Y = Position.Y;
 
-            //if (state.IsKeyDown(Keys.Right))
-            //{
-            //    sprite.animation = "R";
-            //    sprite.position.X += (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);//sprite.position=player.position
-            //    sprite.Update(gameTime, true, fps);
-            //}
-            //else if (state.IsKeyDown(Keys.Left))
-            //{
-            //    sprite.animation = "L";
-            //    sprite.position.X -= (float)(gameTime.ElapsedGameTime.TotalSeconds * 200);
-            //    sprite.Update(gameTime, true, fps);
-            //}
 
-            Console.WriteLine("X: {0}, Y: {1}", position.X, position.Y);
+            //Console.WriteLine("X: {0}, Y: {1}", position.X, position.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch, bool atk, int skill)

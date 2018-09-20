@@ -46,7 +46,7 @@ namespace Project_OD
                 {
                     direction = "L";
                 }
-                Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
+                //Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
             }
             else {
                 if (direction == "S")
