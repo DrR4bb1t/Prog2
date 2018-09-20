@@ -26,8 +26,8 @@ namespace Project_OD
         /// <summary>
         /// Size of map in tiles.
         /// </summary>
-        private int tileMapWidth = 50;
-        private int tileMapHeight = 15;
+        public int tileMapWidth = 50;
+        public int tileMapHeight = 15;
 
         private int width, height;
 
@@ -81,7 +81,7 @@ namespace Project_OD
         };
 
 
-        private static int[,] lvl1_Forelayer = new int[,]
+        public int[,] lvl1_Forelayer = new int[,]
         {
 
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },

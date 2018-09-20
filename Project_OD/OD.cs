@@ -22,7 +22,10 @@ namespace Project_OD
 
         Camera camera;
         Map map;
+        int mapNmbr = 1;
+        private List<Rectangle> rectangles;
         Player player;
+        Enemy enemy;
 
         private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
@@ -70,9 +73,25 @@ namespace Project_OD
 
             camera = new Camera(1600);
             map = new Map();
-            player = new Player(0, 850, 7, 2);
+            rectangles = new List<Rectangle>(){};
+            for (int y = 0; y < map.tileMapHeight; y++)
+            {
+                for (int x = 0; x < map.tileMapWidth; x++)
+                {
+                    if (map.lvl1_Forelayer[y, x] == 2)
+                    {
+                        rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
+                    }
+                }
+            }
+            player = new Player();
+            enemy = new Enemy();
+            enemy.enemyinit(new Vector2(100, 850));
+            player.SetEntity(new Vector2(0, 850), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 1, 1, 1, 0, 7, 2,rectangles);
+            enemy.SetEntity(new Vector2(200, 850), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 50, 0, 7, 2,rectangles);
+            Physics physics = new Physics();
 
-            
+
         }
 
         /// <summary>
@@ -129,8 +148,10 @@ namespace Project_OD
                     break;
             }
 
-
             InputManager.Update();
+            
+            camera.Update(player.Position);
+            enemy.Update(gameTime, 20,player);
 
             if (gamestate == gameStates.InGame)
             {
@@ -162,8 +183,9 @@ namespace Project_OD
                               null, null, null, null,
                               camera.ViewMatrix);
 
-                map.DrawMap(spriteBatch, 1);
-                player.Draw(spriteBatch);
+            map.DrawMap(spriteBatch, 1);
+            player.Draw(spriteBatch);
+            enemy.Draw(spriteBatch);
 
 
             spriteBatch.End();
