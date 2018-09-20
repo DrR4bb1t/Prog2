@@ -63,10 +63,55 @@ namespace Project_OD
         /// <summary>
         /// Stores all animations.
         /// </summary>
-        public void StoreAnimations()
+        public void StoreAnimations(int moveset)
         {
-            AddAnimation("R", 1);
-            AddAnimation("L", 2);
+            switch (moveset)
+            {
+                case 1:
+                    AddAnimation("R", 1);
+                    AddAnimation("L", 2);
+                    break;
+                case 2:
+                    AddAnimation("atk-R", 1);
+                    AddAnimation("atk-L", 2);
+                    break;
+                case 3:
+                    AddAnimation("dash-R", 1);
+                    AddAnimation("dash-L", 2);
+                    break;
+                case 4:
+                    AddAnimation("smash-R", 1);
+                    AddAnimation("smash-L", 2);
+                    break;
+                case 5:
+                    AddAnimation("stamp-R", 1);
+                    AddAnimation("stamp-L", 2);
+                    break;
+                case 6:
+                    AddAnimation("spikeCast-R", 1);
+                    AddAnimation("spikeCast-L", 2);
+                    break;
+                case 7:
+                    AddAnimation("spikes-R", 1);
+                    AddAnimation("spikes-L", 1);
+                    break;
+                case 8:
+                    AddAnimation("explosionCast-R", 1);
+                    AddAnimation("explosionCast-L", 2);
+                    break;
+                case 9:
+                    AddAnimation("explosion-R", 1);
+                    AddAnimation("explosion-L", 1);
+                    break;
+                case 10:
+                    AddAnimation("activation-R", 1);
+                    AddAnimation("activation-L", 2);
+                    break;
+                default:
+                    break;
+            }
+
+
         }
     }
 }

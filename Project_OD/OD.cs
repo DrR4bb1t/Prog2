@@ -84,7 +84,7 @@ namespace Project_OD
                     }
                 }
             }
-            player = new Player();
+            player = new Player(0,850,7,2);
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(100, 850));
             player.SetEntity(new Vector2(0, 850), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 1, 1, 1, 0, 7, 2,rectangles);
@@ -184,8 +184,9 @@ namespace Project_OD
                               camera.ViewMatrix);
 
             map.DrawMap(spriteBatch, 1);
-            player.Draw(spriteBatch);
             enemy.Draw(spriteBatch);
+            player.Draw(spriteBatch, player.ATK, player.skill);
+
 
 
             spriteBatch.End();

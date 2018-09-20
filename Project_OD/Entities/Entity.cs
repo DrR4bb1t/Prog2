@@ -22,7 +22,6 @@ namespace Project_OD
             this.width = width;
             this.height = height;
             this.texture = OD.content.Load<Texture2D>(texture);
-            this.deathTexture = deathTexture;
             this.speed = Speed;
             this.jumpMaxSpeed = jumpMaxSpeed;
             this.maxHp = maxHp;
@@ -33,7 +32,7 @@ namespace Project_OD
             this.rectangles = rectangles;
 
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
-            sprite.StoreAnimations();
+            sprite.StoreAnimations(1);
         }
         public void spriteanim(GameTime gameTime,int fps)
         {
@@ -134,8 +133,44 @@ namespace Project_OD
         protected Rectangle rect;
         protected int width=1;
         protected int height=1;
+
+        #region Textures
         protected Texture2D texture;
-        protected Texture2D deathTexture;
+        protected Texture2D texture2;
+        protected Texture2D texture3;
+        protected Texture2D texture4;
+        protected Texture2D texture5;
+        protected Texture2D texture5_1;
+        protected Texture2D texture5_1_1;
+        protected Texture2D texture5_2;
+        protected Texture2D texture5_2_1;
+        protected Texture2D texture6;
+
+        protected Texture2D texture_Rage_Mage;
+        protected Texture2D texture2_Rage_Mage;
+        protected Texture2D texture3_Rage_Mage;
+        protected Texture2D texture4_Rage_Mage;
+        protected Texture2D texture5_Rage_Mage;
+        protected Texture2D texture5_1_1_Rage_Mage;
+        protected Texture2D texture5_2_1_Rage_Mage;
+
+        protected Texture2D texture_Rage_Pred;
+        protected Texture2D texture2_Rage_Pred;
+        protected Texture2D texture3_Rage_Pred;
+        protected Texture2D texture4_Rage_Pred;
+        protected Texture2D texture5_Rage_Pred;
+        protected Texture2D texture5_1_1_Rage_Pred;
+        protected Texture2D texture5_2_1_Rage_Pred;
+
+        protected Texture2D texture_Rage_Tech;
+        protected Texture2D texture2_Rage_Tech;
+        protected Texture2D texture3_Rage_Tech;
+        protected Texture2D texture4_Rage_Tech;
+        protected Texture2D texture5_Rage_Tech;
+        protected Texture2D texture5_1_1_Rage_Tech;
+        protected Texture2D texture5_2_1_Rage_Tech;
+        #endregion
+
         protected float speed=200;
         protected float jumpMaxSpeed=1;
         protected float jumpSpeed=0;

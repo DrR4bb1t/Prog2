@@ -206,6 +206,8 @@
 /build:spritesheet-test2_1.png.png
 
 #begin Textures/Button/back_EN.png
+
+#begin spritesheet-atk.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -215,9 +217,13 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/back_EN.png
 
 #begin Textures/Button/back_EN_pressed.png
+/build:spritesheet-atk.png
+
+#begin spritesheet-dash.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -230,6 +236,9 @@
 /build:Textures/Button/back_EN_pressed.png
 
 #begin Textures/Button/beenden_GER.png
+/build:spritesheet-dash.png
+
+#begin spritesheet-smash.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -242,6 +251,9 @@
 /build:Textures/Button/beenden_GER.png
 
 #begin Textures/Button/beenden_GER_pressed.png
+/build:spritesheet-smash.png
+
+#begin spritesheet-smash2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -254,6 +266,9 @@
 /build:Textures/Button/beenden_GER_pressed.png
 
 #begin Textures/Button/deutsch_GER.png
+/build:spritesheet-smash2.png
+
+#begin spritesheet-smash3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -266,6 +281,9 @@
 /build:Textures/Button/deutsch_GER.png
 
 #begin Textures/Button/deutsch_GER_pressed.png
+/build:spritesheet-smash3.png
+
+#begin spritesheet-smash4.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -278,6 +296,9 @@
 /build:Textures/Button/deutsch_GER_pressed.png
 
 #begin Textures/Button/dot.png
+/build:spritesheet-smash4.png
+
+#begin spritesheet-stamp.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -290,6 +311,9 @@
 /build:Textures/Button/dot.png
 
 #begin Textures/Button/english_EN.png
+/build:spritesheet-stamp.png
+
+#begin spritesheet-stamp2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -302,6 +326,9 @@
 /build:Textures/Button/english_EN.png
 
 #begin Textures/Button/english_EN_pressed.png
+/build:spritesheet-stamp2.png
+
+#begin spritesheet-thorns2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -311,9 +338,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/english_EN_pressed.png
 
 #begin Textures/Button/laden_GER.png
+
+/build:spritesheet-thorns2.png
+
+#begin spritesheet-thorns2_1.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -323,9 +356,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/laden_GER.png
 
 #begin Textures/Button/laden_GER_pressed.png
+
+/build:spritesheet-thorns2_1.png
+
+#begin spritesheet-thorns_summon.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -335,9 +374,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/laden_GER_pressed.png
 
 #begin Textures/Button/language_EN.png
+
+/build:spritesheet-thorns_summon.png
+
+#begin spritesheet-thorns_summon2.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -347,9 +392,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/language_EN.png
 
 #begin Textures/Button/language_EN_pressed.png
+
+/build:spritesheet-thorns_summon2.png
+
+#begin spritesheet-explosion.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -359,9 +410,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/language_EN_pressed.png
 
 #begin Textures/Button/load_EN.png
+
+/build:spritesheet-explosion.png
+
+#begin spritesheet-explosion_summon.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -371,9 +428,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/load_EN.png
 
 #begin Textures/Button/load_EN_pressed.png
+
+/build:spritesheet-explosion_summon.png
+
+#begin spritesheet-explosion2.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -383,9 +446,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/load_EN_pressed.png
 
 #begin Textures/Button/neu_GER.png
+
+/build:spritesheet-explosion2.png
+
+#begin spritesheet-activation.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -395,9 +464,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/neu_GER.png
 
 #begin Textures/Button/neu_GER_pressed.png
+
+/build:spritesheet-activation.png
+
+#begin spritesheet-atk_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -407,9 +482,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/neu_GER_pressed.png
 
 #begin Textures/Button/new_EN.png
+
+/build:spritesheet-atk_mage.png
+
+#begin spritesheet-atk_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -419,9 +500,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/new_EN.png
 
 #begin Textures/Button/new_EN_pressed.png
+
+/build:spritesheet-atk_pred.png
+
+#begin spritesheet-atk_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -431,9 +518,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/new_EN_pressed.png
 
 #begin Textures/Button/optionen_GER.png
+
+/build:spritesheet-atk_tech.png
+
+#begin spritesheet-dash_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -443,9 +536,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/optionen_GER.png
 
 #begin Textures/Button/optionen_GER_pressed.png
+
+/build:spritesheet-dash_mage.png
+
+#begin spritesheet-dash_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -455,9 +554,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/optionen_GER_pressed.png
 
 #begin Textures/Button/option_EN.png
+
+/build:spritesheet-dash_pred.png
+
+#begin spritesheet-dash_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -467,9 +572,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/option_EN.png
 
 #begin Textures/Button/option_EN_pressed.png
+
+/build:spritesheet-dash_tech.png
+
+#begin spritesheet-explosion_summon_RAGE_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -479,9 +590,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/option_EN_pressed.png
 
 #begin Textures/Button/quit_EN.png
+
+/build:spritesheet-explosion_summon_RAGE_mage.png
+
+#begin spritesheet-explosion_summon_RAGE_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -491,9 +608,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/quit_EN.png
 
 #begin Textures/Button/quit_EN_pressed.png
+
+/build:spritesheet-explosion_summon_RAGE_pred.png
+
+#begin spritesheet-explosion_summon_RAGE_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -503,9 +626,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/quit_EN_pressed.png
 
 #begin Textures/Button/save_EN.png
+
+/build:spritesheet-explosion_summon_RAGE_tech.png
+
+#begin spritesheet-jump_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -515,9 +644,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/save_EN.png
 
 #begin Textures/Button/save_EN_pressed.png
+
+/build:spritesheet-jump_mage.png
+
+#begin spritesheet-jump_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -527,9 +662,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/save_EN_pressed.png
 
 #begin Textures/Button/slider.png
+
+/build:spritesheet-jump_pred.png
+
+#begin spritesheet-jump_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -539,9 +680,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/slider.png
 
 #begin Textures/Button/speichern_GER.png
+
+/build:spritesheet-jump_tech.png
+
+#begin spritesheet-smash_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -551,9 +698,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/speichern_GER.png
 
 #begin Textures/Button/speichern_GER_pressed.png
+
+/build:spritesheet-smash_mage.png
+
+#begin spritesheet-smash_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -563,9 +716,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/speichern_GER_pressed.png
 
 #begin Textures/Button/sprache_GER.png
+
+/build:spritesheet-smash_pred.png
+
+#begin spritesheet-smash_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -575,9 +734,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/sprache_GER.png
 
 #begin Textures/Button/sprache_GER_pressed.png
+
+/build:spritesheet-smash_tech.png
+
+#begin spritesheet-thorns_summon_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -587,9 +752,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/sprache_GER_pressed.png
 
 #begin Textures/Button/starten_GER.png
+
+/build:spritesheet-thorns_summon_mage.png
+
+#begin spritesheet-thorns_summon_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -599,9 +770,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/starten_GER.png
 
 #begin Textures/Button/starten_GER_pressed.png
+
+/build:spritesheet-thorns_summon_pred.png
+
+#begin spritesheet-thorns_summon_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -611,9 +788,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/starten_GER_pressed.png
 
 #begin Textures/Button/start_EN.png
+
+/build:spritesheet-thorns_summon_tech.png
+
+#begin spritesheet-walk_mage.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -623,9 +806,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/start_EN.png
 
 #begin Textures/Button/start_EN_pressed.png
+
+/build:spritesheet-walk_mage.png
+
+#begin spritesheet-walk_pred.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -635,9 +824,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/start_EN_pressed.png
 
 #begin Textures/Button/zurueck_GER.png
+
+/build:spritesheet-walk_pred.png
+
+#begin spritesheet-walk_tech.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -647,9 +842,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/zurueck_GER.png
 
 #begin Textures/Button/zurueck_GER_pressed.png
+
+/build:spritesheet-walk_tech.png
+
+#begin spritesheet_enemy-atk.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -659,9 +860,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/Button/zurueck_GER_pressed.png
 
 #begin Textures/bg.png
+
+/build:spritesheet_enemy-atk.png
+
+#begin spritesheet_enemy-walk.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -671,5 +878,33 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Textures/bg.png
+
+/build:spritesheet_enemy-walk.png
+
+#begin spritesheet_boss-atk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:spritesheet_boss-atk.png
+
+#begin spritesheet_boss-walk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:spritesheet_boss-walk.png
+
 
