@@ -236,9 +236,7 @@ namespace Project_OD
                 onGround = false;
             }
             moveTo = physics.moveVector(this, gameTime,dir,rectangles);
-            this.collisionCheck();
-            Position += moveTo;
-            spriteanim(gameTime, fps);
+            
            
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
             
@@ -390,7 +388,7 @@ namespace Project_OD
                         sprite3.animation = "dash-R";
                         sprite3.Update(gameTime, true, 25);
                     }
-                    position.X += 10.0f;
+                    moveTo.X += 10.0f;
                     skillCnt1++;
                 }
                 else if (dirL == true)
@@ -415,7 +413,7 @@ namespace Project_OD
                         sprite3.animation = "dash-L";
                         sprite3.Update(gameTime, true, 25);
                     }
-                    position.X -= 10.0f;
+                    moveTo.X -= 10.0f;
                     skillCnt1++;
                 }
 
@@ -942,7 +940,9 @@ namespace Project_OD
             sprite5_2_1_Rage_Pred.position.Y = Position.Y;
             sprite5_2_1_Rage_Tech.position.X = Position.X;
             sprite5_2_1_Rage_Tech.position.Y = Position.Y;
-
+            this.collisionCheck();
+            Position += moveTo;
+            spriteanim(gameTime, fps);
 
             //Console.WriteLine("X: {0}, Y: {1}", position.X, position.Y);
         }
