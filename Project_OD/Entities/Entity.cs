@@ -30,6 +30,8 @@ namespace Project_OD
             this.atkTimeout = atkTimeout;
             this.rect = new Rectangle((int)position.X, (int)position.Y, width, height);
             this.rectangles = rectangles;
+            this.frames = frames;
+            this.animations = animations;
 
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
             sprite.StoreAnimations(1);
@@ -133,6 +135,8 @@ namespace Project_OD
         protected Rectangle rect;
         protected int width=1;
         protected int height=1;
+        protected int frames=7;
+        protected int animations=2;
 
         #region Textures
         protected Texture2D texture;

@@ -133,46 +133,46 @@ namespace Project_OD
         
 
 
-        public Player(int coordX, int coordY, int frames, int animations)
+        public Player()
         {
             LoadTexture();
 
             dirR = true;
 
-            sprite = new SpriteAnimation(texture, new Vector2(coordX, coordY), "R", frames, animations);
-            sprite2 = new SpriteAnimation(texture2, new Vector2(coordX, coordY), "atk-R", frames, animations);
-            sprite3 = new SpriteAnimation(texture3, new Vector2(coordX, coordY), "dash-R", frames, animations);
-            sprite4 = new SpriteAnimation(texture4, new Vector2(coordX, coordY), "smash-R", frames, animations);
-            sprite5 = new SpriteAnimation(texture5, new Vector2(coordX, coordY), "stamp-R", 8, animations);
-            sprite5_1 = new SpriteAnimation(texture5_1, new Vector2(coordX, coordY), "spikes-R", frames, 1);
-            sprite5_1_1 = new SpriteAnimation(texture5_1_1, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
-            sprite5_2 = new SpriteAnimation(texture5_2, new Vector2(coordX, coordY), "explosion-R", frames, 1);
-            sprite5_2_1 = new SpriteAnimation(texture5_2_1, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
-            sprite6 = new SpriteAnimation(texture6, new Vector2(coordX, coordY), "activation-R", frames, animations);
+            sprite = new SpriteAnimation(texture, position, "R", frames, animations);
+            sprite2 = new SpriteAnimation(texture2, position, "atk-R", frames, animations);
+            sprite3 = new SpriteAnimation(texture3, position, "dash-R", frames, animations);
+            sprite4 = new SpriteAnimation(texture4, position, "smash-R", frames, animations);
+            sprite5 = new SpriteAnimation(texture5, position, "stamp-R", 8, animations);
+            sprite5_1 = new SpriteAnimation(texture5_1, position, "spikes-R", frames, 1);
+            sprite5_1_1 = new SpriteAnimation(texture5_1_1, position, "spikeCast-R", frames, animations);
+            sprite5_2 = new SpriteAnimation(texture5_2, position, "explosion-R", frames, 1);
+            sprite5_2_1 = new SpriteAnimation(texture5_2_1, position, "explosionCast-R", frames, animations);
+            sprite6 = new SpriteAnimation(texture6, position, "activation-R", frames, animations);
 
-            sprite_Rage_Mage = new SpriteAnimation(texture_Rage_Mage, new Vector2(coordX, coordY), "R", frames, animations);
-            sprite2_Rage_Mage = new SpriteAnimation(texture2_Rage_Mage, new Vector2(coordX, coordY), "atk-R", frames, animations);
-            sprite3_Rage_Mage = new SpriteAnimation(texture3_Rage_Mage, new Vector2(coordX, coordY), "dash-R", frames, animations);
-            sprite4_Rage_Mage = new SpriteAnimation(texture4_Rage_Mage, new Vector2(coordX, coordY), "smash-R", frames, animations);
-            sprite5_Rage_Mage = new SpriteAnimation(texture5_Rage_Mage, new Vector2(coordX, coordY), "stamp-R", 8, animations);
-            sprite5_1_1_Rage_Mage = new SpriteAnimation(texture5_1_1_Rage_Mage, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
-            sprite5_2_1_Rage_Mage = new SpriteAnimation(texture5_2_1_Rage_Mage, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+            sprite_Rage_Mage = new SpriteAnimation(texture_Rage_Mage, position, "R", frames, animations);
+            sprite2_Rage_Mage = new SpriteAnimation(texture2_Rage_Mage, position, "atk-R", frames, animations);
+            sprite3_Rage_Mage = new SpriteAnimation(texture3_Rage_Mage, position, "dash-R", frames, animations);
+            sprite4_Rage_Mage = new SpriteAnimation(texture4_Rage_Mage, position, "smash-R", frames, animations);
+            sprite5_Rage_Mage = new SpriteAnimation(texture5_Rage_Mage, position, "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Mage = new SpriteAnimation(texture5_1_1_Rage_Mage, position, "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Mage = new SpriteAnimation(texture5_2_1_Rage_Mage, position, "explosionCast-R", frames, animations);
 
-            sprite_Rage_Pred = new SpriteAnimation(texture_Rage_Pred, new Vector2(coordX, coordY), "R", frames, animations);
-            sprite2_Rage_Pred = new SpriteAnimation(texture2_Rage_Pred, new Vector2(coordX, coordY), "atk-R", frames, animations);
-            sprite3_Rage_Pred = new SpriteAnimation(texture3_Rage_Pred, new Vector2(coordX, coordY), "dash-R", frames, animations);
-            sprite4_Rage_Pred = new SpriteAnimation(texture4_Rage_Pred, new Vector2(coordX, coordY), "smash-R", frames, animations);
-            sprite5_Rage_Pred = new SpriteAnimation(texture5_Rage_Pred, new Vector2(coordX, coordY), "stamp-R", 8, animations);
-            sprite5_1_1_Rage_Pred = new SpriteAnimation(texture5_1_1_Rage_Pred, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
-            sprite5_2_1_Rage_Pred = new SpriteAnimation(texture5_2_1_Rage_Pred, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+            sprite_Rage_Pred = new SpriteAnimation(texture_Rage_Pred, position, "R", frames, animations);
+            sprite2_Rage_Pred = new SpriteAnimation(texture2_Rage_Pred, position, "atk-R", frames, animations);
+            sprite3_Rage_Pred = new SpriteAnimation(texture3_Rage_Pred, position, "dash-R", frames, animations);
+            sprite4_Rage_Pred = new SpriteAnimation(texture4_Rage_Pred, position, "smash-R", frames, animations);
+            sprite5_Rage_Pred = new SpriteAnimation(texture5_Rage_Pred, position, "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Pred = new SpriteAnimation(texture5_1_1_Rage_Pred, position, "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Pred = new SpriteAnimation(texture5_2_1_Rage_Pred, position, "explosionCast-R", frames, animations);
 
-            sprite_Rage_Tech = new SpriteAnimation(texture_Rage_Tech, new Vector2(coordX, coordY), "R", frames, animations);
-            sprite2_Rage_Tech = new SpriteAnimation(texture2_Rage_Tech, new Vector2(coordX, coordY), "atk-R", frames, animations);
-            sprite3_Rage_Tech = new SpriteAnimation(texture3_Rage_Tech, new Vector2(coordX, coordY), "dash-R", frames, animations);
-            sprite4_Rage_Tech = new SpriteAnimation(texture4_Rage_Tech, new Vector2(coordX, coordY), "smash-R", frames, animations);
-            sprite5_Rage_Tech = new SpriteAnimation(texture5_Rage_Tech, new Vector2(coordX, coordY), "stamp-R", 8, animations);
-            sprite5_1_1_Rage_Tech = new SpriteAnimation(texture5_1_1_Rage_Tech, new Vector2(coordX, coordY), "spikeCast-R", frames, animations);
-            sprite5_2_1_Rage_Tech = new SpriteAnimation(texture5_2_1_Rage_Tech, new Vector2(coordX, coordY), "explosionCast-R", frames, animations);
+            sprite_Rage_Tech = new SpriteAnimation(texture_Rage_Tech, position, "R", frames, animations);
+            sprite2_Rage_Tech = new SpriteAnimation(texture2_Rage_Tech, position, "atk-R", frames, animations);
+            sprite3_Rage_Tech = new SpriteAnimation(texture3_Rage_Tech, position, "dash-R", frames, animations);
+            sprite4_Rage_Tech = new SpriteAnimation(texture4_Rage_Tech, position, "smash-R", frames, animations);
+            sprite5_Rage_Tech = new SpriteAnimation(texture5_Rage_Tech, position, "stamp-R", 8, animations);
+            sprite5_1_1_Rage_Tech = new SpriteAnimation(texture5_1_1_Rage_Tech, position, "spikeCast-R", frames, animations);
+            sprite5_2_1_Rage_Tech = new SpriteAnimation(texture5_2_1_Rage_Tech, position, "explosionCast-R", frames, animations);
 
             sprite.StoreAnimations(1);
             sprite2.StoreAnimations(2);
@@ -859,18 +859,12 @@ namespace Project_OD
                     atkMove = false;
                 }
             }
-            sprite.position.X = Position.X;
-            sprite.position.Y = Position.Y;
-            sprite2.position.X = Position.X;
-            sprite2.position.Y = Position.Y;
-            sprite3.position.X = Position.X;
-            sprite3.position.Y = Position.Y;
-            sprite4.position.X = Position.X;
-            sprite4.position.Y = Position.Y;
-            sprite5.position.X = Position.X;
-            sprite5.position.Y = Position.Y;
-            sprite6.position.X = Position.X;
-            sprite6.position.Y = Position.Y;
+            sprite.position = Position;
+            sprite2.position = Position;
+            sprite3.position = Position;
+            sprite4.position = Position;
+            sprite5.position = Position;
+            sprite6.position = Position;
 
             if (dirR == true)
             {
@@ -887,59 +881,37 @@ namespace Project_OD
                 sprite5_2.position.Y = position.Y - 60;
             }
 
-            sprite5_1_1.position.X = Position.X;
-            sprite5_1_1.position.Y = Position.Y;
-            sprite5_2_1.position.X = Position.X;
-            sprite5_2_1.position.Y = Position.Y;
+            sprite5_1_1.position = Position;
+            sprite5_2_1.position = Position;
 
-            sprite_Rage_Mage.position.X = Position.X;
-            sprite_Rage_Mage.position.Y = Position.Y;
-            sprite_Rage_Pred.position.X = Position.X;
-            sprite_Rage_Pred.position.Y = Position.Y;
-            sprite_Rage_Tech.position.X = Position.X;
-            sprite_Rage_Tech.position.Y = Position.Y;
+            sprite_Rage_Mage.position = Position;
+            sprite_Rage_Pred.position = Position;
+            sprite_Rage_Tech.position = Position;
 
-            sprite2_Rage_Mage.position.X = Position.X;
-            sprite2_Rage_Mage.position.Y = Position.Y;
-            sprite2_Rage_Pred.position.X = Position.X;
-            sprite2_Rage_Pred.position.Y = Position.Y;
-            sprite2_Rage_Tech.position.X = Position.X;
-            sprite2_Rage_Tech.position.Y = Position.Y;
+            sprite2_Rage_Mage.position = Position;
+            sprite2_Rage_Pred.position = Position;
+            sprite2_Rage_Tech.position = Position;
 
-            sprite3_Rage_Mage.position.X = Position.X;
-            sprite3_Rage_Mage.position.Y = Position.Y;
-            sprite3_Rage_Pred.position.X = Position.X;
-            sprite3_Rage_Pred.position.Y = Position.Y;
-            sprite3_Rage_Tech.position.X = Position.X;
-            sprite3_Rage_Tech.position.Y = Position.Y;
+            sprite3_Rage_Mage.position = Position;
+            sprite3_Rage_Pred.position = Position;
+            sprite3_Rage_Tech.position = Position;
 
-            sprite4_Rage_Mage.position.X = Position.X;
-            sprite4_Rage_Mage.position.Y = Position.Y;
-            sprite4_Rage_Pred.position.X = Position.X;
-            sprite4_Rage_Pred.position.Y = Position.Y;
-            sprite4_Rage_Tech.position.X = Position.X;
-            sprite4_Rage_Tech.position.Y = Position.Y;
+            sprite4_Rage_Mage.position = Position;
+            sprite4_Rage_Pred.position = Position;
+            sprite4_Rage_Tech.position = Position;
 
-            sprite5_Rage_Mage.position.X = Position.X;
-            sprite5_Rage_Mage.position.Y = Position.Y;
-            sprite5_Rage_Pred.position.X = Position.X;
-            sprite5_Rage_Pred.position.Y = Position.Y;
-            sprite5_Rage_Tech.position.X = Position.X;
-            sprite5_Rage_Tech.position.Y = Position.Y;
+            sprite5_Rage_Mage.position = Position;
+            sprite5_Rage_Pred.position = Position;
+            sprite5_Rage_Tech.position = Position;
 
-            sprite5_1_1_Rage_Mage.position.X = Position.X;
-            sprite5_1_1_Rage_Mage.position.Y = Position.Y;
-            sprite5_1_1_Rage_Pred.position.X = Position.X;
-            sprite5_1_1_Rage_Pred.position.Y = Position.Y;
-            sprite5_1_1_Rage_Tech.position.X = Position.X;
-            sprite5_1_1_Rage_Tech.position.Y = Position.Y;
+            sprite5_1_1_Rage_Mage.position = Position;
+            sprite5_1_1_Rage_Pred.position = Position;
+            sprite5_1_1_Rage_Tech.position = Position;
 
-            sprite5_2_1_Rage_Mage.position.X = Position.X;
-            sprite5_2_1_Rage_Mage.position.Y = Position.Y;
-            sprite5_2_1_Rage_Pred.position.X = Position.X;
-            sprite5_2_1_Rage_Pred.position.Y = Position.Y;
-            sprite5_2_1_Rage_Tech.position.X = Position.X;
-            sprite5_2_1_Rage_Tech.position.Y = Position.Y;
+            sprite5_2_1_Rage_Mage.position = Position;
+            sprite5_2_1_Rage_Pred.position = Position;
+            sprite5_2_1_Rage_Tech.position = Position;
+
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
