@@ -28,7 +28,7 @@ namespace Project_OD
         protected float timer;
         public void getDamaged(Player player,GameTime gameTime)
         {
-            if (distance <= player.AtkRange)
+            if (rect.Intersects(player.rect))
             {
                 if (player.skill1&&!damaged)
                 {
@@ -36,11 +36,15 @@ namespace Project_OD
                     Console.WriteLine("HP: {0}",hp);
                     hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling1);
                     Console.WriteLine("HP after: {0}", hp);
-                    timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    timer = 0;
                 }
-                else if(damaged&&((timer+200)<gameTime.ElapsedGameTime.TotalSeconds))
+                else if(damaged&&(timer>=100))
                 {
                     damaged = false;
+                }
+                if (timer < 100)
+                {
+                    timer++;
                 }
             }
         }
@@ -62,7 +66,7 @@ namespace Project_OD
                 {
                     direction = "R";
                 }
-                else if (playerPos.X>position.X)
+                else if (playerPos.X<position.X)
                 {
                     direction = "L";
                 }

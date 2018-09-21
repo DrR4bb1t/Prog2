@@ -133,7 +133,7 @@ namespace Project_OD
         protected bool onGround;
         protected Vector2 moveTo;
         protected Vector2 position = new Vector2(0, 0);
-        protected Rectangle rect;
+        public Rectangle rect;
         protected int width = 1;
         protected int height = 1;
         protected int frames = 7;
