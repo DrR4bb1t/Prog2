@@ -24,6 +24,7 @@ namespace Project_OD
         Map map;
         int mapNmbr = 1;
         private List<Rectangle> rectangles;
+        private List<Enemy> enemys;
         Player player;
         Enemy enemy;
 
@@ -84,11 +85,15 @@ namespace Project_OD
                     }
                 }
             }
+            enemys = new List<Enemy>() { };
+            //get enemy data
+            
+
             player = new Player();
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(100, 850));
-            player.SetEntity(new Vector2(0, 850), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 1, 1, 1, 0, 7, 2,rectangles);
-            enemy.SetEntity(new Vector2(200, 850), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 1, 1, 50, 0, 7, 2,rectangles);
+            enemy.SetEntity(new Vector2(200, 850), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 1, 50, 0, 7, 2, rectangles);
+            player.SetEntity(new Vector2(0, 850), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 100, 5, 1, 0, 7, 2, rectangles);
             Physics physics = new Physics();
 
 
@@ -151,10 +156,11 @@ namespace Project_OD
             InputManager.Update();
             
             camera.Update(player.Position);
-            enemy.Update(gameTime, 20,player);
+           
 
             if (gamestate == gameStates.InGame)
             {
+                enemy.Update(gameTime, 20, player);
                 camera.Update(player.Position);
                 player.Update(gameTime, 20);
             }

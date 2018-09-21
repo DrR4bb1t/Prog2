@@ -15,6 +15,7 @@ namespace Project_OD
         //public Player() { }
         private int armorValue;
         private int weaponValue;
+        public float skillScaling1 = 1;
         private int skillCnt1;
         private int cooldown1;
         private int skillCnt2;
@@ -26,7 +27,7 @@ namespace Project_OD
         private int uptime;
         private string dir;
         private bool atkMove;
-        private bool skill1;
+        public bool skill1;
         private bool skill2;
         private bool skill3;
         private bool skill4;
@@ -235,7 +236,7 @@ namespace Project_OD
                 jumpSpeed = GetjumpMaxSpeed();
                 onGround = false;
             }
-            moveTo = physics.moveVector(this, gameTime,dir,rectangles);
+            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
             
            
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);

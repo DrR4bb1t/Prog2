@@ -25,6 +25,7 @@ namespace Project_OD
             this.speed = Speed;
             this.jumpMaxSpeed = jumpMaxSpeed;
             this.maxHp = maxHp;
+            this.hp = maxHp;
             this.baseAtk = baseAtk;
             this.atkRange = atkRange;
             this.atkTimeout = atkTimeout;
@@ -131,12 +132,12 @@ namespace Project_OD
         //Private Properties
         protected bool onGround;
         protected Vector2 moveTo;
-        protected Vector2 position=new Vector2(0, 0);
+        protected Vector2 position = new Vector2(0, 0);
         protected Rectangle rect;
-        protected int width=1;
-        protected int height=1;
-        protected int frames=7;
-        protected int animations=2;
+        protected int width = 1;
+        protected int height = 1;
+        protected int frames = 7;
+        protected int animations = 2;
 
         #region Textures
         protected Texture2D texture;
@@ -175,12 +176,12 @@ namespace Project_OD
         protected Texture2D texture5_2_1_Rage_Tech;
         #endregion
 
-        protected float speed=200;
-        protected float jumpMaxSpeed=1;
-        protected float jumpSpeed=0;
+        protected float speed = 200;
+        protected float jumpMaxSpeed = 1;
+        protected float jumpSpeed = 0;
         protected int maxHp;
         protected int hp;
-        protected int baseAtk;
+        public int baseAtk;
         protected int atk;
         protected float atkRange;
         protected float atkTimeout;

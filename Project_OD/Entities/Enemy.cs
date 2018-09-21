@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 //todo: add attack
 namespace Project_OD
 {
-    class Enemy:Entity
+    public class Enemy:Entity
     {
         Physics physics = new Physics();
         
@@ -24,6 +24,26 @@ namespace Project_OD
         protected Vector2 currTarget;
         protected float distance=10000;
         protected int triggerRange=150;
+        protected bool damaged = false;
+        protected float timer;
+        public void getDamaged(Player player,GameTime gameTime)
+        {
+            if (distance <= player.AtkRange)
+            {
+                if (player.skill1&&!damaged)
+                {
+                    damaged = true;
+                    Console.WriteLine("HP: {0}",hp);
+                    hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling1);
+                    Console.WriteLine("HP after: {0}", hp);
+                    timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else if(damaged&&((timer+200)<gameTime.ElapsedGameTime.TotalSeconds))
+                {
+                    damaged = false;
+                }
+            }
+        }
         public void getDistance()
         {
             distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
@@ -70,6 +90,7 @@ namespace Project_OD
         {
             playerPos = player.Position;
             getDistance();
+            getDamaged(player, gameTime);
             patrol();
             moveTo = physics.moveVector(this, gameTime, direction,rectangles);
             this.collisionCheck();
