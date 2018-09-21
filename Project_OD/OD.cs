@@ -73,7 +73,7 @@ namespace Project_OD
             gameMenu.LoadButtonTextures();
 
             camera = new Camera(1600);
-            map = new Map();
+            map = new Map(1);
             rectangles = new List<Rectangle>(){};
             for (int y = 0; y < map.tileMapHeight; y++)
             {
@@ -189,7 +189,7 @@ namespace Project_OD
                               null, null, null, null,
                               camera.ViewMatrix);
 
-            map.DrawMap(spriteBatch, 1);
+            map.DrawMap(spriteBatch);
             enemy.Draw(spriteBatch);
             player.Draw(spriteBatch, player.ATK, player.skill);
 

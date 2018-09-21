@@ -28,6 +28,9 @@ namespace Project_OD
         /// </summary>
         public int tileMapWidth = 50;
         public int tileMapHeight = 15;
+        private int[,] Backlayer;
+        private int[,] MiddleLayer;
+        private int[,] Forelayer;
 
         private int width, height;
 
@@ -102,10 +105,28 @@ namespace Project_OD
         };
 
 
-        public Map()
+        public Map(int levelNumber)
         {
+            switchLevel(levelNumber);
             LoadTextures();
         }
+
+        void switchLevel(int levelnumber)
+        {
+            switch (levelnumber)
+            {
+                case 1:
+                    Backlayer = lvl1_Backlayer;
+                    MiddleLayer= lvl1_Middlelayer;
+                    Forelayer= lvl1_Forelayer;
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         /// <summary>
         /// Loads the needed textures
         /// </summary>
@@ -136,21 +157,14 @@ namespace Project_OD
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="lvlID">Choses a level-design</param>
-        public void DrawMap(SpriteBatch spriteBatch, int lvlID)
+        public void DrawMap(SpriteBatch spriteBatch)
         {
-            switch (lvlID)
-            {
-                case 1:
-                    LoadArray(lvl1_Backlayer);
-                    LoadMap(spriteBatch, TextureManager.mapTileBacklayer);
-                    LoadArray(lvl1_Middlelayer);
-                    LoadMap(spriteBatch, TextureManager.mapTileMiddlelayer);
-                    LoadArray(lvl1_Forelayer);
-                    LoadMap(spriteBatch, TextureManager.mapTileForelayer);
-                    break;
-                default:
-                    break;
-            }
+            LoadArray(Backlayer);
+            LoadMap(spriteBatch, TextureManager.mapTileBacklayer);
+            LoadArray(MiddleLayer);
+            LoadMap(spriteBatch, TextureManager.mapTileMiddlelayer);
+            LoadArray(Forelayer);
+            LoadMap(spriteBatch, TextureManager.mapTileForelayer);     
         }
         /// <summary>
         /// Draws the textures of the map.
