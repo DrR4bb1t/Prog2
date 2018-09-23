@@ -84,7 +84,7 @@ namespace Project_OD
             {
                 for (int x = 0; x < map.tileMapWidth; x++)
                 {
-                    if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 6)
+                    if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 17)
                     {
                         rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
                     }
