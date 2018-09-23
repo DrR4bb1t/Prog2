@@ -35,8 +35,15 @@ namespace Project_OD
                     damaged = true;
                     Console.WriteLine("HP: {0}",hp);
                     hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling1);
-                    Console.WriteLine("HP after: {0}", hp);
+                    Console.WriteLine("HP Dash: {0}", hp);
                     timer = 0;
+                }
+                else if (player.jumpAttack&&!damaged)
+                {
+                    damaged=true;
+                    hp-= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling3);
+                    timer = 0;
+                    Console.WriteLine("HP Stomp: {0}", hp);
                 }
                 else if(damaged&&(timer>=100))
                 {

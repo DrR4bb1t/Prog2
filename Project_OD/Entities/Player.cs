@@ -15,7 +15,11 @@ namespace Project_OD
         //public Player() { }
         private int armorValue;
         private int weaponValue;
+        //Skill Damage Scaling
         public float skillScaling1 = 1;
+        public float skillScaling2 = 1;
+        public float skillScaling3 = 1;
+        public float skillScaling4 = 1;
         private int skillCnt1;
         private int cooldown1;
         private int skillCnt2;
@@ -35,6 +39,7 @@ namespace Project_OD
         private bool skill2Cooldown;
         private bool skill3Cooldown;
         private bool skill4Cooldown;
+        public bool jumpAttack=false;
         private bool predator2 = true;
         private bool technokrat2 = false;
         private bool technoMage2 = false;
@@ -57,6 +62,31 @@ namespace Project_OD
         public int WeaponValue { get => weaponValue; set => weaponValue = value; }
 
         #region test for playeranimation
+
+        protected Texture2D texture_Rage_Mage;
+        protected Texture2D texture2_Rage_Mage;
+        protected Texture2D texture3_Rage_Mage;
+        protected Texture2D texture4_Rage_Mage;
+        protected Texture2D texture5_Rage_Mage;
+        protected Texture2D texture5_1_1_Rage_Mage;
+        protected Texture2D texture5_2_1_Rage_Mage;
+
+        protected Texture2D texture_Rage_Pred;
+        protected Texture2D texture2_Rage_Pred;
+        protected Texture2D texture3_Rage_Pred;
+        protected Texture2D texture4_Rage_Pred;
+        protected Texture2D texture5_Rage_Pred;
+        protected Texture2D texture5_1_1_Rage_Pred;
+        protected Texture2D texture5_2_1_Rage_Pred;
+
+        protected Texture2D texture_Rage_Tech;
+        protected Texture2D texture2_Rage_Tech;
+        protected Texture2D texture3_Rage_Tech;
+        protected Texture2D texture4_Rage_Tech;
+        protected Texture2D texture5_Rage_Tech;
+        protected Texture2D texture5_1_1_Rage_Tech;
+        protected Texture2D texture5_2_1_Rage_Tech;
+
 
         SpriteAnimation sprite;
         SpriteAnimation sprite2;
@@ -92,7 +122,7 @@ namespace Project_OD
         SpriteAnimation sprite5_Rage_Tech;
         SpriteAnimation sprite5_1_1_Rage_Tech;
         SpriteAnimation sprite5_2_1_Rage_Tech;
-
+        
 
         public void LoadTexture()
         {
@@ -236,7 +266,7 @@ namespace Project_OD
                 jumpSpeed = GetjumpMaxSpeed();
                 onGround = false;
             }
-            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
+            
             
            
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
@@ -556,6 +586,12 @@ namespace Project_OD
 
             if (skill3 == true)
             {
+                //jump with stomp
+                if (skillCnt3==0)
+                {
+                    JumpSpeed = jumpMaxSpeed;
+                    jumpAttack = true;
+                }
                 if (predator2 == true)
                 {
 
@@ -756,7 +792,6 @@ namespace Project_OD
                 --cooldown3;
                 if (cooldown3 == 0)
                 {
-                    cooldown3 = 0;
                     skill3Cooldown = false;
                 }
             }
@@ -817,7 +852,6 @@ namespace Project_OD
                 --cooldown4;
                 if (cooldown4 == 0)
                 {
-                    cooldown4 = 0;
                     skill4Cooldown = false;
                 }
             }
@@ -913,6 +947,7 @@ namespace Project_OD
             sprite5_2_1_Rage_Pred.position = Position;
             sprite5_2_1_Rage_Tech.position = Position;
 
+            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
