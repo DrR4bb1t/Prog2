@@ -317,6 +317,7 @@ namespace Project_OD
                     sprite.Update(gameTime, true, fps);
                 }
             }
+            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
 
             if (state.IsKeyDown(Keys.Space) && dirR == true)
             {
@@ -591,6 +592,7 @@ namespace Project_OD
                 {
                     JumpSpeed = jumpMaxSpeed;
                     jumpAttack = true;
+                    onGround = false;
                 }
                 if (predator2 == true)
                 {
@@ -947,7 +949,7 @@ namespace Project_OD
             sprite5_2_1_Rage_Pred.position = Position;
             sprite5_2_1_Rage_Tech.position = Position;
 
-            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
+            
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);

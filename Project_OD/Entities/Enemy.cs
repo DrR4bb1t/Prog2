@@ -44,6 +44,7 @@ namespace Project_OD
                     hp-= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling3);
                     timer = 0;
                     Console.WriteLine("HP Stomp: {0}", hp);
+                    player.jumpAttack = false;
                 }
                 else if(damaged&&(timer>=100))
                 {
