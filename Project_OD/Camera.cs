@@ -17,6 +17,9 @@ namespace Project_OD
         private Matrix viewMatrix;
         private int maxCamWidth;
         private float camStartPoint = 1.3f;
+
+        public Vector2 getPosition { get=>position; }
+
         /// <summary>
         /// Cameramatrix
         /// </summary>

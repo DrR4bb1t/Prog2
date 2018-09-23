@@ -28,7 +28,10 @@ namespace Project_OD
         Player player;
         Enemy enemy;
 
+        Texture2D playerHPDisplay;
+
         Texture2D hpBar;
+        Texture2D playerHeart;
 
         Entity entity;
 
@@ -94,11 +97,12 @@ namespace Project_OD
             //get enemy data
 
             hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
+            playerHeart = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/HP/heart0001");
 
             player = new Player();
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
-            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 1, 50, 0, 7, 2, rectangles);
+            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
             player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
             Physics physics = new Physics();
             enemys.Add(enemy);
@@ -191,22 +195,36 @@ namespace Project_OD
                 gameMenu.Draw(spriteBatch);
             }
 
-                spriteBatch.Begin(SpriteSortMode.Deferred,
-                              BlendState.AlphaBlend,
-                              null, null, null, null,
-                              camera.ViewMatrix);
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                          BlendState.AlphaBlend,
+                          null, null, null, null,
+                          camera.ViewMatrix);
 
-            
+
 
             map.DrawMap(spriteBatch);
             enemy.Draw(spriteBatch);
             player.Draw(spriteBatch, player.ATK, player.skill);
-            spriteBatch.Draw(hpBar, new Rectangle((int)player.Position.X - 30, (int)player.Position.Y - 20, player.Hp, 10), Color.White);
+
             foreach (var enemy in enemys)
             {
                 spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
             }
-
+            if (player.Hp > 60)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
+            if (player.Hp > 30)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
+            if (player.Hp > 0)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
 
 
             spriteBatch.End();
