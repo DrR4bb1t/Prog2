@@ -15,6 +15,7 @@ namespace Project_OD
         //public Player() { }
         private int armorValue;
         private int weaponValue;
+        private bool isAttacking = false;
         //Skill Damage Scaling
         public float skillScaling1 = 1;
         public float skillScaling2 = 1;
@@ -29,7 +30,6 @@ namespace Project_OD
         private int skillCnt4;
         private int cooldown4;
         private int uptime;
-        private string dir;
         private bool atkMove;
         public bool skill1;
         private bool skill2;
@@ -52,6 +52,7 @@ namespace Project_OD
         private bool rageActive = false;
         private bool dirR;
         private bool dirL;
+        private float Multiplier=1;
         public int skill;
         Physics physics = new Physics();
 
@@ -244,9 +245,10 @@ namespace Project_OD
         }
 
 
-        public void Update(GameTime gameTime, int fps)
+        public void Update(GameTime gameTime, int fps,List<Enemy> enemies)
         {
             KeyboardState state = Keyboard.GetState();
+            isAttacking = false;
 
             dir = "";
             if (state.IsKeyDown(Keys.Right))
@@ -321,6 +323,7 @@ namespace Project_OD
 
             if (state.IsKeyDown(Keys.Space) && dirR == true)
             {
+                isAttacking = true;
                 skill = 0;
                 atkMove = true;
 
@@ -347,6 +350,7 @@ namespace Project_OD
             }
             else if (state.IsKeyDown(Keys.Space) && dirL == true)
             {
+                isAttacking = true; ;
                 skill = 0;
                 atkMove = true;
 
@@ -370,6 +374,10 @@ namespace Project_OD
                     sprite2.animation = "atk-L";
                     sprite2.Update(gameTime, true, fps);
                 }
+            }
+            else
+            {
+                isAttacking = false;
             }
 
             ///Dash-Attack
@@ -949,12 +957,48 @@ namespace Project_OD
             sprite5_2_1_Rage_Pred.position = Position;
             sprite5_2_1_Rage_Tech.position = Position;
 
-            
+            doAttack(enemies);
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
 
             //Console.WriteLine("X: {0}, Y: {1}", position.X, position.Y);
+        }
+
+        public void doAttack(List<Enemy> enemies)
+        {
+            if (isAttacking)
+            {
+                if (atkTimer > 0 && atkTimeout == 0)
+                {
+                    atkTimer--;
+                }
+                else if (atkTimer == 0 && atkTimeout == 0)
+                {
+                    foreach (var enemy in enemies)
+                    {
+                        if (atkRect.Intersects(enemy.rect))
+                        {
+                            enemy.takeDamage((int)((baseAtk+weaponValue)*Multiplier));
+                        }
+                        atkTimeout = 0;
+                    }
+                }
+                else if (atkTimeout > 0)
+                {
+                    atkTimeout--;
+                }
+                else if (atkTimeout == 0)
+                {
+                    isAttacking = false;
+                    atkTimer = 100;
+                }
+            }
+        }
+        public void takeDamage(int damage)
+        {
+            hp -= damage;
+            Console.WriteLine("took {0} damage", damage);
         }
 
         public void Draw(SpriteBatch spriteBatch, bool atk, int skill)

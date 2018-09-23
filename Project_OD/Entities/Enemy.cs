@@ -17,15 +17,21 @@ namespace Project_OD
             target2 = target1 + new Vector2(100, 0);
             currTarget = target2;
         }
-        private string direction="R"; 
         protected Vector2 target1;
         protected Vector2 target2;
         protected Vector2 playerPos;
         protected Vector2 currTarget;
         protected float distance=10000;
         protected int triggerRange=150;
-        protected bool damaged = false;
-        protected float timer;
+        private Player player;
+        private bool isAttacking = false;
+        private bool finishedAttack = false;
+       
+        public void takeDamage(int damage)
+        {
+            hp -= damage;
+            Console.WriteLine("HP: {0}", hp);
+        }
         public void getDamaged(Player player,GameTime gameTime)
         {
             if (rect.Intersects(player.rect))
@@ -40,11 +46,14 @@ namespace Project_OD
                 }
                 else if (player.jumpAttack&&!damaged)
                 {
-                    damaged=true;
-                    hp-= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling3);
-                    timer = 0;
-                    Console.WriteLine("HP Stomp: {0}", hp);
-                    player.jumpAttack = false;
+                    if (player.JumpSpeed < -0.1)
+                    {
+                        damaged = true;
+                        hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling3);
+                        timer = 0;
+                        Console.WriteLine("HP Stomp: {0}", hp);
+                        player.jumpAttack = false;
+                    }
                 }
                 else if(damaged&&(timer>=100))
                 {
@@ -60,54 +69,98 @@ namespace Project_OD
         {
             distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
         }
+        public void attackPlayer()
+        {
+            isAttacking = true;
+            finishedAttack = false;
+        }
+        public void doAttack(Player player)
+        {
+            if (isAttacking)
+            {
+                if (atkTimer > 0&&atkTimeout==0)
+                {
+                    atkTimer--;
+                }
+                else if(atkTimer==0&&atkTimeout==0&&!finishedAttack)
+                {
+                    if (atkRect.Intersects(player.rect))
+                    {
+                        player.takeDamage(baseAtk);
+                    }
+                    atkTimeout = 100;
+                    atkTimer = 100;
+                    finishedAttack = true;
+                }
+                else if(atkTimeout>0)
+                {
+                    atkTimeout--;
+                }else if (atkTimeout==0)
+                {
+                    isAttacking = false;
+                    dir = "";
+                }
+            }
+            else
+            {
+
+            }
+        }
         public void patrol()
         {
             if (distance < atkRange)
             {
-                direction = "S";
+                dir = "S";
+                attackPlayer();
                 //attack
             }
-            else if (distance<triggerRange)
+            else if (distance<triggerRange&&atkTimeout==0)
             {
                 currTarget = playerPos;
                 if (playerPos.X > position.X)
                 {
-                    direction = "R";
+                    dir = "R";
                 }
                 else if (playerPos.X<position.X)
                 {
-                    direction = "L";
+                    dir = "L";
                 }
                 //Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
             }
             else {
-                if (direction == "S")
+                if (dir == "S")
                 {
-                    direction = "R";
+                    
                 }
-                if (direction == "R" && position.X >= target2.X)
+                if (dir == "")
+                {
+                    dir = "R";
+                }
+                if (dir == "R" && position.X >= target2.X)
                 {
                     currTarget = target1;
-                    direction = "L";
+                    dir = "L";
                 }
-                if (direction == "L" && position.X <= target1.X)
+                if (dir == "L" && position.X <= target1.X)
                 {
                     currTarget = target2;
-                    direction = "R";
+                    dir = "R";
                 }
             }
         }
 
         public void Update(GameTime gameTime, int fps,Player player)
         {
-            playerPos = player.Position;
+            this.player = player;
+            playerPos = this.player.Position;
             getDistance();
-            getDamaged(player, gameTime);
-            patrol();
-            moveTo = physics.moveVector(this, gameTime, direction,rectangles);
+            getDamaged(this.player, gameTime);
+            patrol();     
+            moveTo = physics.moveVector(this, gameTime, dir,rectangles);
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
+            doAttack(player);
 
             //check distance to player
         }
