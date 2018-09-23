@@ -72,14 +72,14 @@ namespace Project_OD
             gameMenu = new GameMenu();
             gameMenu.LoadButtonTextures();
 
-            camera = new Camera(4800);
+            camera = new Camera(4900);
             map = new Map(1);
             rectangles = new List<Rectangle>(){};
             for (int y = 0; y < map.tileMapHeight; y++)
             {
                 for (int x = 0; x < map.tileMapWidth; x++)
                 {
-                    if (map.lvl1_Forelayer[y, x] == 2)
+                    if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 6)
                     {
                         rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
                     }
@@ -93,7 +93,7 @@ namespace Project_OD
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
             enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 1, 50, 0, 7, 2, rectangles);
-            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
+            player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
             Physics physics = new Physics();
             enemys.Add(enemy);
 
