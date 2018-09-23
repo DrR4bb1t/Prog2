@@ -72,7 +72,7 @@ namespace Project_OD
             gameMenu = new GameMenu();
             gameMenu.LoadButtonTextures();
 
-            camera = new Camera(1600);
+            camera = new Camera(4800);
             map = new Map(1);
             rectangles = new List<Rectangle>(){};
             for (int y = 0; y < map.tileMapHeight; y++)
@@ -93,7 +93,7 @@ namespace Project_OD
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
             enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 1, 50, 0, 7, 2, rectangles);
-            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 3, 100, 5, 50, 0, 7, 2, rectangles);
+            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
             Physics physics = new Physics();
 
 
