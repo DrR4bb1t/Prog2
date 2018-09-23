@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,17 @@ namespace Project_OD
 {
     public class Enemy:Entity
     {
+        public Enemy()
+        {
+            LoadTexture();
+            sprite2 = new SpriteAnimation(texture2, position, "atk-R", frames, animations);
+            sprite2.StoreAnimations(2);
+            atkTimeout = 100;
+        }
+        public void LoadTexture()
+        {
+            texture2 = OD.content.Load<Texture2D>("spritesheet-atk");
+        }
         Physics physics = new Physics();
         
         public void enemyinit(Vector2 startpos)
@@ -26,7 +38,10 @@ namespace Project_OD
         private Player player;
         private bool isAttacking = false;
         private bool finishedAttack = false;
-       
+
+        SpriteAnimation sprite2;
+
+
         public void takeDamage(int damage)
         {
             hp -= damage;
@@ -74,27 +89,26 @@ namespace Project_OD
             isAttacking = true;
             finishedAttack = false;
         }
-        public void doAttack(Player player)
+        public void doAttack(Player player,GameTime gameTime)
         {
             if (isAttacking)
             {
-                if (atkTimer > 0&&atkTimeout==0)
+                sprite2.Update(gameTime, true, 20,100);
+                if (atkTimeout > 0)
                 {
-                    atkTimer--;
-                }
-                else if(atkTimer==0&&atkTimeout==0&&!finishedAttack)
+                    atkTimeout--;
+                }else
+                if(sprite2.frameIndex==6)
                 {
                     if (atkRect.Intersects(player.rect))
                     {
                         player.takeDamage(baseAtk);
                     }
                     atkTimeout = 100;
-                    atkTimer = 100;
                     finishedAttack = true;
-                }
-                else if(atkTimeout>0)
-                {
-                    atkTimeout--;
+                    isAttacking = false;
+
+                
                 }else if (atkTimeout==0)
                 {
                     isAttacking = false;
@@ -110,6 +124,14 @@ namespace Project_OD
         {
             if (distance < atkRange)
             {
+                if (dir == "R")
+                {
+                    sprite2.animation = "atk-R";
+                }else if (dir == "L")
+                {
+                    sprite2.animation = "atk-L";
+                }
+               
                 dir = "S";
                 attackPlayer();
                 //attack
@@ -160,9 +182,21 @@ namespace Project_OD
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
-            doAttack(player);
+            sprite2.position = position;
+            doAttack(player,gameTime);
 
             //check distance to player
+        }
+        public new void Draw(SpriteBatch spriteBatch)
+        {
+            if (isAttacking)
+            {
+                sprite2.Draw(spriteBatch);
+            }
+            else
+            {
+                sprite.Draw(spriteBatch);
+            }
         }
 
 

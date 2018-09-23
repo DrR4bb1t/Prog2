@@ -136,7 +136,7 @@ namespace Project_OD
 
         public void Destroy() { }
 
-        SpriteAnimation sprite;
+        public SpriteAnimation sprite;
         //Private Properties
         public bool onGround;
         protected Vector2 moveTo;

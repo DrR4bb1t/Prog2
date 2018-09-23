@@ -969,11 +969,11 @@ namespace Project_OD
         {
             if (isAttacking)
             {
-                if (atkTimer > 0 && atkTimeout == 0)
+                if (atkTimeout > 0)
                 {
-                    atkTimer--;
-                }
-                else if (atkTimer == 0 && atkTimeout == 0)
+                    atkTimeout--;
+                }else
+                if(sprite2.frameIndex==6)
                 {
                     foreach (var enemy in enemies)
                     {
@@ -981,17 +981,8 @@ namespace Project_OD
                         {
                             enemy.takeDamage((int)((baseAtk+weaponValue)*Multiplier));
                         }
-                        atkTimeout = 0;
+                        atkTimeout = 10;
                     }
-                }
-                else if (atkTimeout > 0)
-                {
-                    atkTimeout--;
-                }
-                else if (atkTimeout == 0)
-                {
-                    isAttacking = false;
-                    atkTimer = 100;
                 }
             }
         }
