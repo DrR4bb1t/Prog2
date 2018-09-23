@@ -14,7 +14,9 @@ namespace Project_OD
         StartGame = 3,
         GameOptions = 4,
         InGame = 5,
-        Exit = 6
+        StageCompletedScreen = 6,
+        GameOverScreen = 7,
+        Exit = 8,
     }
 
 }

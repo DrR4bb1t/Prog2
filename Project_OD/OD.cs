@@ -33,7 +33,7 @@ namespace Project_OD
         Texture2D hpBar;
         Texture2D playerHeart;
 
-        Entity entity;
+        Buttons button;
 
 
         private static gameStates gamestate = gameStates.InGame;
@@ -98,6 +98,8 @@ namespace Project_OD
 
             hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
             playerHeart = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/HP/heart0001");
+
+            button = new Buttons(new Vector2(10, 10), "Textures/Button/start_EN");
 
             player = new Player();
             enemy = new Enemy();
@@ -226,7 +228,7 @@ namespace Project_OD
                 spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
             }
 
-
+            button.Draw(spriteBatch);
             spriteBatch.End();
 
 
