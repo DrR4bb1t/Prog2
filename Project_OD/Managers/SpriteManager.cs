@@ -12,7 +12,7 @@ namespace Project_OD
     {
         protected Texture2D texture;
         protected Rectangle[] rectangles;
-        protected int frameIndex = 0;
+        public int frameIndex = 0;
         /// <summary>
         /// Creates a dictionary to store and call the different animations.
         /// </summary>

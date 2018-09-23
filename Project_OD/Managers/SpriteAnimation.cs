@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    class SpriteAnimation : SpriteManager
+    public class SpriteAnimation : SpriteManager
     {
         /// <summary>
         /// Elapsed time from the last frame.
@@ -22,6 +22,8 @@ namespace Project_OD
         /// Let the animation run.
         /// </summary>
         public bool isLooping = false;
+        private float Timer = 0;
+        private bool timerSet = false;
         /// <summary>
         /// Calculates the frames per secunds of the animation.
         /// </summary>
@@ -55,6 +57,40 @@ namespace Project_OD
                 }
                 else if (isLooping)
                 {
+                    frameIndex = 0;
+                }
+            }
+        }
+        public void Update(GameTime gameTime, bool isLooping, int fps, int timer)
+        {
+            FPS = fps;
+            if (timerSet)
+            {
+                if(Timer - (float)gameTime.ElapsedGameTime.TotalSeconds > 0)
+                {
+                    Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else
+                {
+                    timerSet = false;
+                }
+            }
+            else
+            {
+                timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (timeElapsed > timeToUpdate)
+            {
+                timeElapsed -= timeToUpdate;
+
+                if (frameIndex < rectangles.Length - 1)
+                {
+                    frameIndex++;
+                }
+                else if (isLooping)
+                {
+                    timerSet = true;
+                    Timer = timer/100;
                     frameIndex = 0;
                 }
             }

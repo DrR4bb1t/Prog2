@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,17 @@ namespace Project_OD
 {
     public class Enemy:Entity
     {
+        public Enemy()
+        {
+            LoadTexture();
+            sprite2 = new SpriteAnimation(texture2, position, "atk-R", frames, animations);
+            sprite2.StoreAnimations(2);
+            atkTimeout = 100;
+        }
+        public void LoadTexture()
+        {
+            texture2 = OD.content.Load<Texture2D>("spritesheet-atk");
+        }
         Physics physics = new Physics();
         
         public void enemyinit(Vector2 startpos)
@@ -17,30 +29,54 @@ namespace Project_OD
             target2 = target1 + new Vector2(100, 0);
             currTarget = target2;
         }
-        private string direction="R"; 
         protected Vector2 target1;
         protected Vector2 target2;
         protected Vector2 playerPos;
         protected Vector2 currTarget;
         protected float distance=10000;
         protected int triggerRange=150;
-        protected bool damaged = false;
-        protected float timer;
+        private Player player;
+        private bool isAttacking = false;
+        private bool finishedAttack = false;
+
+        SpriteAnimation sprite2;
+
+
+        public void takeDamage(int damage)
+        {
+            hp -= damage;
+            Console.WriteLine("HP: {0}", hp);
+        }
         public void getDamaged(Player player,GameTime gameTime)
         {
-            if (distance <= player.AtkRange)
+            if (rect.Intersects(player.rect))
             {
                 if (player.skill1&&!damaged)
                 {
                     damaged = true;
                     Console.WriteLine("HP: {0}",hp);
                     hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling1);
-                    Console.WriteLine("HP after: {0}", hp);
-                    timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    Console.WriteLine("HP Dash: {0}", hp);
+                    timer = 0;
                 }
-                else if(damaged&&((timer+200)<gameTime.ElapsedGameTime.TotalSeconds))
+                else if (player.jumpAttack&&!damaged)
+                {
+                    if (player.JumpSpeed < -0.1)
+                    {
+                        damaged = true;
+                        hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling3);
+                        timer = 0;
+                        Console.WriteLine("HP Stomp: {0}", hp);
+                        player.jumpAttack = false;
+                    }
+                }
+                else if(damaged&&(timer>=100))
                 {
                     damaged = false;
+                }
+                if (timer < 100)
+                {
+                    timer++;
                 }
             }
         }
@@ -48,56 +84,119 @@ namespace Project_OD
         {
             distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
         }
+        public void attackPlayer()
+        {
+            isAttacking = true;
+            finishedAttack = false;
+        }
+        public void doAttack(Player player,GameTime gameTime)
+        {
+            if (isAttacking)
+            {
+                sprite2.Update(gameTime, true, 20,100);
+                if (atkTimeout > 0)
+                {
+                    atkTimeout--;
+                }else
+                if(sprite2.frameIndex==6)
+                {
+                    if (atkRect.Intersects(player.rect))
+                    {
+                        player.takeDamage(baseAtk);
+                    }
+                    atkTimeout = 100;
+                    finishedAttack = true;
+                    isAttacking = false;
+
+                
+                }else if (atkTimeout==0)
+                {
+                    isAttacking = false;
+                    dir = "";
+                }
+            }
+            else
+            {
+
+            }
+        }
         public void patrol()
         {
             if (distance < atkRange)
             {
-                direction = "S";
+                if (dir == "R")
+                {
+                    sprite2.animation = "atk-R";
+                }else if (dir == "L")
+                {
+                    sprite2.animation = "atk-L";
+                }
+               
+                dir = "S";
+                attackPlayer();
                 //attack
             }
-            else if (distance<triggerRange)
+            else if (distance<triggerRange&&atkTimeout==0)
             {
                 currTarget = playerPos;
                 if (playerPos.X > position.X)
                 {
-                    direction = "R";
+                    dir = "R";
                 }
-                else if (playerPos.X>position.X)
+                else if (playerPos.X<position.X)
                 {
-                    direction = "L";
+                    dir = "L";
                 }
                 //Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
             }
             else {
-                if (direction == "S")
+                if (dir == "S")
                 {
-                    direction = "R";
+                    
                 }
-                if (direction == "R" && position.X >= target2.X)
+                if (dir == "")
+                {
+                    dir = "R";
+                }
+                if (dir == "R" && position.X >= target2.X)
                 {
                     currTarget = target1;
-                    direction = "L";
+                    dir = "L";
                 }
-                if (direction == "L" && position.X <= target1.X)
+                if (dir == "L" && position.X <= target1.X)
                 {
                     currTarget = target2;
-                    direction = "R";
+                    dir = "R";
                 }
             }
         }
 
         public void Update(GameTime gameTime, int fps,Player player)
         {
-            playerPos = player.Position;
+            this.player = player;
+            playerPos = this.player.Position;
             getDistance();
-            getDamaged(player, gameTime);
-            patrol();
-            moveTo = physics.moveVector(this, gameTime, direction,rectangles);
+            getDamaged(this.player, gameTime);
+            patrol();     
+            moveTo = physics.moveVector(this, gameTime, dir,rectangles);
             this.collisionCheck();
             Position += moveTo;
             spriteanim(gameTime, fps);
+            sprite2.position = position;
+            doAttack(player,gameTime);
 
             //check distance to player
+        }
+        public new void Draw(SpriteBatch spriteBatch)
+        {
+            if (isAttacking)
+            {
+                sprite2.Draw(spriteBatch);
+            }
+            else
+            {
+                sprite.Draw(spriteBatch);
+            }
         }
 
 

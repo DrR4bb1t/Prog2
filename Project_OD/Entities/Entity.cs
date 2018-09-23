@@ -37,22 +37,30 @@ namespace Project_OD
             this.sprite = new SpriteAnimation(this.texture, new Vector2(position.X, position.Y), "R", frames, animations);
             sprite.StoreAnimations(1);
         }
+        public void attack(Entity entity)
+        {
+            
+        }
+        
         public void spriteanim(GameTime gameTime,int fps)
         {
+            sprite.position.X = Position.X;
+            sprite.position.Y = Position.Y;
+            rect.X = (int)Position.X;
+            rect.Y = (int)Position.Y;
             if (moveTo.X > 0)
             {
                 sprite.animation = "R";
+                atkRect = new Rectangle((int)position.X, (int)position.Y, rect.Width + (int)atkRange, rect.Height);
                 sprite.Update(gameTime, true, fps);
             }
             else if (moveTo.X < 0)
             {
                 sprite.animation = "L";
+                atkRect = new Rectangle((int)position.X - (int)atkRange, (int)position.Y, rect.Width + (int)atkRange, rect.Height);
                 sprite.Update(gameTime, true, fps);
             }
-            sprite.position.X = Position.X;
-            sprite.position.Y = Position.Y;
-            rect.X = (int)Position.X;
-            rect.Y = (int)Position.Y;
+            
         }
         public void collisionCheck()
         {
@@ -128,12 +136,13 @@ namespace Project_OD
 
         public void Destroy() { }
 
-        SpriteAnimation sprite;
+        public SpriteAnimation sprite;
         //Private Properties
-        protected bool onGround;
+        public bool onGround;
         protected Vector2 moveTo;
         protected Vector2 position = new Vector2(0, 0);
-        protected Rectangle rect;
+        public Rectangle rect;
+        public Rectangle atkRect;
         protected int width = 1;
         protected int height = 1;
         protected int frames = 7;
@@ -151,29 +160,7 @@ namespace Project_OD
         protected Texture2D texture5_2_1;
         protected Texture2D texture6;
 
-        protected Texture2D texture_Rage_Mage;
-        protected Texture2D texture2_Rage_Mage;
-        protected Texture2D texture3_Rage_Mage;
-        protected Texture2D texture4_Rage_Mage;
-        protected Texture2D texture5_Rage_Mage;
-        protected Texture2D texture5_1_1_Rage_Mage;
-        protected Texture2D texture5_2_1_Rage_Mage;
-
-        protected Texture2D texture_Rage_Pred;
-        protected Texture2D texture2_Rage_Pred;
-        protected Texture2D texture3_Rage_Pred;
-        protected Texture2D texture4_Rage_Pred;
-        protected Texture2D texture5_Rage_Pred;
-        protected Texture2D texture5_1_1_Rage_Pred;
-        protected Texture2D texture5_2_1_Rage_Pred;
-
-        protected Texture2D texture_Rage_Tech;
-        protected Texture2D texture2_Rage_Tech;
-        protected Texture2D texture3_Rage_Tech;
-        protected Texture2D texture4_Rage_Tech;
-        protected Texture2D texture5_Rage_Tech;
-        protected Texture2D texture5_1_1_Rage_Tech;
-        protected Texture2D texture5_2_1_Rage_Tech;
+       
         #endregion
 
         protected float speed = 200;
@@ -185,6 +172,10 @@ namespace Project_OD
         protected int atk;
         protected float atkRange;
         protected float atkTimeout;
+        public bool damaged = false;
+        public float timer;
+        public float atkTimer;
+        public string dir="R";
         protected List<Rectangle> rectangles;
 
         
