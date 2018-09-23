@@ -28,6 +28,11 @@ namespace Project_OD
         Player player;
         Enemy enemy;
 
+        Texture2D hpBar;
+
+        Entity entity;
+
+
         private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
@@ -87,7 +92,8 @@ namespace Project_OD
             }
             enemys = new List<Enemy>() { };
             //get enemy data
-            
+
+            hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
 
             player = new Player();
             enemy = new Enemy();
@@ -190,9 +196,16 @@ namespace Project_OD
                               null, null, null, null,
                               camera.ViewMatrix);
 
+            
+
             map.DrawMap(spriteBatch);
             enemy.Draw(spriteBatch);
             player.Draw(spriteBatch, player.ATK, player.skill);
+            spriteBatch.Draw(hpBar, new Rectangle((int)player.Position.X - 30, (int)player.Position.Y - 20, player.Hp, 10), Color.White);
+            foreach (var enemy in enemys)
+            {
+                spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
+            }
 
 
 
