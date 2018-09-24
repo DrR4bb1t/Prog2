@@ -16,11 +16,12 @@ namespace Project_OD
         public static ContentManager content;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch spriteBatch_2;
 
         SpriteFont font;
 
         Splash splash;
-        //GameMenu gameMenu;
+        GameMenu gameMenu;
 
         Camera camera;
         Map map;
@@ -42,7 +43,7 @@ namespace Project_OD
 
         bool rectangleSwitcher = false;
 
-        private static gameStates gamestate = gameStates.InGame;
+        private static gameStates gamestate = gameStates.GameMenu;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -81,9 +82,10 @@ namespace Project_OD
             // Create a new SpriteBatch, which can be used to draw textures.
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch_2 = new SpriteBatch(GraphicsDevice);
 
             splash = new Splash();
-            //gameMenu = new GameMenu();
+            gameMenu = new GameMenu();
 
             camera = new Camera(4900);
             map = new Map(1);
@@ -190,6 +192,11 @@ namespace Project_OD
             }
 
             InputManager.Update();
+
+            if(gamestate == gameStates.GameMenu)
+            {
+                gameMenu.Update();
+            }
             
             camera.Update(player.Position);
            
@@ -217,56 +224,68 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred,
-                          BlendState.AlphaBlend,
-                          null, null, null, null,
-                          camera.ViewMatrix);
-
-            map.DrawMap(spriteBatch);
-            enemy.Draw(spriteBatch);
-            enemy_2.Draw(spriteBatch);
-            enemy_3.Draw(spriteBatch);
-
-            player.Draw(spriteBatch, player.ATK, player.skill);
-            NPC.Draw(spriteBatch);
-
-            if (player.rect.Intersects(NPC.rect))
+            if(gamestate == gameStates.GameMenu)
             {
-                if(InputManager.IsKeyPressed(Keys.P))
-                rectangleSwitcher = true;
-                if (rectangleSwitcher == true)
+                spriteBatch_2.Begin();
+                gameMenu.Draw(spriteBatch_2);
+                spriteBatch_2.End();
+
+            }
+
+            if (gamestate == gameStates.InGame)
+            {
+
+                spriteBatch.Begin(SpriteSortMode.Deferred,
+                              BlendState.AlphaBlend,
+                              null, null, null, null,
+                              camera.ViewMatrix);
+
+                map.DrawMap(spriteBatch);
+                enemy.Draw(spriteBatch);
+                enemy_2.Draw(spriteBatch);
+                enemy_3.Draw(spriteBatch);
+
+                player.Draw(spriteBatch, player.ATK, player.skill);
+                NPC.Draw(spriteBatch);
+
+                if (player.rect.Intersects(NPC.rect))
                 {
-                    spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
-                   if(!player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
-                   {
-                        rectangleSwitcher = false;
-                   }
+                    if (InputManager.IsKeyPressed(Keys.P))
+                        rectangleSwitcher = true;
+                    if (rectangleSwitcher == true)
+                    {
+                        spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
+                        if (!player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
+                        {
+                            rectangleSwitcher = false;
+                        }
+                    }
+                    else rectangleSwitcher = false;
                 }
-                else rectangleSwitcher = false;
-            }
 
-            foreach (var enemy in enemys)
-            {
-                spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
-            }
-            if (player.Hp > 60)
-            {
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-            }
-            if (player.Hp > 30)
-            {
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-            }
-            if (player.Hp > 0)
-            {
-                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-            }
+                foreach (var enemy in enemys)
+                {
+                    spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
+                }
+                if (player.Hp > 60)
+                {
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                }
+                if (player.Hp > 30)
+                {
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                }
+                if (player.Hp > 0)
+                {
+                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                }
 
-            spriteBatch.End();
+                spriteBatch.End();
 
+            }
 
             // TODO: Add your drawing code here
 

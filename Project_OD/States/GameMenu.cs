@@ -7,15 +7,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
-/*
+
 namespace Project_OD
 {
     public class GameMenu
     {
+        Buttons bg;
+        Buttons startButton;
+        Buttons exitButton;
+
 
         public GameMenu()
         {
-            Buttons startButton = new Buttons(new Vector2(10, 10), "Textures/Button/start_EN");
+            startButton = new Buttons(new Vector2(665, 400), "Textures/Button/start_EN");
+            exitButton = new Buttons(new Vector2(665, 700), "Textures/Button/quit_EN");
+            bg = new Buttons(new Vector2(1600, 900),  "Textures/bg");
         }
 
         public void Update()
@@ -25,19 +31,24 @@ namespace Project_OD
             if (InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true) && InputManager.GetMouseBoundaries(true).Intersects(startButton.ButtonRectangle))
             {
                 
+                OD.setState(gameStates.InGame);
+            }
+
+            if (InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true) && InputManager.GetMouseBoundaries(true).Intersects(exitButton.ButtonRectangle))
+            {
+
                 OD.setState(gameStates.Exit);
             }
 
-
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spritebatch)
         {
-
-
+            bg.Draw(spritebatch);
+            startButton.Draw(spritebatch);
+            exitButton.Draw(spritebatch);
         }
 
     }
 }
 
-*/

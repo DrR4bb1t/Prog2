@@ -25,7 +25,7 @@ namespace Project_OD
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(this.buttonTexture, this.buttonPosition, this.buttonRectangle, Color.White);
+            spritebatch.Draw(this.buttonTexture, this.buttonRectangle, Color.White);
         }
 
     }
