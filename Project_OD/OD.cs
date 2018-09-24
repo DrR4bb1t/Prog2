@@ -18,7 +18,7 @@ namespace Project_OD
         SpriteBatch spriteBatch;
 
         Splash splash;
-        GameMenu gameMenu;
+        //GameMenu gameMenu;
 
         Camera camera;
         Map map;
@@ -77,8 +77,7 @@ namespace Project_OD
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             splash = new Splash();
-            gameMenu = new GameMenu();
-            gameMenu.LoadButtonTextures();
+            //gameMenu = new GameMenu();
 
             camera = new Camera(4900);
             map = new Map(1);
@@ -146,7 +145,7 @@ namespace Project_OD
                 case gameStates.GameMenu:
                     {
                         setState(gameStates.GameMenu);
-                        gameMenu.Update();
+                        //gameMenu.Update();
                     }
                     break;
                 case gameStates.StartGame:
@@ -191,18 +190,10 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (gamestate == gameStates.GameMenu)
-            {
-
-                gameMenu.Draw(spriteBatch);
-            }
-
             spriteBatch.Begin(SpriteSortMode.Deferred,
                           BlendState.AlphaBlend,
                           null, null, null, null,
                           camera.ViewMatrix);
-
-
 
             map.DrawMap(spriteBatch);
             enemy.Draw(spriteBatch);
@@ -228,7 +219,6 @@ namespace Project_OD
                 spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
             }
 
-            button.Draw(spriteBatch);
             spriteBatch.End();
 
 
