@@ -56,6 +56,10 @@ namespace Project_OD
             {
                 position.X = maxCamWidth;
             }
+            if (position.Y > 0)
+            {
+                position.Y = 0;
+            }
 
             viewMatrix = Matrix.CreateTranslation(new Vector3(-position, 0));
         }
