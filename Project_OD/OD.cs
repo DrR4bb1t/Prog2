@@ -34,6 +34,7 @@ namespace Project_OD
         Enemy enemy;
         Enemy enemy_2;
         Enemy enemy_3;
+        Boss boss;
 
         Texture2D playerHPDisplay;
 
@@ -130,12 +131,17 @@ namespace Project_OD
             player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
             NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
 
+            boss = new Boss();
+            boss.enemyinit(new Vector2(2200, 720));
+            boss.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
+
             font = OD.content.Load<SpriteFont>("fonts/arial");
 
             Physics physics = new Physics();
             enemys.Add(enemy);
             enemys.Add(enemy_2);
             enemys.Add(enemy_3);
+            enemys.Add(boss);
 
 
         }
@@ -204,11 +210,13 @@ namespace Project_OD
             camera.Update(player.Position);
            
 
-                enemy.Update(gameTime, 20, player);
-                enemy_2.Update(gameTime, 20, player);
-                enemy_3.Update(gameTime, 20, player);
-                camera.Update(player.Position);
-                player.Update(gameTime, 20,enemys);
+            enemy.Update(gameTime, 20, player);
+            enemy_2.Update(gameTime, 20, player);
+            enemy_3.Update(gameTime, 20, player);
+            boss.Update(gameTime, 20, player);
+
+            camera.Update(player.Position);
+            player.Update(gameTime, 20,enemys);
 
 
 
@@ -247,6 +255,7 @@ namespace Project_OD
                 enemy.Draw(spriteBatch);
                 enemy_2.Draw(spriteBatch);
                 enemy_3.Draw(spriteBatch);
+                boss.Draw(spriteBatch);
 
                 player.Draw(spriteBatch, player.ATK, player.skill);
                 NPC.Draw(spriteBatch);
