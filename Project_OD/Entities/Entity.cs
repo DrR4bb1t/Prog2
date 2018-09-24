@@ -93,6 +93,16 @@ namespace Project_OD
 
                 }
             }
+
+            if (position.X < 0)
+            {
+                position.X = 0;
+            }
+
+            if (position.X > 6350)
+            {
+                position.X = 6350;
+            }
         }
         #region Collision
         protected bool IsTouchingLeft(Rectangle rectangle)

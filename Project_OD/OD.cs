@@ -44,7 +44,7 @@ namespace Project_OD
 
         bool rectangleSwitcher = false;
 
-        private static gameStates gamestate = gameStates.GameMenu;
+        private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -88,9 +88,9 @@ namespace Project_OD
             splash = new Splash();
             gameMenu = new GameMenu();
 
-            camera = new Camera(4900);
-            map = new Map(2);
-            collision = new Collision(2);
+            camera = new Camera(4800);
+            map = new Map(1);
+            collision = new Collision(1);
             //rectangles = new List<Rectangle>(){};
             //for (int y = 0; y < map.tileMapHeight; y++)
             //{
@@ -127,7 +127,7 @@ namespace Project_OD
             enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
 
-            player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            player.SetEntity(new Vector2(5600, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
             NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
 
             font = OD.content.Load<SpriteFont>("fonts/arial");
