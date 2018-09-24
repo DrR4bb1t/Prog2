@@ -67,7 +67,7 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/castle12");
             mapTileBacklayer.Add(texture);
 
-            //13
+            //12
 
             texture = OD.content.Load<Texture2D>("Tiles/door1");
             mapTileBacklayer.Add(texture);
@@ -111,7 +111,7 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/door14");
             mapTileBacklayer.Add(texture);
 
-            //27
+            //26
 
             texture = OD.content.Load<Texture2D>("Tiles/houseWall1");
             mapTileBacklayer.Add(texture);
@@ -203,22 +203,7 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/houseWall30");
             mapTileBacklayer.Add(texture);
 
-            //57
-
-            texture = OD.content.Load<Texture2D>("Tiles/roof1");
-            mapTileBacklayer.Add(texture);
-
-            texture = OD.content.Load<Texture2D>("Tiles/roof2");
-            mapTileBacklayer.Add(texture);
-
-            texture = OD.content.Load<Texture2D>("Tiles/roof3_L");
-            mapTileBacklayer.Add(texture);
-
-            texture = OD.content.Load<Texture2D>("Tiles/roof3_Mid");
-            mapTileBacklayer.Add(texture);
-
-            texture = OD.content.Load<Texture2D>("Tiles/roof3_R");
-            mapTileBacklayer.Add(texture);
+            //56
 
             texture = OD.content.Load<Texture2D>("Tiles/cloud_1_LeftBot");
             mapTileBacklayer.Add(texture);
@@ -231,6 +216,12 @@ namespace Project_OD
 
             texture = OD.content.Load<Texture2D>("Tiles/cloud_1_RightTop");
             mapTileBacklayer.Add(texture);
+
+            //60
+
+            texture = OD.content.Load<Texture2D>("Tiles/castleCenter");
+            mapTileBacklayer.Add(texture);
+
 
             #endregion
 
@@ -273,13 +264,32 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/doorKnob");
             mapTileMiddlelayer.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/windowLowCheckered");
+
+            //11
+
+            texture = OD.content.Load<Texture2D>("Tiles/roof1");
             mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/roof2");
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/roof3_L");
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/roof3_Mid");
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/roof3_R");
+            mapTileMiddlelayer.Add(texture);
+
 
             #endregion
 
+            #region Forelayer
             texture = OD.content.Load<Texture2D>("Tiles/empty");
             mapTileForelayer.Add(texture);
+
+            //0
 
             texture = OD.content.Load<Texture2D>("Tiles/earth");
             mapTileForelayer.Add(texture);
@@ -287,7 +297,13 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/grass");
             mapTileForelayer.Add(texture);
 
-   
+            texture = OD.content.Load<Texture2D>("Tiles/windowLowCheckered");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/castleMid");
+            mapTileForelayer.Add(texture);
+            #endregion
+
         }
 
         public static void LoadTexture()

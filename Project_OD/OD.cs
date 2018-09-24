@@ -25,8 +25,9 @@ namespace Project_OD
 
         Camera camera;
         Map map;
+        Collision collision;
         int mapNmbr = 1;
-        private List<Rectangle> rectangles;
+        //private List<Rectangle> rectangles;
         private List<Enemy> enemys;
         Player player;
         Player NPC;
@@ -88,18 +89,20 @@ namespace Project_OD
             gameMenu = new GameMenu();
 
             camera = new Camera(4900);
-            map = new Map(1);
-            rectangles = new List<Rectangle>(){};
-            for (int y = 0; y < map.tileMapHeight; y++)
-            {
-                for (int x = 0; x < map.tileMapWidth; x++)
-                {
-                    if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 17)
-                    {
-                        rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
-                    }
-                }
-            }
+            map = new Map(2);
+            collision = new Collision(2);
+            //rectangles = new List<Rectangle>(){};
+            //for (int y = 0; y < map.tileMapHeight; y++)
+            //{
+            //    for (int x = 0; x < map.tileMapWidth; x++)
+            //    {
+            //        if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 17)
+            //        {
+            //            rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
+            //        }
+            //    }
+            //}
+            collision.IsCollision();
             enemys = new List<Enemy>() { };
             //get enemy data
 
@@ -113,19 +116,19 @@ namespace Project_OD
 
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
-            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
             enemy_2 = new Enemy();
             enemy_2.enemyinit(new Vector2(1200, 720));
-            enemy_2.SetEntity(new Vector2(1200, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+            enemy_2.SetEntity(new Vector2(1200, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
             
             enemy_3 = new Enemy();
             enemy_3.enemyinit(new Vector2(1800, 720));
-            enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+            enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
 
-            player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
-            NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
+            player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
 
             font = OD.content.Load<SpriteFont>("fonts/arial");
 
