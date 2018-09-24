@@ -40,6 +40,7 @@ namespace Project_OD
 
         Buttons button;
 
+        bool rectangleSwitcher = false;
 
         private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
@@ -229,9 +230,19 @@ namespace Project_OD
             player.Draw(spriteBatch, player.ATK, player.skill);
             NPC.Draw(spriteBatch);
 
-            if (player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
+            if (player.rect.Intersects(NPC.rect))
             {
-                spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
+                if(InputManager.IsKeyPressed(Keys.P))
+                rectangleSwitcher = true;
+                if (rectangleSwitcher == true)
+                {
+                    spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
+                   if(!player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
+                   {
+                        rectangleSwitcher = false;
+                   }
+                }
+                else rectangleSwitcher = false;
             }
 
             foreach (var enemy in enemys)
