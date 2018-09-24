@@ -17,6 +17,8 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont font;
+
         Splash splash;
         //GameMenu gameMenu;
 
@@ -26,7 +28,10 @@ namespace Project_OD
         private List<Rectangle> rectangles;
         private List<Enemy> enemys;
         Player player;
+        Player NPC;
         Enemy enemy;
+        Enemy enemy_2;
+        Enemy enemy_3;
 
         Texture2D playerHPDisplay;
 
@@ -101,12 +106,30 @@ namespace Project_OD
             button = new Buttons(new Vector2(10, 10), "Textures/Button/start_EN");
 
             player = new Player();
+            NPC = new Player();
+
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
             enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+
+            enemy_2 = new Enemy();
+            enemy_2.enemyinit(new Vector2(1200, 720));
+            enemy_2.SetEntity(new Vector2(1200, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+            
+            enemy_3 = new Enemy();
+            enemy_3.enemyinit(new Vector2(1800, 720));
+            enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
+
+
             player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
+            NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, rectangles);
+
+            font = OD.content.Load<SpriteFont>("fonts/arial");
+
             Physics physics = new Physics();
             enemys.Add(enemy);
+            enemys.Add(enemy_2);
+            enemys.Add(enemy_3);
 
 
         }
@@ -170,12 +193,15 @@ namespace Project_OD
             camera.Update(player.Position);
            
 
-            if (gamestate == gameStates.InGame)
-            {
                 enemy.Update(gameTime, 20, player);
+                enemy_2.Update(gameTime, 20, player);
+                enemy_3.Update(gameTime, 20, player);
                 camera.Update(player.Position);
                 player.Update(gameTime, 20,enemys);
-            }
+
+
+
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -197,7 +223,16 @@ namespace Project_OD
 
             map.DrawMap(spriteBatch);
             enemy.Draw(spriteBatch);
+            enemy_2.Draw(spriteBatch);
+            enemy_3.Draw(spriteBatch);
+
             player.Draw(spriteBatch, player.ATK, player.skill);
+            NPC.Draw(spriteBatch);
+
+            if (player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
+            {
+                spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
+            }
 
             foreach (var enemy in enemys)
             {

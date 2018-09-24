@@ -20881,3 +20881,10 @@
 /processorParam:TextureFormat=Color
 /build:Tiles/woodGround_red6.png
 
+#begin fonts/arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/arial.spritefont
+
