@@ -24,7 +24,6 @@ namespace Project_OD
 
         Camera camera;
         Map map;
-        Collision collision;
         int mapNmbr = 1;
         private List<Rectangle> rectangles;
         private List<Enemy> enemys;
@@ -88,7 +87,6 @@ namespace Project_OD
 
             camera = new Camera(4900);
             map = new Map(1);
-<<<<<<< HEAD
             rectangles = new List<Rectangle>(){};
             for (int y = 0; y < map.tileMapHeight; y++)
             {
@@ -107,32 +105,12 @@ namespace Project_OD
             playerHeart = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/HP/heart0001");
 
             button = new Buttons(new Vector2(10, 10), "Textures/Button/start_EN");
-=======
-            collision = new Collision(1);
-            //rectangles = new List<Rectangle>(){};
-            //for (int y = 0; y < map.tileMapHeight; y++)
-            //{
-            //    for (int x = 0; x < map.tileMapWidth; x++)
-            //    {
-            //        if (map.lvl1_Forelayer[y, x] == 2)
-            //        {
-            //            rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
-            //        }
-            //    }
-            //}
-            collision.IsCollision();
-            enemys = new List<Enemy>() { };
-            //get enemy data
-
-            
->>>>>>> leveldesign
 
             player = new Player();
             NPC = new Player();
 
             enemy = new Enemy();
             enemy.enemyinit(new Vector2(400, 720));
-<<<<<<< HEAD
             enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, rectangles);
 
             enemy_2 = new Enemy();
@@ -149,10 +127,6 @@ namespace Project_OD
 
             font = OD.content.Load<SpriteFont>("fonts/arial");
 
-=======
-            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 1, 50, 0, 7, 2, collision .rectangles);
-            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision .rectangles);
->>>>>>> leveldesign
             Physics physics = new Physics();
             enemys.Add(enemy);
             enemys.Add(enemy_2);
