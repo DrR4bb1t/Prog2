@@ -17,10 +17,8 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        SpriteBatch menuSpriteBatch;
-
         Splash splash;
-        GameMenu gamemenu;
+        GameMenu gameMenu;
 
         Camera camera;
         Map map;
@@ -30,13 +28,15 @@ namespace Project_OD
         Player player;
         Enemy enemy;
 
+        Texture2D playerHPDisplay;
+
         Texture2D hpBar;
         Texture2D playerHeart;
 
         Buttons button;
 
 
-        private static gameStates gamestate = gameStates.GameMenu;
+        private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -51,7 +51,7 @@ namespace Project_OD
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             content = Content;
-
+            
         }
 
         /// <summary>
@@ -77,19 +77,19 @@ namespace Project_OD
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             splash = new Splash();
-            gamemenu = new GameMenu();
-
+            gameMenu = new GameMenu();
+            gameMenu.LoadButtonTextures();
 
             camera = new Camera(4900);
             map = new Map(1);
-            rectangles = new List<Rectangle>() { };
+            rectangles = new List<Rectangle>(){};
             for (int y = 0; y < map.tileMapHeight; y++)
             {
                 for (int x = 0; x < map.tileMapWidth; x++)
                 {
-                    if (map.lvl1_Forelayer[y, x] == 2 || map.lvl1_Forelayer[y, x] == 17)
+                    if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 17)
                     {
-                        rectangles.Add(new Rectangle(x * 64, y * 64, 64, 64));
+                        rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
                     }
                 }
             }
@@ -120,7 +120,7 @@ namespace Project_OD
         {
             // TODO: Unload any non ContentManager content here
 
-
+            
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Project_OD
                 case gameStates.GameMenu:
                     {
                         setState(gameStates.GameMenu);
-                        gamemenu.Update();
+                        gameMenu.Update();
                     }
                     break;
                 case gameStates.StartGame:
@@ -167,27 +167,22 @@ namespace Project_OD
             }
 
             InputManager.Update();
+            
+            camera.Update(player.Position);
+           
 
             if (gamestate == gameStates.InGame)
             {
-
-                camera.Update(player.Position);
-
                 enemy.Update(gameTime, 20, player);
                 camera.Update(player.Position);
-                player.Update(gameTime, 20, enemys);
-
-                if (InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true) && InputManager.GetMouseBoundaries(true).Intersects(button.doIntersect(button)))
-                {
-                    OD.setState(gameStates.Exit);
-                }
-
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    Exit();
-
-                base.Update(gameTime);
+                player.Update(gameTime, 20,enemys);
             }
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            base.Update(gameTime);
         }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -198,54 +193,49 @@ namespace Project_OD
 
             if (gamestate == gameStates.GameMenu)
             {
-                menuSpriteBatch.Begin();
-                gamemenu.Draw(menuSpriteBatch);
-                menuSpriteBatch.End();
+
+                gameMenu.Draw(spriteBatch);
             }
 
-            if (gamestate == gameStates.InGame)
-            {
-
-                spriteBatch.Begin(SpriteSortMode.Deferred,
+            spriteBatch.Begin(SpriteSortMode.Deferred,
                           BlendState.AlphaBlend,
                           null, null, null, null,
                           camera.ViewMatrix);
 
-                map.DrawMap(spriteBatch);
-                enemy.Draw(spriteBatch);
-                player.Draw(spriteBatch, player.ATK, player.skill);
-
-                foreach (var enemy in enemys)
-                {
-                    spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
-                }
-                if (player.Hp > 60)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-                if (player.Hp > 30)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-                if (player.Hp > 0)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-                button.Draw(spriteBatch);
 
 
-                spriteBatch.End();
+            map.DrawMap(spriteBatch);
+            enemy.Draw(spriteBatch);
+            player.Draw(spriteBatch, player.ATK, player.skill);
 
-                base.Draw(gameTime);
+            foreach (var enemy in enemys)
+            {
+                spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
             }
+            if (player.Hp > 60)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
+            if (player.Hp > 30)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
+            if (player.Hp > 0)
+            {
+                spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
+
+            button.Draw(spriteBatch);
+            spriteBatch.End();
+
+
+            // TODO: Add your drawing code here
+
+            base.Draw(gameTime);
+
         }
     }
 }
-
-
-        
-    
-

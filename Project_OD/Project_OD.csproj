@@ -69,7 +69,6 @@
     <Compile Include="Skills.cs" />
     <Compile Include="States\Splash.cs" />
     <Compile Include="Managers\TextureManager.cs" />
-    <Compile Include="States\StageCompleted.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="UI.cs" />
   </ItemGroup>
