@@ -89,8 +89,8 @@ namespace Project_OD
             gameMenu = new GameMenu();
 
             camera = new Camera(4800);
-            map = new Map(3);
-            collision = new Collision(3);
+            map = new Map(4);
+            collision = new Collision(4);
             //rectangles = new List<Rectangle>(){};
             //for (int y = 0; y < map.tileMapHeight; y++)
             //{
