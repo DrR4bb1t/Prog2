@@ -221,6 +221,8 @@ namespace Project_OD
 
             texture = OD.content.Load<Texture2D>("Tiles/castleCenter");
             mapTileBacklayer.Add(texture);
+            texture = OD.content.Load<Texture2D>("Tiles/brick_grey");
+            mapTileBacklayer.Add(texture);
 
 
             #endregion
@@ -282,7 +284,10 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/roof3_R");
             mapTileMiddlelayer.Add(texture);
 
+            //16
 
+            texture = OD.content.Load<Texture2D>("Tiles/liquidWater");
+            mapTileMiddlelayer.Add(texture);
             #endregion
 
             #region Forelayer
@@ -301,6 +306,12 @@ namespace Project_OD
             mapTileForelayer.Add(texture);
 
             texture = OD.content.Load<Texture2D>("Tiles/castleMid");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/boxAlt");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/bridgeLogs");
             mapTileForelayer.Add(texture);
             #endregion
 
