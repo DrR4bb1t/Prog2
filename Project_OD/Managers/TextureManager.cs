@@ -311,7 +311,7 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/boxAlt");
             mapTileForelayer.Add(texture);
 
-            texture = OD.content.Load<Texture2D>("Tiles/bridgeLogs");
+            texture = OD.content.Load<Texture2D>("Tiles/bridgeLogs2");
             mapTileForelayer.Add(texture);
             #endregion
 
