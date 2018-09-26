@@ -28,7 +28,7 @@ namespace Project_OD
         Collision collision;
         int lvlID = 0;
         //private List<Rectangle> rectangles;
-        private List<Enemy> enemys;
+        private List<Enemy> enemies;
         Player player;
         Player NPC;
         Enemy enemy;
@@ -111,7 +111,7 @@ namespace Project_OD
             //    }
             //}
             collision.IsCollision();
-            enemys = new List<Enemy>() { };
+            enemies = new List<Enemy>() { };
             //get enemy data
 
             hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
@@ -141,9 +141,9 @@ namespace Project_OD
             font = OD.content.Load<SpriteFont>("fonts/arial");
 
             Physics physics = new Physics();
-            enemys.Add(enemy);
-            enemys.Add(enemy_2);
-            enemys.Add(enemy_3);
+            enemies.Add(enemy);
+            enemies.Add(enemy_2);
+            enemies.Add(enemy_3);
 
 
         }
@@ -216,7 +216,7 @@ namespace Project_OD
                 enemy_2.Update(gameTime, 20, player, lvlID);
                 enemy_3.Update(gameTime, 20, player, lvlID);
                 camera.Update(player.Position);
-                player.Update(gameTime, 20, enemys, lvlID);
+                player.Update(gameTime, 20, enemies, lvlID);
 
 
 
@@ -274,7 +274,7 @@ namespace Project_OD
                     else rectangleSwitcher = false;
                 }
 
-                foreach (var enemy in enemys)
+                foreach (var enemy in enemies)
                 {
                     spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
                 }

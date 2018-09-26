@@ -370,6 +370,9 @@ namespace Project_OD
 
             //15
 
+            texture = OD.content.Load<Texture2D>("Tiles/windowCheckered");
+            mapTileForelayer.Add(texture);
+
             #endregion
 
         }
