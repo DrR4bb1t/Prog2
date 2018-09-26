@@ -39,7 +39,7 @@ namespace Project_OD
         private bool skill2Cooldown;
         private bool skill3Cooldown;
         private bool skill4Cooldown;
-        public bool jumpAttack=false;
+        public bool jumpAttack = false;
         private bool predator2 = true;
         private bool technokrat2 = false;
         private bool technoMage2 = false;
@@ -52,7 +52,7 @@ namespace Project_OD
         private bool rageActive = false;
         private bool dirR;
         private bool dirL;
-        private float Multiplier=1;
+        private float Multiplier = 1;
         public int skill;
         Physics physics = new Physics();
 
@@ -62,7 +62,7 @@ namespace Project_OD
         public int ArmorValue { get => armorValue; set => armorValue = value; }
         public int WeaponValue { get => weaponValue; set => weaponValue = value; }
 
-        #region test for playeranimation
+        #region Playeranimation
 
         protected Texture2D texture_Rage_Mage;
         protected Texture2D texture2_Rage_Mage;
@@ -123,7 +123,7 @@ namespace Project_OD
         SpriteAnimation sprite5_Rage_Tech;
         SpriteAnimation sprite5_1_1_Rage_Tech;
         SpriteAnimation sprite5_2_1_Rage_Tech;
-        
+
 
         public void LoadTexture()
         {
@@ -162,7 +162,7 @@ namespace Project_OD
             texture5_1_1_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-thorns_summon_tech");
             texture5_2_1_Rage_Tech = OD.content.Load<Texture2D>("spritesheet-explosion_summon_RAGE_tech");
         }
-        
+
 
 
         public Player()
@@ -240,14 +240,15 @@ namespace Project_OD
             sprite5_Rage_Tech.StoreAnimations(5);
             sprite5_1_1_Rage_Tech.StoreAnimations(6);
             sprite5_2_1_Rage_Tech.StoreAnimations(8);
-            
-            
+
+
         }
 
 
-        public void Update(GameTime gameTime, int fps,List<Enemy> enemies)
+        public void Update(GameTime gameTime, int fps, List<Enemy> enemies, int lvlID)
         {
             KeyboardState state = Keyboard.GetState();
+
             isAttacking = false;
 
             dir = "";
@@ -263,16 +264,27 @@ namespace Project_OD
                 dirR = false;
                 dirL = true;
             }
-            if (state.IsKeyDown(Keys.Up)&onGround)
+            if (state.IsKeyDown(Keys.Up) && onGround)
             {
                 jumpSpeed = GetjumpMaxSpeed();
                 onGround = false;
             }
-            
-            
-           
+
+
+            ///Needed for lvl tests
+            ///--------------------
+            //if (dirR == true)
+            //{
+            //    dir = "R";
+            //}
+            //if (dirL == true)
+            //{
+            //    dir = "L";
+            //}
+            ///---------------------
+
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
-            
+
             if (moveTo.X > 0)
             {
                 if (rageMage == true)
@@ -385,7 +397,7 @@ namespace Project_OD
             if (state.IsKeyDown(Keys.W) && dirR == true)
             {
                 if (cooldown1 == 0)
-                {                    
+                {
                     skill = 1;
                     cooldown1 = 180;
                     atkMove = true;
@@ -405,7 +417,7 @@ namespace Project_OD
 
             if (skill1 == true)
             {
-                
+
                 if (dirR == true)
                 {
                     if (rageMage == true)
@@ -596,7 +608,7 @@ namespace Project_OD
             if (skill3 == true)
             {
                 //jump with stomp
-                if (skillCnt3==0)
+                if (skillCnt3 == 0)
                 {
                     JumpSpeed = jumpMaxSpeed;
                     jumpAttack = true;
@@ -794,8 +806,8 @@ namespace Project_OD
                 }
             }
 
-                         
-            
+
+
 
             if (skill3Cooldown == true)
             {
@@ -835,26 +847,26 @@ namespace Project_OD
             if (skill4 == true)
             {
 
-                    if (dirR == true)
-                    {
-                        sprite6.animation = "activation-R";
-                        sprite6.Update(gameTime, true, 8);
-                        skillCnt4++;
-                    }
-                    else if (dirL == true)
-                    {
-                        sprite6.animation = "activation-L";
-                        sprite6.Update(gameTime, true, 8);
-                        skillCnt4++;
-                    }
+                if (dirR == true)
+                {
+                    sprite6.animation = "activation-R";
+                    sprite6.Update(gameTime, true, 8);
+                    skillCnt4++;
+                }
+                else if (dirL == true)
+                {
+                    sprite6.animation = "activation-L";
+                    sprite6.Update(gameTime, true, 8);
+                    skillCnt4++;
+                }
 
-                    if (skillCnt4 == 60)
-                    {
-                        skill4 = false;
-                        skillCnt4 = 0;
-                        skill4Cooldown = true;
-                        rageActive = true;
-                    }                
+                if (skillCnt4 == 60)
+                {
+                    skill4 = false;
+                    skillCnt4 = 0;
+                    skill4Cooldown = true;
+                    rageActive = true;
+                }
             }
 
             if (skill4Cooldown == true)
@@ -958,7 +970,7 @@ namespace Project_OD
             sprite5_2_1_Rage_Tech.position = Position;
 
             doAttack(enemies);
-            this.collisionCheck();
+            this.collisionCheck(lvlID);
             Position += moveTo;
             spriteanim(gameTime, fps);
 
@@ -972,14 +984,15 @@ namespace Project_OD
                 if (atkTimeout > 0)
                 {
                     atkTimeout--;
-                }else
-                if(sprite2.frameIndex==6)
+                }
+                else
+                if (sprite2.frameIndex == 6)
                 {
                     foreach (var enemy in enemies)
                     {
                         if (atkRect.Intersects(enemy.rect))
                         {
-                            enemy.takeDamage((int)((baseAtk+weaponValue)*Multiplier));
+                            enemy.takeDamage((int)((baseAtk + weaponValue) * Multiplier));
                         }
                         atkTimeout = 10;
                     }

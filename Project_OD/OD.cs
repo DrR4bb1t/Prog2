@@ -26,15 +26,14 @@ namespace Project_OD
         Camera camera;
         Map map;
         Collision collision;
-        int mapNmbr = 1;
+        int lvlID = 0;
         //private List<Rectangle> rectangles;
-        private List<Enemy> enemys;
+        private List<Enemy> enemies;
         Player player;
         Player NPC;
         Enemy enemy;
         Enemy enemy_2;
         Enemy enemy_3;
-        Boss boss;
 
         Texture2D playerHPDisplay;
 
@@ -45,7 +44,7 @@ namespace Project_OD
 
         bool rectangleSwitcher = false;
 
-        private static gameStates gamestate = gameStates.GameMenu;
+        private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -60,7 +59,7 @@ namespace Project_OD
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             content = Content;
-            
+
         }
 
         /// <summary>
@@ -89,9 +88,17 @@ namespace Project_OD
             splash = new Splash();
             gameMenu = new GameMenu();
 
-            camera = new Camera(4900);
-            map = new Map(2);
-            collision = new Collision(2);
+            if (lvlID == 6 || lvlID == 0)
+            {
+                camera = new Camera(1600);
+            }
+            else
+            {
+                camera = new Camera(4800);
+            }
+
+            map = new Map(lvlID);
+            collision = new Collision(lvlID);
             //rectangles = new List<Rectangle>(){};
             //for (int y = 0; y < map.tileMapHeight; y++)
             //{
@@ -104,7 +111,7 @@ namespace Project_OD
             //    }
             //}
             collision.IsCollision();
-            enemys = new List<Enemy>() { };
+            enemies = new List<Enemy>() { };
             //get enemy data
 
             hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
@@ -122,26 +129,21 @@ namespace Project_OD
             enemy_2 = new Enemy();
             enemy_2.enemyinit(new Vector2(1200, 720));
             enemy_2.SetEntity(new Vector2(1200, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
-            
+
             enemy_3 = new Enemy();
             enemy_3.enemyinit(new Vector2(1800, 720));
             enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
 
-            player.SetEntity(new Vector2(64, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
             NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
-
-            boss = new Boss();
-            boss.enemyinit(new Vector2(2200, 720));
-            boss.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
             font = OD.content.Load<SpriteFont>("fonts/arial");
 
             Physics physics = new Physics();
-            enemys.Add(enemy);
-            enemys.Add(enemy_2);
-            enemys.Add(enemy_3);
-            enemys.Add(boss);
+            enemies.Add(enemy);
+            enemies.Add(enemy_2);
+            enemies.Add(enemy_3);
 
 
         }
@@ -154,7 +156,7 @@ namespace Project_OD
         {
             // TODO: Unload any non ContentManager content here
 
-            
+
         }
 
         /// <summary>
@@ -202,25 +204,23 @@ namespace Project_OD
 
             InputManager.Update();
 
-            if(gamestate == gameStates.GameMenu)
+            if (gamestate == gameStates.GameMenu)
             {
                 gameMenu.Update();
             }
-            
-            camera.Update(player.Position);
-           
-
-            enemy.Update(gameTime, 20, player);
-            enemy_2.Update(gameTime, 20, player);
-            enemy_3.Update(gameTime, 20, player);
-            boss.Update(gameTime, 20, player);
 
             camera.Update(player.Position);
-            player.Update(gameTime, 20,enemys);
+
+
+            enemy.Update(gameTime, 20, player, lvlID);
+            enemy_2.Update(gameTime, 20, player, lvlID);
+            enemy_3.Update(gameTime, 20, player, lvlID);
+            camera.Update(player.Position);
+            player.Update(gameTime, 20, enemies, lvlID);
 
 
 
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -235,7 +235,7 @@ namespace Project_OD
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if(gamestate == gameStates.GameMenu)
+            if (gamestate == gameStates.GameMenu)
             {
                 spriteBatch_2.Begin();
                 gameMenu.Draw(spriteBatch_2);
@@ -255,7 +255,6 @@ namespace Project_OD
                 enemy.Draw(spriteBatch);
                 enemy_2.Draw(spriteBatch);
                 enemy_3.Draw(spriteBatch);
-                boss.Draw(spriteBatch);
 
                 player.Draw(spriteBatch, player.ATK, player.skill);
                 NPC.Draw(spriteBatch);
@@ -275,7 +274,7 @@ namespace Project_OD
                     else rectangleSwitcher = false;
                 }
 
-                foreach (var enemy in enemys)
+                foreach (var enemy in enemies)
                 {
                     spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
                 }

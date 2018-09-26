@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 //todo: add attack
 namespace Project_OD
 {
-    public class Enemy:Entity
+    public class Enemy : Entity
     {
         public Enemy()
         {
@@ -22,7 +22,7 @@ namespace Project_OD
             texture2 = OD.content.Load<Texture2D>("spritesheet-atk");
         }
         Physics physics = new Physics();
-        
+
         public void enemyinit(Vector2 startpos)
         {
             target1 = startpos;
@@ -33,8 +33,8 @@ namespace Project_OD
         protected Vector2 target2;
         protected Vector2 playerPos;
         protected Vector2 currTarget;
-        protected float distance=10000;
-        protected int triggerRange=150;
+        protected float distance = 10000;
+        protected int triggerRange = 150;
         private Player player;
         private bool isAttacking = false;
         private bool finishedAttack = false;
@@ -47,19 +47,19 @@ namespace Project_OD
             hp -= damage;
             Console.WriteLine("HP: {0}", hp);
         }
-        public void getDamaged(Player player,GameTime gameTime)
+        public void getDamaged(Player player, GameTime gameTime)
         {
             if (rect.Intersects(player.rect))
             {
-                if (player.skill1&&!damaged)
+                if (player.skill1 && !damaged)
                 {
                     damaged = true;
-                    Console.WriteLine("HP: {0}",hp);
+                    Console.WriteLine("HP: {0}", hp);
                     hp -= (int)((player.baseAtk + player.WeaponValue) * player.skillScaling1);
                     Console.WriteLine("HP Dash: {0}", hp);
                     timer = 0;
                 }
-                else if (player.jumpAttack&&!damaged)
+                else if (player.jumpAttack && !damaged)
                 {
                     if (player.JumpSpeed < -0.1)
                     {
@@ -70,7 +70,7 @@ namespace Project_OD
                         player.jumpAttack = false;
                     }
                 }
-                else if(damaged&&(timer>=100))
+                else if (damaged && (timer >= 100))
                 {
                     damaged = false;
                 }
@@ -82,23 +82,24 @@ namespace Project_OD
         }
         public void getDistance()
         {
-            distance= (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
+            distance = (float)Math.Sqrt(Math.Pow(Math.Abs(position.X - playerPos.X), 2) + Math.Pow(Math.Abs(position.Y - playerPos.Y), 2));
         }
         public void attackPlayer()
         {
             isAttacking = true;
             finishedAttack = false;
         }
-        public void doAttack(Player player,GameTime gameTime)
+        public void doAttack(Player player, GameTime gameTime)
         {
             if (isAttacking)
             {
-                sprite2.Update(gameTime, true, 20,100);
+                sprite2.Update(gameTime, true, 20, 100);
                 if (atkTimeout > 0)
                 {
                     atkTimeout--;
-                }else
-                if(sprite2.frameIndex==6)
+                }
+                else
+                if (sprite2.frameIndex == 6)
                 {
                     if (atkRect.Intersects(player.rect))
                     {
@@ -108,8 +109,9 @@ namespace Project_OD
                     finishedAttack = true;
                     isAttacking = false;
 
-                
-                }else if (atkTimeout==0)
+
+                }
+                else if (atkTimeout == 0)
                 {
                     isAttacking = false;
                     dir = "";
@@ -127,32 +129,34 @@ namespace Project_OD
                 if (dir == "R")
                 {
                     sprite2.animation = "atk-R";
-                }else if (dir == "L")
+                }
+                else if (dir == "L")
                 {
                     sprite2.animation = "atk-L";
                 }
-               
+
                 dir = "S";
                 attackPlayer();
                 //attack
             }
-            else if (distance<triggerRange&&atkTimeout==0)
+            else if (distance < triggerRange && atkTimeout == 0)
             {
                 currTarget = playerPos;
                 if (playerPos.X > position.X)
                 {
                     dir = "R";
                 }
-                else if (playerPos.X<position.X)
+                else if (playerPos.X < position.X)
                 {
                     dir = "L";
                 }
                 //Console.WriteLine("Distance xy:{0}, {1} xy:{2}, {3} is {4}", position.X, position.Y, playerPos.X, playerPos.Y, distance);
             }
-            else {
+            else
+            {
                 if (dir == "S")
                 {
-                    
+
                 }
                 if (dir == "")
                 {
@@ -171,19 +175,19 @@ namespace Project_OD
             }
         }
 
-        public void Update(GameTime gameTime, int fps,Player player)
+        public void Update(GameTime gameTime, int fps, Player player, int lvlID)
         {
             this.player = player;
             playerPos = this.player.Position;
             getDistance();
             getDamaged(this.player, gameTime);
-            patrol();     
-            moveTo = physics.moveVector(this, gameTime, dir,rectangles);
-            this.collisionCheck();
+            patrol();
+            moveTo = physics.moveVector(this, gameTime, dir, rectangles);
+            this.collisionCheck(lvlID);
             Position += moveTo;
             spriteanim(gameTime, fps);
             sprite2.position = position;
-            doAttack(player,gameTime);
+            doAttack(player, gameTime);
 
             //check distance to player
         }

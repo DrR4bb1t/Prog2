@@ -16,7 +16,7 @@ namespace Project_OD
         public Entity() { }
         //Create Entity
 
-        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk, float atkRange, float atkTimeout, int frames, int animations,List<Rectangle> rectangles )
+        public void SetEntity(Vector2 position, int width, int height, string texture, Texture2D deathTexture, float Speed, float jumpMaxSpeed, int maxHp, int baseAtk, float atkRange, float atkTimeout, int frames, int animations, List<Rectangle> rectangles)
         {
             this.position = position;
             this.width = width;
@@ -39,10 +39,10 @@ namespace Project_OD
         }
         public void attack(Entity entity)
         {
-            
+
         }
-        
-        public void spriteanim(GameTime gameTime,int fps)
+
+        public void spriteanim(GameTime gameTime, int fps)
         {
             sprite.position.X = Position.X;
             sprite.position.Y = Position.Y;
@@ -60,16 +60,16 @@ namespace Project_OD
                 atkRect = new Rectangle((int)position.X - (int)atkRange, (int)position.Y, rect.Width + (int)atkRange, rect.Height);
                 sprite.Update(gameTime, true, fps);
             }
-            
+
         }
-        public void collisionCheck()
+        public void collisionCheck(int lvlID)
         {
             foreach (var rects in rectangles)
             {
                 if ((this.moveTo.X > 0 && this.IsTouchingLeft(rects)) ||
             (this.moveTo.X < 0 && this.IsTouchingRight(rects)))
                     this.moveTo.X = 0;
-                
+
 
                 if (this.moveTo.Y > 0)
                 {
@@ -84,7 +84,7 @@ namespace Project_OD
                         onGround = false;
                     }
                 }
-                else if(this.moveTo.Y < 0 && this.IsTouchingBottom(rects))
+                else if (this.moveTo.Y < 0 && this.IsTouchingBottom(rects))
                 {
                     this.moveTo.Y = 0;
                 }
@@ -92,6 +92,27 @@ namespace Project_OD
                 {
 
                 }
+            }
+
+            if (position.X < 0)
+            {
+                position.X = 0;
+            }
+
+            if (lvlID == 6 || lvlID == 0)
+            {
+                if (position.X > 3150)
+                {
+                    position.X = 3150;
+                }
+            }
+            else
+            {
+                if (position.X > 6350)
+                {
+                    position.X = 6350;
+                }
+
             }
         }
         #region Collision
@@ -129,8 +150,8 @@ namespace Project_OD
         #endregion
         public void Update(GameTime gameTime, int fps)
         {
-            spriteanim(gameTime,fps);
-            
+            spriteanim(gameTime, fps);
+
             //Animated Sprite
         }
 
@@ -160,7 +181,7 @@ namespace Project_OD
         protected Texture2D texture5_2_1;
         protected Texture2D texture6;
 
-       
+
         #endregion
 
         protected float speed = 200;
@@ -175,14 +196,14 @@ namespace Project_OD
         public bool damaged = false;
         public float timer;
         public float atkTimer;
-        public string dir="R";
+        public string dir = "R";
         protected List<Rectangle> rectangles;
 
-        
+
 
         //Modifiers required to be changeable
         public Vector2 Position { get => position; set => position = value; }
-        public float Speed { get => speed; set => speed = value; } 
+        public float Speed { get => speed; set => speed = value; }
         //Add Acceleration if slows
         public float JumpSpeed { get => jumpSpeed; set => jumpSpeed = value; }
         public int Hp { get => hp; set => hp = value; }
