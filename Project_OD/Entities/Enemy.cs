@@ -171,7 +171,7 @@ namespace Project_OD
             }
         }
 
-        public void Update(GameTime gameTime, int fps,Player player)
+        public void Update(GameTime gameTime, int fps, Player player, int lvlID)
         {
             this.player = player;
             playerPos = this.player.Position;
@@ -179,11 +179,11 @@ namespace Project_OD
             getDamaged(this.player, gameTime);
             patrol();     
             moveTo = physics.moveVector(this, gameTime, dir,rectangles);
-            this.collisionCheck();
+            this.collisionCheck(lvlID);
             Position += moveTo;
             spriteanim(gameTime, fps);
             sprite2.position = position;
-            doAttack(player,gameTime);
+            doAttack(player, gameTime);
 
             //check distance to player
         }

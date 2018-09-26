@@ -62,7 +62,7 @@ namespace Project_OD
             }
             
         }
-        public void collisionCheck()
+        public void collisionCheck(int lvlID)
         {
             foreach (var rects in rectangles)
             {
@@ -99,9 +99,20 @@ namespace Project_OD
                 position.X = 0;
             }
 
-            if (position.X > 6350)
+            if (lvlID == 6 || lvlID == 0)
             {
-                position.X = 6350;
+                if (position.X > 3150)
+                {
+                    position.X = 3150;
+                }
+            }
+            else 
+            {
+                if (position.X > 6350)
+                {
+                    position.X = 6350;
+                }
+                
             }
         }
         #region Collision

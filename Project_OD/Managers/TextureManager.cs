@@ -228,6 +228,12 @@ namespace Project_OD
             texture = OD.content.Load<Texture2D>("Tiles/houseGray");
             mapTileBacklayer.Add(texture);
 
+            texture = OD.content.Load<Texture2D>("Tiles/houseDark");
+            mapTileBacklayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_15");
+            mapTileBacklayer.Add(texture);
+
 
             #endregion
 
@@ -295,6 +301,18 @@ namespace Project_OD
 
             texture = OD.content.Load<Texture2D>("Tiles/liquidLava");
             mapTileMiddlelayer.Add(texture);
+
+            //18
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_1");
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_3");
+            mapTileMiddlelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_9");
+            mapTileMiddlelayer.Add(texture);
+
             #endregion
 
             #region Forelayer
@@ -326,6 +344,32 @@ namespace Project_OD
 
             texture = OD.content.Load<Texture2D>("Tiles/dirtMid");
             mapTileForelayer.Add(texture);
+
+            //8
+
+            texture = OD.content.Load<Texture2D>("Tiles/metalCenter");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_13");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_12");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_11");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_8");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_7");
+            mapTileForelayer.Add(texture);
+
+            texture = OD.content.Load<Texture2D>("Tiles/spaceship_10");
+            mapTileForelayer.Add(texture);
+
+            //15
+
             #endregion
 
         }

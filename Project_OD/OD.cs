@@ -26,7 +26,7 @@ namespace Project_OD
         Camera camera;
         Map map;
         Collision collision;
-        int mapNmbr = 1;
+        int lvlID = 0;
         //private List<Rectangle> rectangles;
         private List<Enemy> enemys;
         Player player;
@@ -88,9 +88,17 @@ namespace Project_OD
             splash = new Splash();
             gameMenu = new GameMenu();
 
-            camera = new Camera(4800);
-            map = new Map(4);
-            collision = new Collision(4);
+            if (lvlID == 6 || lvlID == 0)
+            {
+                camera = new Camera(1600);
+            }
+            else
+            {
+                camera = new Camera(4800);
+            }
+
+            map = new Map(lvlID);
+            collision = new Collision(lvlID);
             //rectangles = new List<Rectangle>(){};
             //for (int y = 0; y < map.tileMapHeight; y++)
             //{
@@ -204,11 +212,11 @@ namespace Project_OD
             camera.Update(player.Position);
            
 
-                enemy.Update(gameTime, 20, player);
-                enemy_2.Update(gameTime, 20, player);
-                enemy_3.Update(gameTime, 20, player);
+                enemy.Update(gameTime, 20, player, lvlID);
+                enemy_2.Update(gameTime, 20, player, lvlID);
+                enemy_3.Update(gameTime, 20, player, lvlID);
                 camera.Update(player.Position);
-                player.Update(gameTime, 20,enemys);
+                player.Update(gameTime, 20, enemys, lvlID);
 
 
 

@@ -62,7 +62,7 @@ namespace Project_OD
         public int ArmorValue { get => armorValue; set => armorValue = value; }
         public int WeaponValue { get => weaponValue; set => weaponValue = value; }
 
-        #region test for playeranimation
+        #region Playeranimation
 
         protected Texture2D texture_Rage_Mage;
         protected Texture2D texture2_Rage_Mage;
@@ -245,9 +245,10 @@ namespace Project_OD
         }
 
 
-        public void Update(GameTime gameTime, int fps,List<Enemy> enemies)
+        public void Update(GameTime gameTime, int fps,List<Enemy> enemies, int lvlID)
         {
             KeyboardState state = Keyboard.GetState();
+            
             isAttacking = false;
 
             dir = "";
@@ -263,16 +264,27 @@ namespace Project_OD
                 dirR = false;
                 dirL = true;
             }
-            if (state.IsKeyDown(Keys.Up)&onGround)
+            if (state.IsKeyDown(Keys.Up) && onGround)
             {
                 jumpSpeed = GetjumpMaxSpeed();
                 onGround = false;
             }
-            
-            
-           
+
+
+            ///Needed for lvl tests
+            ///--------------------
+            if (dirR == true)
+            {
+                dir = "R";
+            }
+            if (dirL == true)
+            {
+                dir = "L";
+            }
+            ///---------------------
+
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
-            
+
             if (moveTo.X > 0)
             {
                 if (rageMage == true)
@@ -958,7 +970,7 @@ namespace Project_OD
             sprite5_2_1_Rage_Tech.position = Position;
 
             doAttack(enemies);
-            this.collisionCheck();
+            this.collisionCheck(lvlID);
             Position += moveTo;
             spriteanim(gameTime, fps);
 
