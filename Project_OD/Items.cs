@@ -30,17 +30,19 @@ namespace Project_OD
 
         private int itemDMGValue;
         private int itemArmourValue;
-
+        public int id;
         private Rectangle itemRect;
 
         public int ItemDMGValue { get; set; }
         public int ItemArmourValue { get; set; }
 
-        public Items(Texture2D texture, Vector2 pos, int state)
+        public Items(int id,Texture2D texture, Vector2 pos, int state, Player player)
         {
+            this.player = player;
             //explicit casting
             itemstate = (itemState) state;
             itemRect = new Rectangle((int)pos.X, (int)pos.Y, texture.Width, texture.Height);
+            this.id = id;
 
         }
 

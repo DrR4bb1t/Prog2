@@ -47,6 +47,7 @@
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Npc.cs" />
+    <Compile Include="Itemlist.cs" />
     <Compile Include="Managers\Collision.cs" />
     <Compile Include="Managers\SpriteAnimation.cs" />
     <Compile Include="Managers\SpriteManager.cs" />

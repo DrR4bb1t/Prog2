@@ -20,6 +20,10 @@ namespace Project_OD
         Splash splash;
         GameMenu gameMenu;
 
+        Texture2D textureItem;
+        Items items;
+        Itemlist itemsInGame;
+
         Camera camera;
         Map map;
         Player player;
@@ -64,6 +68,8 @@ namespace Project_OD
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            textureItem = content.Load<Texture2D>("spritesheet-test2_1.png");
+
             splash = new Splash();
             gameMenu = new GameMenu();
             gameMenu.LoadButtonTextures();
@@ -72,6 +78,9 @@ namespace Project_OD
             map = new Map();
             player = new Player(0, 850, 7, 2);
 
+            items = new Items(1,textureItem , new Vector2(0, 0), 0, player);
+            itemsInGame = new Itemlist(items);
+            itemsInGame.ChangeState(1, 1);
             
         }
 
