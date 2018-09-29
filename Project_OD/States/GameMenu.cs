@@ -12,22 +12,17 @@ namespace Project_OD
 {
     public class GameMenu
     {
-        Buttons bg;
         Buttons startButton;
         Buttons exitButton;
-
 
         public GameMenu()
         {
             startButton = new Buttons(new Vector2(665, 400), "Textures/Button/start_EN");
             exitButton = new Buttons(new Vector2(665, 700), "Textures/Button/quit_EN");
-            bg = new Buttons(new Vector2(1600, 900),  "Textures/bg");
         }
 
         public void Update()
         {
-            //creates rects for the buttons (modifiable aswell as width and height)
-
             if (InputManager.GetIsMouseButtonDown(InputManager.MouseButton.LeftButton, true) && InputManager.GetMouseBoundaries(true).Intersects(startButton.ButtonRectangle))
             {
                 
@@ -44,7 +39,6 @@ namespace Project_OD
 
         public void Draw(SpriteBatch spritebatch)
         {
-            bg.Draw(spritebatch);
             startButton.Draw(spritebatch);
             exitButton.Draw(spritebatch);
         }

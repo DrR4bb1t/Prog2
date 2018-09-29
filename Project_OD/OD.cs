@@ -17,7 +17,6 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch menuBatch;
         SpriteBatch igBatch;
-        Buttons button;
 
         Splash splash;
         GameMenu gameMenu;
@@ -28,7 +27,7 @@ namespace Project_OD
         Camera gameCamera;
         Physics gamePhysics;
         //gamestates
-        private static gameStates gamestate = gameStates.InGame;
+        private static gameStates gamestate = gameStates.GameMenu;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -176,6 +175,7 @@ namespace Project_OD
                               gameCamera.ViewMatrix);
 
                 map.DrawMap(igBatch);
+                hero.Draw(igBatch);
 
                 igBatch.End();
             }
