@@ -35,7 +35,7 @@ namespace Project_OD
         public static int ScreenHeight = 960;
 
         //init Level
-        int lvlID = 0;
+        public static int lvlID = 1;
 
         public OD()
         {
@@ -76,6 +76,7 @@ namespace Project_OD
             collision.IsCollision();
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            map.setEnemies();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
         }
@@ -142,7 +143,8 @@ namespace Project_OD
             if (gamestate == gameStates.InGame)
             {
                 gameCamera.Update(hero.Position);
-                //hero.Update(gameTime, 20, enemies, lvlID);
+                hero.Update(gameTime, 20, map.antagonists, lvlID);
+                map.updateEnemies(gameTime, hero);
             }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -175,7 +177,8 @@ namespace Project_OD
                               gameCamera.ViewMatrix);
 
                 map.DrawMap(igBatch);
-                hero.Draw(igBatch);
+                map.drawEnemies(igBatch);
+                hero.Draw(igBatch, hero.ATK, hero.skill);
 
                 igBatch.End();
             }

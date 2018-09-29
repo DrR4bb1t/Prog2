@@ -11,6 +11,10 @@ namespace Project_OD
 {
     public class Map
     {
+        Collision col;
+ 
+        public List<Enemy> antagonists;
+
         //public List<Texture2D> tile = new List<Texture2D>();
         //Texture2D texture;
 
@@ -538,6 +542,51 @@ namespace Project_OD
                         tileHeight),
                         Color.White);
                 }
+            }
+        }
+
+        Enemy antagonist_1;
+        Enemy antagonist_2;
+
+        public void setEnemies()
+        {
+            antagonists = new List<Enemy>() { };
+            col = new Collision(OD.lvlID);
+            col.IsCollision();
+
+            if(OD.lvlID == 0)
+            {
+                antagonist_1 = new Enemy();
+                antagonist_1.enemyinit(new Vector2(400, 720));
+                antagonist_1.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, col.rectangles);
+                antagonists.Add(antagonist_1);
+            }
+            if (OD.lvlID == 1)
+            {
+                antagonist_2 = new Enemy();
+                antagonist_2.enemyinit(new Vector2(600, 720));
+                antagonist_2.SetEntity(new Vector2(600, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, col.rectangles);
+                antagonists.Add(antagonist_2);
+            }
+        }
+
+        public void updateEnemies(GameTime gameTime, Player player)
+        {
+            if (OD.lvlID == 0)
+            {
+                antagonist_1.Update(gameTime, 20, player, OD.lvlID);
+            }
+            if (OD.lvlID == 1)
+            {
+                antagonist_2.Update(gameTime, 20, player, OD.lvlID);
+            }
+        }
+
+        public void drawEnemies(SpriteBatch spritebatch)
+        {
+            foreach (var antagonist in antagonists)
+            {
+                antagonist.Draw(spritebatch);
             }
         }
 
