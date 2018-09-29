@@ -126,9 +126,6 @@ namespace Project_OD
                     break;
                 case gameStates.InGame:
                     OD.setState(gameStates.InGame);
-                    {
-
-                    }
                     break;
                 case gameStates.Exit:
                     Exit();
@@ -149,7 +146,7 @@ namespace Project_OD
                 gameCamera.Update(hero.Position);
                 hero.Update(gameTime, 20, map.antagonists, lvlID);
                 map.updateEnemies(gameTime, hero);
-
+                //deathcounter
                 if (hero.Hp == 0)
                 {
                     deathcounter++;
