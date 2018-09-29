@@ -37,6 +37,8 @@ namespace Project_OD
 
         //init Level
         public static int lvlID = 0;
+        //death counter
+        int deathcounter = 0;
 
         public OD()
         {
@@ -147,6 +149,17 @@ namespace Project_OD
                 gameCamera.Update(hero.Position);
                 hero.Update(gameTime, 20, map.antagonists, lvlID);
                 map.updateEnemies(gameTime, hero);
+
+                if (hero.Hp == 0)
+                {
+                    deathcounter++;
+                    hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+                }
+                if (deathcounter == 3)
+                {
+                    setState(gameStates.GameMenu);
+                    deathcounter = 0;
+                }
             }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))

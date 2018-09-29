@@ -51,9 +51,11 @@
     <Compile Include="Managers\Collision.cs" />
     <Compile Include="Managers\SpriteAnimation.cs" />
     <Compile Include="Managers\SpriteManager.cs" />
+    <Compile Include="Managers\StageCompleted.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="States\GameMenu.cs" />
     <Compile Include="States\GameOptions.cs" />
+    <Compile Include="States\GameOver.cs" />
     <Compile Include="States\GameStates.cs" />
     <Compile Include="GameWindows.cs" />
     <Compile Include="States\InGame.cs" />
