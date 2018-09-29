@@ -29,45 +29,6 @@ namespace Project_OD
             target2 = target1 + new Vector2(100, 0);
             currTarget = target2;
         }
-
-        public void setEnemies(List<Enemy> enemies, Collision collision)
-        {
-            if(OD.lvlID == 0)
-            {
-                Enemy enemy_1 = new Enemy();
-                enemy_1.enemyinit(new Vector2(400, 720));
-                enemy_1.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
-            }
-            if (OD.lvlID == 1)
-            {
-
-            }
-            if (OD.lvlID == 2)
-            {
-
-            }
-            if (OD.lvlID == 3)
-            {
-
-            }
-            if (OD.lvlID == 4)
-            {
-
-            }
-            if (OD.lvlID == 5)
-            {
-
-            }
-            if (OD.lvlID == 6)
-            {
-
-            }
-            if (OD.lvlID == 7)
-            {
-
-            }
-        }
-
         protected Vector2 target1;
         protected Vector2 target2;
         protected Vector2 playerPos;

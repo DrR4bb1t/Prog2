@@ -25,8 +25,6 @@ namespace Project_OD
         Map map;
         Collision collision;
         Player hero;
-        Enemy antagonist;
-        private List<Enemy> antagonists;
         Camera gameCamera;
         Physics gamePhysics;
         //gamestates
@@ -38,7 +36,7 @@ namespace Project_OD
         public static int ScreenHeight = 960;
 
         //init Level
-        public static int lvlID = 0;
+        int lvlID = 0;
 
         public OD()
         {
@@ -79,10 +77,6 @@ namespace Project_OD
             collision.IsCollision();
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
-            antagonist = new Enemy();
-            antagonists = new List<Enemy>() { };
-            antagonist.setEnemies(antagonists, collision);
-            antagonists.Add(antagonist);
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
         }
@@ -148,12 +142,8 @@ namespace Project_OD
             //ig stuff
             if (gamestate == gameStates.InGame)
             {
-                hero.Update(gameTime, 20, antagonists, lvlID);
                 gameCamera.Update(hero.Position);
-                foreach (var antagonist in antagonists)
-                {
-                    antagonist.Update(gameTime, 20, hero, lvlID);
-                }
+                //hero.Update(gameTime, 20, enemies, lvlID);
             }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -186,12 +176,6 @@ namespace Project_OD
                               gameCamera.ViewMatrix);
 
                 map.DrawMap(igBatch);
-                hero.Draw(igBatch, hero.ATK, hero.skill);
-
-                foreach (var antagonist in antagonists)
-                {
-                    antagonist.Draw(igBatch);
-                }
 
                 igBatch.End();
             }
