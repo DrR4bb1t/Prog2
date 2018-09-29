@@ -24,10 +24,11 @@ namespace Project_OD
         Map map;
         Collision collision;
         Player hero;
+        PlayerUI ui;
         Camera gameCamera;
         Physics gamePhysics;
         //gamestates
-        private static gameStates gamestate = gameStates.GameMenu;
+        private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -78,6 +79,7 @@ namespace Project_OD
             collision.IsCollision();
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            ui = new PlayerUI();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
         }
@@ -180,6 +182,7 @@ namespace Project_OD
                 map.drawEnemies(igBatch);
                 map.drawNPCs(igBatch, hero);
                 hero.Draw(igBatch, hero.ATK, hero.skill);
+                ui.DrawUI(igBatch, hero, gameCamera);
 
                 igBatch.End();
             }

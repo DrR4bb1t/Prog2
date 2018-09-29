@@ -10,50 +10,32 @@ using Microsoft.Xna.Framework.Input;
 namespace Project_OD
 {
 
-    public class UI
+    public class PlayerUI
     {
-        private Texture2D healthBar;
-        private Texture2D skillBar;
-        private Texture2D inventar;
-    
-        private Vector2 healthBarPosition;
-        private Vector2 skillBarPosition;
-        private Vector2 inventarPosition;
+        Texture2D playerLife;
 
-        private Rectangle healthBarRect;
-        private Rectangle skillBarRect;
-        private Rectangle inventarRect;
-
-        UI()
+        public PlayerUI()
         {
-            healthBarPosition = new Vector2(50, 30);
-            healthBarRect = new Rectangle(0, 0, healthBar.Width, healthBar.Height);
+            playerLife = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/HP/heart0001");
         }
 
-        public void Update()
+        public void DrawUI(SpriteBatch spritebatch, Player player, Camera camera)
         {
-            //if(player gets dmg)
+            if (player.Hp > 60)
             {
-                healthBarRect.Width -= 1;
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
             }
-            if(InputManager.IsKeyPressed(Keys.I))
+            if (player.Hp > 30)
             {
-                //load the inventar
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
             }
-        }
-
-        public void LoadTexture()
-        {
-           // healthBar = OD.content.Load<Texture2D>("healthBar");
-           // skillBar = OD.content.Load<Texture2D>("skillBar");
-           // inventar = OD.content.Load<Texture2D>("inventar");
-        }
-
-        public void Draw(SpriteBatch spritebatch)
-        {
-            spritebatch.Draw(healthBar, healthBarPosition, healthBarRect, Color.White);
-            spritebatch.Draw(skillBar, skillBarPosition, skillBarRect, Color.White);
-            spritebatch.Draw(inventar, inventarPosition, inventarRect, Color.White);
+            if (player.Hp > 0)
+            {
+                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
+            }
         }
     }
 }

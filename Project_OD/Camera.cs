@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project_OD
 {
-    class Camera
+    public class Camera
     {
         /// <summary>
         /// Position of camera.

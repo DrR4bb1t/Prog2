@@ -593,6 +593,9 @@ namespace Project_OD
 
         SpriteFont font;
 
+        Texture2D enemyHealthBar;
+        Texture2D speakBox;
+
         NPC npc_1;
         NPC npc_2;
 
@@ -600,6 +603,8 @@ namespace Project_OD
         {
             npcs = new List<NPC>() { };
             font = OD.content.Load<SpriteFont>("fonts/arial");
+            enemyHealthBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
+            speakBox = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/Window1");
 
             if (OD.lvlID == 0)
             {
@@ -614,14 +619,24 @@ namespace Project_OD
 
         public void drawNPCs(SpriteBatch spritebatch, Player player)
         {
+            //spritebatch.Draw(speakBox, new Rectangle(10, 10, speakBox.Width, speakBox.Height), Color.White);
+
             foreach (var npc in npcs)
             {
                 npc.Draw(spritebatch);
             }
-            
-            if (npc_1.NPCintersection(npc_1, player) == true)
+
+            foreach (var antagonist in antagonists)
             {
-                spritebatch.DrawString(font, "you are doomed!", new Vector2(npc_1.NPCRectangle.X, npc_1.NPCRectangle.Y - 30), Color.Black);
+                spritebatch.Draw(enemyHealthBar, new Rectangle((int)antagonist.Position.X - 30, (int)antagonist.Position.Y - 20, antagonist.Hp, 10), Color.White);
+            }
+            if (OD.lvlID == 0)
+            {
+                if (npc_1.NPCintersection(npc_1, player) == true)
+                {
+                    
+                    //TextBox.DrawString(spritebatch, font, "fasdewafawefEFAWFAEWFAWEFAWEFWAFWAFEWAFWEFAWEWE", new Rectangle(speakBox.Width, speakBox.Height, 10, 10));
+                }
             }
             
         }
