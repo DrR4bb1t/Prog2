@@ -15,41 +15,28 @@ namespace Project_OD
     {
         public static ContentManager content;
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteBatch spriteBatch_2;
-
-        SpriteFont font;
+        SpriteBatch menuBatch;
+        SpriteBatch igBatch;
+        Buttons button;
 
         Splash splash;
         GameMenu gameMenu;
 
-        Camera camera;
         Map map;
         Collision collision;
-        int lvlID = 0;
-        //private List<Rectangle> rectangles;
-        private List<Enemy> enemies;
-        Player player;
-        Player NPC;
-        Enemy enemy;
-        Enemy enemy_2;
-        Enemy enemy_3;
-
-        Texture2D playerHPDisplay;
-
-        Texture2D hpBar;
-        Texture2D playerHeart;
-
-        Buttons button;
-
-        bool rectangleSwitcher = false;
-
+        Player hero;
+        Camera gameCamera;
+        Physics gamePhysics;
+        //gamestates
         private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 960;
+
+        //init Level
+        int lvlID = 0;
 
         public OD()
         {
@@ -59,7 +46,6 @@ namespace Project_OD
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             content = Content;
-
         }
 
         /// <summary>
@@ -80,72 +66,19 @@ namespace Project_OD
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteBatch_2 = new SpriteBatch(GraphicsDevice);
-
+            menuBatch = new SpriteBatch(GraphicsDevice);
+            igBatch = new SpriteBatch(GraphicsDevice);
+            //menu stuff
             splash = new Splash();
             gameMenu = new GameMenu();
-
-            if (lvlID == 6 || lvlID == 0)
-            {
-                camera = new Camera(1600);
-            }
-            else
-            {
-                camera = new Camera(4800);
-            }
-
+            //ig stuff
             map = new Map(lvlID);
             collision = new Collision(lvlID);
-            //rectangles = new List<Rectangle>(){};
-            //for (int y = 0; y < map.tileMapHeight; y++)
-            //{
-            //    for (int x = 0; x < map.tileMapWidth; x++)
-            //    {
-            //        if (map.lvl1_Forelayer[y, x] == 2|| map.lvl1_Forelayer[y, x] == 17)
-            //        {
-            //            rectangles.Add(new Rectangle(x*64, y*64, 64, 64));
-            //        }
-            //    }
-            //}
             collision.IsCollision();
-            enemies = new List<Enemy>() { };
-            //get enemy data
-
-            hpBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
-            playerHeart = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/HP/heart0001");
-
-            button = new Buttons(new Vector2(10, 10), "Textures/Button/start_EN");
-
-            player = new Player();
-            NPC = new Player();
-
-            enemy = new Enemy();
-            enemy.enemyinit(new Vector2(400, 720));
-            enemy.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
-
-            enemy_2 = new Enemy();
-            enemy_2.enemyinit(new Vector2(1200, 720));
-            enemy_2.SetEntity(new Vector2(1200, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
-
-            enemy_3 = new Enemy();
-            enemy_3.enemyinit(new Vector2(1800, 720));
-            enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
-
-
-            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
-            NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
-
-            font = OD.content.Load<SpriteFont>("fonts/arial");
-
-            Physics physics = new Physics();
-            enemies.Add(enemy);
-            enemies.Add(enemy_2);
-            enemies.Add(enemy_3);
-
-
+            hero = new Player();
+            hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            gameCamera = new Camera(1600);
+            gamePhysics = new Physics();
         }
 
         /// <summary>
@@ -155,8 +88,6 @@ namespace Project_OD
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-
-
         }
 
         /// <summary>
@@ -203,23 +134,17 @@ namespace Project_OD
             }
 
             InputManager.Update();
-
+            //menu stuff
             if (gamestate == gameStates.GameMenu)
             {
                 gameMenu.Update();
             }
-
-            camera.Update(player.Position);
-
-
-            enemy.Update(gameTime, 20, player, lvlID);
-            enemy_2.Update(gameTime, 20, player, lvlID);
-            enemy_3.Update(gameTime, 20, player, lvlID);
-            camera.Update(player.Position);
-            player.Update(gameTime, 20, enemies, lvlID);
-
-
-
+            //ig stuff
+            if (gamestate == gameStates.InGame)
+            {
+                gameCamera.Update(hero.Position);
+                //hero.Update(gameTime, 20, enemies, lvlID);
+            }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -237,71 +162,24 @@ namespace Project_OD
 
             if (gamestate == gameStates.GameMenu)
             {
-                spriteBatch_2.Begin();
-                gameMenu.Draw(spriteBatch_2);
-                spriteBatch_2.End();
-
+                menuBatch.Begin();
+                gameMenu.Draw(menuBatch);
+                menuBatch.End();
             }
 
             if (gamestate == gameStates.InGame)
             {
 
-                spriteBatch.Begin(SpriteSortMode.Deferred,
+                igBatch.Begin(SpriteSortMode.Deferred,
                               BlendState.AlphaBlend,
                               null, null, null, null,
-                              camera.ViewMatrix);
+                              gameCamera.ViewMatrix);
 
-                map.DrawMap(spriteBatch);
-                enemy.Draw(spriteBatch);
-                enemy_2.Draw(spriteBatch);
-                enemy_3.Draw(spriteBatch);
+                map.DrawMap(igBatch);
 
-                player.Draw(spriteBatch, player.ATK, player.skill);
-                NPC.Draw(spriteBatch);
-
-                if (player.rect.Intersects(NPC.rect))
-                {
-                    if (InputManager.IsKeyPressed(Keys.P))
-                        rectangleSwitcher = true;
-                    if (rectangleSwitcher == true)
-                    {
-                        spriteBatch.DrawString(font, "you are doomed!", new Vector2(NPC.Position.X, NPC.Position.Y - 30), Color.Black);
-                        if (!player.rect.Intersects(NPC.rect) && InputManager.IsKeyPressed(Keys.P))
-                        {
-                            rectangleSwitcher = false;
-                        }
-                    }
-                    else rectangleSwitcher = false;
-                }
-
-                foreach (var enemy in enemies)
-                {
-                    spriteBatch.Draw(hpBar, new Rectangle((int)enemy.Position.X - 30, (int)enemy.Position.Y - 20, enemy.Hp, 10), Color.White);
-                }
-                if (player.Hp > 60)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 240, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-                if (player.Hp > 30)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 170, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-                if (player.Hp > 0)
-                {
-                    spriteBatch.Draw(playerHeart, new Rectangle((int)camera.getPosition.X + 100, (int)camera.getPosition.Y + 860, 50, 50), Color.White);
-                }
-
-                spriteBatch.End();
-
+                igBatch.End();
             }
-
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
-
         }
     }
 }
