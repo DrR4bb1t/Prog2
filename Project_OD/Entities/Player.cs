@@ -39,6 +39,11 @@ namespace Project_OD
         private bool skill2Cooldown;
         private bool skill3Cooldown;
         private bool skill4Cooldown;
+        public bool getWCooldown { get => skill1Cooldown; }
+        public bool getECooldown { get => skill2Cooldown; }
+        public bool getRCooldown { get => skill3Cooldown; }
+        public bool getTCooldown { get => skill4Cooldown; }
+
         public bool jumpAttack = false;
         private bool predator2 = true;
         private bool technokrat2 = false;
