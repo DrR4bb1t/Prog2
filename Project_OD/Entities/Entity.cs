@@ -163,6 +163,7 @@ namespace Project_OD
         protected Vector2 moveTo;
         protected Vector2 position = new Vector2(0, 0);
         public Rectangle rect;
+        public Rectangle GetRectangle { get => rect; }
         public Rectangle atkRect;
         protected int width = 1;
         protected int height = 1;

@@ -14,6 +14,7 @@ namespace Project_OD
         Collision col;
  
         public List<Enemy> antagonists;
+        public List<NPC> npcs;
 
         //public List<Texture2D> tile = new List<Texture2D>();
         //Texture2D texture;
@@ -588,6 +589,41 @@ namespace Project_OD
             {
                 antagonist.Draw(spritebatch);
             }
+        }
+
+        SpriteFont font;
+
+        NPC npc_1;
+        NPC npc_2;
+
+        public void setNPCs()
+        {
+            npcs = new List<NPC>() { };
+            font = OD.content.Load<SpriteFont>("fonts/arial");
+
+            if (OD.lvlID == 0)
+            {
+                npc_1 = new NPC(new Vector2 (600, 720), "Project_OD_Assets/Entity_Assets/NPC/_IDLE_000");
+                npcs.Add(npc_1);
+            }
+            if (OD.lvlID == 1)
+            {
+
+            }
+        }
+
+        public void drawNPCs(SpriteBatch spritebatch, Player player)
+        {
+            foreach (var npc in npcs)
+            {
+                npc.Draw(spritebatch);
+            }
+            
+            if (npc_1.NPCintersection(npc_1, player) == true)
+            {
+                spritebatch.DrawString(font, "you are doomed!", new Vector2(npc_1.NPCRectangle.X, npc_1.NPCRectangle.Y - 30), Color.Black);
+            }
+            
         }
 
     }

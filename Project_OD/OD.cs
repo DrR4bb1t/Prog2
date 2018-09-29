@@ -35,7 +35,7 @@ namespace Project_OD
         public static int ScreenHeight = 960;
 
         //init Level
-        public static int lvlID = 1;
+        public static int lvlID = 0;
 
         public OD()
         {
@@ -72,11 +72,12 @@ namespace Project_OD
             gameMenu = new GameMenu();
             //ig stuff
             map = new Map(lvlID);
+            map.setEnemies();
+            map.setNPCs();
             collision = new Collision(lvlID);
             collision.IsCollision();
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
-            map.setEnemies();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
         }
@@ -113,7 +114,6 @@ namespace Project_OD
                 case gameStates.GameMenu:
                     {
                         setState(gameStates.GameMenu);
-                        //gameMenu.Update();
                     }
                     break;
                 case gameStates.StartGame:
@@ -178,6 +178,7 @@ namespace Project_OD
 
                 map.DrawMap(igBatch);
                 map.drawEnemies(igBatch);
+                map.drawNPCs(igBatch, hero);
                 hero.Draw(igBatch, hero.ATK, hero.skill);
 
                 igBatch.End();
