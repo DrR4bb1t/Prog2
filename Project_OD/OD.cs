@@ -27,7 +27,7 @@ namespace Project_OD
         PlayerUI ui;
         Camera gameCamera;
         Physics gamePhysics;
-        Story story;
+        //Story story;
         //gamestates
         private static gameStates gamestate = gameStates.GameMenu;
         public static gameStates getState() { return gamestate; }
@@ -83,11 +83,11 @@ namespace Project_OD
             collision = new Collision(lvlID);
             collision.IsCollision();
             hero = new Player();
-            hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 12, 2, collision.rectangles);
             ui = new PlayerUI();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
-            story = new Story();
+            //story = new Story();
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Project_OD
                     deathcounter = 0;
                 }
             }
-            story.updateStory();
+            //story.updateStory();
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -193,16 +193,14 @@ namespace Project_OD
                               BlendState.AlphaBlend,
                               null, null, null, null,
                               gameCamera.ViewMatrix);
-                if (Story.ProgressCounter == 2)
-                    
-                {
+          
                     map.DrawMap(igBatch);
                     map.drawEnemies(igBatch);
                     map.drawNPCs(igBatch, hero);
                     hero.Draw(igBatch, hero.ATK, hero.skill);
                     ui.DrawUI(igBatch, hero, gameCamera);
-                }
-                story.drawStory(igBatch);
+                
+                //story.drawStory(igBatch);
 
                 igBatch.End();
             }
