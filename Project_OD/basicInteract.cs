@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,22 +10,21 @@ namespace Project_OD
 {
     public class basicInteract
     {
-        
-        private bool doInteract = false;
-
-        basicInteract() { }
-
-        public void Interactions(NPC npc, Player player)
+        Texture2D speakBox;
+        NPC NPC;
+        Rectangle Textbox;
+        public basicInteract (NPC npc)
         {
-            if(InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.P) && npc.NPCRectangle.Intersects(player.rect))
-            {
-                doInteract = true;
-                if(InputManager.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.P))
-                {
-                    doInteract = false;
-                }
-            }
+            this.NPC = npc;
+            speakBox = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/Window1");
+            this.Textbox = new Rectangle(this.NPC.NPCRectangle.X - 55, this.NPC.NPCRectangle.Y - 175, this.speakBox.Width - 800, this.speakBox.Height - 1100);
         }
-
+        public void DrawInteraction(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(this.speakBox, this.Textbox, Color.White);
+        }
     }
 }
+
+
+

@@ -193,7 +193,8 @@ namespace Project_OD
                 map.drawNPCs(igBatch, hero);
                 hero.Draw(igBatch, hero.ATK, hero.skill);
                 ui.DrawUI(igBatch, hero, gameCamera);
-
+                
+                //TextBox.DrawString(igBatch, font, "lul", new Rectangle(10, 10, speakBox.Width -800, speakBox.Height - 800));
                 igBatch.End();
             }
             base.Draw(gameTime);

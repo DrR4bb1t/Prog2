@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="basicInteract.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="doRect.cs" />
     <Compile Include="Entities\Boss.cs" />
