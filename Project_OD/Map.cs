@@ -602,21 +602,9 @@ namespace Project_OD
         }
 
         SpriteFont font;
-        private static Texture2D rect;
-
-        
-
         Texture2D enemyHealthBar;
-        Texture2D speakBox;
-
         NPC npc_1;
-
-
         NPC npc_2;
-
-
-        
-
 
         public void setNPCs()
         {
@@ -624,7 +612,7 @@ namespace Project_OD
             
             enemyHealthBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
             font = OD.content.Load<SpriteFont>("fonts/arial");
-            speakBox = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/Window1");
+           
 
             if (OD.lvlID == 0)
             {
@@ -644,9 +632,6 @@ namespace Project_OD
 
         public void drawNPCs(SpriteBatch spritebatch, Player player)
         {
-
-
-
             foreach (var npc in npcs)
             {
                 npc.Draw(spritebatch);

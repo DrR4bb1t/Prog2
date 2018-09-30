@@ -27,6 +27,7 @@ namespace Project_OD
         PlayerUI ui;
         Camera gameCamera;
         Physics gamePhysics;
+        Story story;
         //gamestates
         private static gameStates gamestate = gameStates.GameMenu;
         public static gameStates getState() { return gamestate; }
@@ -86,7 +87,7 @@ namespace Project_OD
             ui = new PlayerUI();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
-            //speakBox = OD.content.Load<Texture2D>("npcs/dialogue/friedrich_1");
+            story = new Story();
         }
 
         /// <summary>
@@ -161,6 +162,7 @@ namespace Project_OD
                     deathcounter = 0;
                 }
             }
+            story.updateStory();
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -180,7 +182,6 @@ namespace Project_OD
             {
                 
                 menuBatch.Begin();
-                //menuBatch.Draw(speakBox, new Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White );
                 gameMenu.Draw(menuBatch);
                 menuBatch.End();
             }
@@ -192,12 +193,17 @@ namespace Project_OD
                               BlendState.AlphaBlend,
                               null, null, null, null,
                               gameCamera.ViewMatrix);
+                if (Story.ProgressCounter == 2)
+                    
+                {
+                    map.DrawMap(igBatch);
+                    map.drawEnemies(igBatch);
+                    map.drawNPCs(igBatch, hero);
+                    hero.Draw(igBatch, hero.ATK, hero.skill);
+                    ui.DrawUI(igBatch, hero, gameCamera);
+                }
+                story.drawStory(igBatch);
 
-                map.DrawMap(igBatch);
-                map.drawEnemies(igBatch);
-                map.drawNPCs(igBatch, hero);
-                hero.Draw(igBatch, hero.ATK, hero.skill);
-                ui.DrawUI(igBatch, hero, gameCamera);
                 igBatch.End();
             }
             base.Draw(gameTime);
