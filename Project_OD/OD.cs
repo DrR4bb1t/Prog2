@@ -28,15 +28,17 @@ namespace Project_OD
         Camera gameCamera;
         Physics gamePhysics;
         //gamestates
-        private static gameStates gamestate = gameStates.InGame;
+        private static gameStates gamestate = gameStates.GameMenu;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
+
+
 
         public static int ScreenWidth = 1600;
         public static int ScreenHeight = 960;
 
         //init Level
-        public static int lvlID = 0;
+        public static int lvlID = 1;
         //death counter
         int deathcounter = 0;
 
@@ -84,6 +86,7 @@ namespace Project_OD
             ui = new PlayerUI();
             gameCamera = new Camera(1600);
             gamePhysics = new Physics();
+            //speakBox = OD.content.Load<Texture2D>("npcs/dialogue/friedrich_1");
         }
 
         /// <summary>
@@ -175,7 +178,9 @@ namespace Project_OD
 
             if (gamestate == gameStates.GameMenu)
             {
+                
                 menuBatch.Begin();
+                //menuBatch.Draw(speakBox, new Rectangle(0, 0, ScreenWidth, ScreenHeight), Color.White );
                 gameMenu.Draw(menuBatch);
                 menuBatch.End();
             }
@@ -193,8 +198,6 @@ namespace Project_OD
                 map.drawNPCs(igBatch, hero);
                 hero.Draw(igBatch, hero.ATK, hero.skill);
                 ui.DrawUI(igBatch, hero, gameCamera);
-                
-                //TextBox.DrawString(igBatch, font, "lul", new Rectangle(10, 10, speakBox.Width -800, speakBox.Height - 800));
                 igBatch.End();
             }
             base.Draw(gameTime);

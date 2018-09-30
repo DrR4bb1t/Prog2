@@ -575,11 +575,18 @@ namespace Project_OD
         {
             if (OD.lvlID == 0)
             {
-                antagonist_1.Update(gameTime, 20, player, OD.lvlID);
+                if(antagonist_1.Hp>0)
+                {
+                    antagonist_1.Update(gameTime, 20, player, OD.lvlID);
+                }
+                
             }
             if (OD.lvlID == 1)
             {
-                antagonist_2.Update(gameTime, 20, player, OD.lvlID);
+                if (antagonist_2.Hp > 0)
+                {
+                    antagonist_2.Update(gameTime, 20, player, OD.lvlID);
+                }
             }
         }
 
@@ -587,7 +594,10 @@ namespace Project_OD
         {
             foreach (var antagonist in antagonists)
             {
-                antagonist.Draw(spritebatch);
+                if (antagonist.Hp > 0)
+                {
+                    antagonist.Draw(spritebatch);
+                }
             }
         }
 
@@ -600,10 +610,10 @@ namespace Project_OD
         Texture2D speakBox;
 
         NPC npc_1;
-        basicInteract npc1;
+
 
         NPC npc_2;
-        basicInteract npc2;
+
 
         
 
@@ -620,11 +630,11 @@ namespace Project_OD
             {
                 npc_1 = new NPC(new Vector2 (600, 720), "Project_OD_Assets/Entity_Assets/NPC/_IDLE_000");
                 npcs.Add(npc_1);
-                npc1 = new basicInteract(npc_1);
+                
 
                 npc_2 = new NPC(new Vector2(800, 720), "Project_OD_Assets/Entity_Assets/NPC/_IDLE_000");
                 npcs.Add(npc_2);
-                npc2 = new basicInteract(npc_2);
+                
             }
             if (OD.lvlID == 1)
             {
@@ -635,8 +645,7 @@ namespace Project_OD
         public void drawNPCs(SpriteBatch spritebatch, Player player)
         {
 
-            npc1.DrawInteraction(spritebatch);
-            npc2.DrawInteraction(spritebatch);
+
 
             foreach (var npc in npcs)
             {

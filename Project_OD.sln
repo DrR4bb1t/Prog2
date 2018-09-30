@@ -9,12 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Debug|x86.ActiveCfg = Debug|x86
 		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Debug|x86.Build.0 = Debug|x86
+		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Release|Any CPU.ActiveCfg = Release|x86
 		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Release|x86.ActiveCfg = Release|x86
 		{8D84F32A-52FD-4CD7-A045-5557E3CE6C07}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection

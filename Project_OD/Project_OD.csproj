@@ -72,6 +72,7 @@
     <Compile Include="Skills.cs" />
     <Compile Include="States\Splash.cs" />
     <Compile Include="Managers\TextureManager.cs" />
+    <Compile Include="Story.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="UI.cs" />
   </ItemGroup>
