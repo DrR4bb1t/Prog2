@@ -26,7 +26,7 @@ namespace Project_OD
         Camera camera;
         Map map;
         Collision collision;
-        int lvlID = 0;
+        int lvlID = 1;
         //private List<Rectangle> rectangles;
         private List<Enemy> enemies;
         Player player;
