@@ -29,7 +29,7 @@ namespace Project_OD
         Physics gamePhysics;
         //Story story;
         //gamestates
-        private static gameStates gamestate = gameStates.GameMenu;
+        private static gameStates gamestate = gameStates.InGame;
         public static gameStates getState() { return gamestate; }
         public static void setState(gameStates state) { gamestate = state; }
 
@@ -85,7 +85,7 @@ namespace Project_OD
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 12, 2, collision.rectangles);
             ui = new PlayerUI();
-            gameCamera = new Camera(1600);
+            gameCamera = new Camera(4800);
             gamePhysics = new Physics();
             //story = new Story();
         }

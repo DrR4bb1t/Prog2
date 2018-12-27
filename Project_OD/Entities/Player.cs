@@ -256,19 +256,19 @@ namespace Project_OD
 
             isAttacking = false;
 
-            dir = "";
-            if (state.IsKeyDown(Keys.Right))
-            {
-                dir = "R";
-                dirR = true;
-                dirL = false;
-            }
-            else if (state.IsKeyDown(Keys.Left))
-            {
-                dir = "L";
-                dirR = false;
-                dirL = true;
-            }
+            //dir = "";
+            //if (state.IsKeyDown(Keys.Right))
+            //{
+            //    dir = "R";
+            //    dirR = true;
+            //    dirL = false;
+            //}
+            //else if (state.IsKeyDown(Keys.Left))
+            //{
+            //    dir = "L";
+            //    dirR = false;
+            //    dirL = true;
+            //}
             if (state.IsKeyDown(Keys.Up) && onGround)
             {
                 jumpSpeed = GetjumpMaxSpeed();
@@ -278,14 +278,14 @@ namespace Project_OD
 
             ///Needed for lvl tests
             ///--------------------
-            //if (dirR == true)
-            //{
-            //    dir = "R";
-            //}
-            //if (dirL == true)
-            //{
-            //    dir = "L";
-            //}
+            if (dirR == true)
+            {
+                dir = "R";
+            }
+            if (dirL == true)
+            {
+                dir = "L";
+            }
             ///---------------------
 
             //Console.WriteLine("Player X: {0}, Y: {1}", position.X, position.Y);
