@@ -98,7 +98,7 @@ namespace Project_OD
             }
 
             map = new Map(lvlID);
-            collision = new Collision(lvlID);
+            collision = new Collision();
             //rectangles = new List<Rectangle>(){};
             //for (int y = 0; y < map.tileMapHeight; y++)
             //{
@@ -110,6 +110,7 @@ namespace Project_OD
             //        }
             //    }
             //}
+            collision.CreateCollision(lvlID);
             collision.IsCollision();
             enemies = new List<Enemy>() { };
             //get enemy data
@@ -135,7 +136,7 @@ namespace Project_OD
             enemy_3.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, collision.rectangles);
 
 
-            player.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
+            player.SetEntity(new Vector2(4500, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
             NPC.SetEntity(new Vector2(2300, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 7, 2, collision.rectangles);
 
             font = OD.content.Load<SpriteFont>("fonts/arial");
@@ -218,8 +219,15 @@ namespace Project_OD
                 camera.Update(player.Position);
                 player.Update(gameTime, 20, enemies, lvlID);
 
+            if (player.Position.X == 4100 && player.Position.Y == 720)
+            {
+                collision.CollisionClear();
+                lvlID = 0;
+                map.switchLevel(lvlID);
+                collision.CreateCollision(lvlID);
+            }
 
-
+            Console.WriteLine(player.Position.X);
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

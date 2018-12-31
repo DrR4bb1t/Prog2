@@ -431,7 +431,7 @@ namespace Project_OD
             LoadTextures();
         }
 
-        void switchLevel(int levelnumber)
+        public void switchLevel(int levelnumber)
         {
             switch (levelnumber)
             {
