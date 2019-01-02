@@ -15,6 +15,8 @@ namespace Project_OD
  
         public List<Enemy> antagonists;
         public List<NPC> npcs;
+        Texture2D enemyHealthBar;
+
 
         //public List<Texture2D> tile = new List<Texture2D>();
         //Texture2D texture;
@@ -436,7 +438,7 @@ namespace Project_OD
             LoadTextures();
         }
 
-        void switchLevel(int levelnumber)
+        public void switchLevel(int levelnumber)
         {
             switch (levelnumber)
             {
@@ -552,16 +554,19 @@ namespace Project_OD
         public void setEnemies()
         {
             antagonists = new List<Enemy>() { };
-            col = new Collision(OD.lvlID);
+            col = new Collision();
+            col.LoadCollisionMap(OD.lvlID);
             col.IsCollision();
+            enemyHealthBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
 
-            if(OD.lvlID == 0)
-            {
-                antagonist_1 = new Enemy();
-                antagonist_1.enemyinit(new Vector2(400, 720));
-                antagonist_1.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, col.rectangles);
-                antagonists.Add(antagonist_1);
-            }
+
+            //if(OD.lvlID == 0)
+            //{
+            //    antagonist_1 = new Enemy();
+            //    antagonist_1.enemyinit(new Vector2(400, 720));
+            //    antagonist_1.SetEntity(new Vector2(400, 720), 50, 46, "spritesheet-test2_1.png", null, 120, 1, 100, 10, 50, 0, 7, 2, col.rectangles);
+            //    antagonists.Add(antagonist_1);
+            //}
             if (OD.lvlID == 1)
             {
                 antagonist_2 = new Enemy();
@@ -575,10 +580,10 @@ namespace Project_OD
         {
             if (OD.lvlID == 0)
             {
-                if(antagonist_1.Hp>0)
-                {
-                    antagonist_1.Update(gameTime, 20, player, OD.lvlID);
-                }
+                //if(antagonist_1.Hp>0)
+                //{
+                //    antagonist_1.Update(gameTime, 20, player, OD.lvlID);
+                //}
                 
             }
             if (OD.lvlID == 1)
@@ -599,10 +604,14 @@ namespace Project_OD
                     antagonist.Draw(spritebatch);
                 }
             }
+
+            foreach (var antagonist in antagonists)
+            {
+                spritebatch.Draw(enemyHealthBar, new Rectangle((int)antagonist.Position.X - 30, (int)antagonist.Position.Y - 20, antagonist.Hp, 10), Color.White);
+            }
         }
 
         SpriteFont font;
-        Texture2D enemyHealthBar;
         NPC npc_1;
         NPC npc_2;
 
@@ -610,7 +619,6 @@ namespace Project_OD
         {
             npcs = new List<NPC>() { };
             
-            enemyHealthBar = OD.content.Load<Texture2D>("Project_OD_Assets/HUD/lifebar");
             font = OD.content.Load<SpriteFont>("fonts/arial");
            
 
@@ -624,10 +632,7 @@ namespace Project_OD
                 npcs.Add(npc_2);
                 
             }
-            if (OD.lvlID == 1)
-            {
 
-            }
         }
 
         public void drawNPCs(SpriteBatch spritebatch, Player player)
@@ -637,10 +642,6 @@ namespace Project_OD
                 npc.Draw(spritebatch);
             }
 
-            foreach (var antagonist in antagonists)
-            {
-                spritebatch.Draw(enemyHealthBar, new Rectangle((int)antagonist.Position.X - 30, (int)antagonist.Position.Y - 20, antagonist.Hp, 10), Color.White);
-            }
             if (OD.lvlID == 0)
             {
                 

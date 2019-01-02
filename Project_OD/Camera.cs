@@ -28,7 +28,7 @@ namespace Project_OD
         /// Width and height of the shown screen.
         /// </summary>
         public int ScreenWidth { get => GraphicsDeviceManager.DefaultBackBufferWidth; }
-        public int ScreenHeight { get => GraphicsDeviceManager.DefaultBackBufferHeight; }
+        public int ScreenHeight { get => GraphicsDeviceManager.DefaultBackBufferWidth; }
 
         public Camera(int viewportWidth)
         {
@@ -63,6 +63,7 @@ namespace Project_OD
         public void ViewportCalc(int viewportWidth)
         {
             maxCamWidth = viewportWidth;
+            
         }
 
     }

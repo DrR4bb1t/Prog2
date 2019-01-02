@@ -257,18 +257,18 @@ namespace Project_OD
             isAttacking = false;
 
             //dir = "";
-            //if (state.IsKeyDown(Keys.Right))
-            //{
-            //    dir = "R";
-            //    dirR = true;
-            //    dirL = false;
-            //}
-            //else if (state.IsKeyDown(Keys.Left))
-            //{
-            //    dir = "L";
-            //    dirR = false;
-            //    dirL = true;
-            //}
+            if (state.IsKeyDown(Keys.Right))
+            {
+                dir = "R";
+                dirR = true;
+                dirL = false;
+            }
+            else if (state.IsKeyDown(Keys.Left))
+            {
+                dir = "L";
+                dirR = false;
+                dirL = true;
+            }
             if (state.IsKeyDown(Keys.Up) && onGround)
             {
                 jumpSpeed = GetjumpMaxSpeed();

@@ -133,9 +133,8 @@ namespace Project_OD
             { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, },
         };
 
-        public Collision(int lvlID)
+        public Collision()
         {
-            LoadCollisionMap(lvlID);
         }
 
         public void LoadCollisionMap(int lvlID)
@@ -181,6 +180,10 @@ namespace Project_OD
                     }
                 }
             }
+        }
+        public void ClearCollision()
+        {
+            rectangles.Clear();
         }
     }
 }

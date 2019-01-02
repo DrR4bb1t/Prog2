@@ -38,47 +38,88 @@ namespace Project_OD
             tSkillInActive = OD.content.Load<Texture2D>("Project_OD_Assets/Entity_Assets/Skill_Icon/Pred/runes-orange-3-cooldown");
         }
 
-        public void DrawUI(SpriteBatch spritebatch, Player player, Camera camera)
+        public void DrawUI(SpriteBatch spritebatch, Player player)
         {
-            spritebatch.Draw(playerSkillBar, new Rectangle((int)camera.getPosition.X - 25, (int)camera.getPosition.Y + 830, playerSkillBar.Width, playerSkillBar.Height), Color.White);
-                if(player.getWCooldown == false)
-                {
-                spritebatch.Draw(wSkillActive, new Rectangle((int)camera.getPosition.X + 552, (int)camera.getPosition.Y + 861, wSkillActive.Width, wSkillActive.Height), Color.White);
-                }
-                else spritebatch.Draw(wSkillInActive, new Rectangle((int)camera.getPosition.X + 552, (int)camera.getPosition.Y + 861, wSkillInActive.Width, wSkillInActive.Height), Color.White);
+            //spritebatch.Draw(playerSkillBar, new Rectangle((int)camera.getPosition.X - 25, (int)camera.getPosition.Y + 830, playerSkillBar.Width, playerSkillBar.Height), Color.White);
+            //    if(player.getWCooldown == false)
+            //    {
+            //    spritebatch.Draw(wSkillActive, new Rectangle((int)camera.getPosition.X + 552, (int)camera.getPosition.Y + 861, wSkillActive.Width, wSkillActive.Height), Color.White);
+            //    }
+            //    else spritebatch.Draw(wSkillInActive, new Rectangle((int)camera.getPosition.X + 552, (int)camera.getPosition.Y + 861, wSkillInActive.Width, wSkillInActive.Height), Color.White);
 
-                if(player.getECooldown == false)
-                {
-                spritebatch.Draw(eSkillActive, new Rectangle((int)camera.getPosition.X + 638, (int)camera.getPosition.Y + 861, eSkillActive.Width, eSkillActive.Height), Color.White);
-                }
-                else spritebatch.Draw(eSkillInActive, new Rectangle((int)camera.getPosition.X + 638, (int)camera.getPosition.Y + 861, eSkillInActive.Width, eSkillInActive.Height), Color.White);
+            //    if(player.getECooldown == false)
+            //    {
+            //    spritebatch.Draw(eSkillActive, new Rectangle((int)camera.getPosition.X + 638, (int)camera.getPosition.Y + 861, eSkillActive.Width, eSkillActive.Height), Color.White);
+            //    }
+            //    else spritebatch.Draw(eSkillInActive, new Rectangle((int)camera.getPosition.X + 638, (int)camera.getPosition.Y + 861, eSkillInActive.Width, eSkillInActive.Height), Color.White);
 
-                if(player.getRCooldown == false)
-                {
-                spritebatch.Draw(rSkillActive, new Rectangle((int)camera.getPosition.X + 728, (int)camera.getPosition.Y + 861, rSkillActive.Width, rSkillActive.Height), Color.White);
-                }
-                else spritebatch.Draw(rSkillInActive, new Rectangle((int)camera.getPosition.X + 728, (int)camera.getPosition.Y + 861, rSkillInActive.Width, rSkillInActive.Height), Color.White);
+            //    if(player.getRCooldown == false)
+            //    {
+            //    spritebatch.Draw(rSkillActive, new Rectangle((int)camera.getPosition.X + 728, (int)camera.getPosition.Y + 861, rSkillActive.Width, rSkillActive.Height), Color.White);
+            //    }
+            //    else spritebatch.Draw(rSkillInActive, new Rectangle((int)camera.getPosition.X + 728, (int)camera.getPosition.Y + 861, rSkillInActive.Width, rSkillInActive.Height), Color.White);
 
-                if (player.getTCooldown == false)
-                {
-                spritebatch.Draw(tSkillActive, new Rectangle((int)camera.getPosition.X + 813, (int)camera.getPosition.Y + 861, rSkillActive.Width, rSkillActive.Height), Color.White);
-                }
-                else spritebatch.Draw(tSkillInActive, new Rectangle((int)camera.getPosition.X + 813, (int)camera.getPosition.Y + 861, tSkillInActive.Width, tSkillInActive.Height), Color.White);
+            //    if (player.getTCooldown == false)
+            //    {
+            //    spritebatch.Draw(tSkillActive, new Rectangle((int)camera.getPosition.X + 813, (int)camera.getPosition.Y + 861, rSkillActive.Width, rSkillActive.Height), Color.White);
+            //    }
+            //    else spritebatch.Draw(tSkillInActive, new Rectangle((int)camera.getPosition.X + 813, (int)camera.getPosition.Y + 861, tSkillInActive.Width, tSkillInActive.Height), Color.White);
+
+            //if (player.Hp > 60)
+            //{
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 220, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 290, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //}
+            //else if (player.Hp > 30)
+            //{
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 220, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //}
+            //else if (player.Hp > 0)
+            //{
+            //    spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+            //}
+
+            spritebatch.Draw(playerSkillBar, new Rectangle(0, 830, playerSkillBar.Width, playerSkillBar.Height), Color.White);
+            if (player.getWCooldown == false)
+            {
+                spritebatch.Draw(wSkillActive, new Rectangle(552, 861, wSkillActive.Width, wSkillActive.Height), Color.White);
+            }
+            else spritebatch.Draw(wSkillInActive, new Rectangle(552, 861, wSkillInActive.Width, wSkillInActive.Height), Color.White);
+
+            if (player.getECooldown == false)
+            {
+                spritebatch.Draw(eSkillActive, new Rectangle(638, 861, eSkillActive.Width, eSkillActive.Height), Color.White);
+            }
+            else spritebatch.Draw(eSkillInActive, new Rectangle(638, 861, eSkillInActive.Width, eSkillInActive.Height), Color.White);
+
+            if (player.getRCooldown == false)
+            {
+                spritebatch.Draw(rSkillActive, new Rectangle(728, 861, rSkillActive.Width, rSkillActive.Height), Color.White);
+            }
+            else spritebatch.Draw(rSkillInActive, new Rectangle(728, 861, rSkillInActive.Width, rSkillInActive.Height), Color.White);
+
+            if (player.getTCooldown == false)
+            {
+                spritebatch.Draw(tSkillActive, new Rectangle(813, 861, rSkillActive.Width, rSkillActive.Height), Color.White);
+            }
+            else spritebatch.Draw(tSkillInActive, new Rectangle(813, 861, tSkillInActive.Width, tSkillInActive.Height), Color.White);
 
             if (player.Hp > 60)
             {
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 220, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 290, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(150, 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(220, 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(290, 870, 50, 50), Color.White);
             }
             else if (player.Hp > 30)
             {
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 220, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(150, 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(220, 870, 50, 50), Color.White);
             }
             else if (player.Hp > 0)
             {
-                spritebatch.Draw(playerLife, new Rectangle((int)camera.getPosition.X + 150, (int)camera.getPosition.Y + 870, 50, 50), Color.White);
+                spritebatch.Draw(playerLife, new Rectangle(150, 870, 50, 50), Color.White);
             }
         }
     }

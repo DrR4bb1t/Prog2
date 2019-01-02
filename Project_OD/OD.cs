@@ -17,6 +17,7 @@ namespace Project_OD
         GraphicsDeviceManager graphics;
         SpriteBatch menuBatch;
         SpriteBatch igBatch;
+        SpriteBatch uiBatch;
 
         Splash splash;
         GameMenu gameMenu;
@@ -40,6 +41,8 @@ namespace Project_OD
 
         //init Level
         public static int lvlID = 1;
+        private bool lvlComplete = false;
+        private bool init = false;
         //death counter
         int deathcounter = 0;
 
@@ -73,6 +76,7 @@ namespace Project_OD
         {
             menuBatch = new SpriteBatch(GraphicsDevice);
             igBatch = new SpriteBatch(GraphicsDevice);
+            uiBatch = new SpriteBatch(GraphicsDevice);
             //menu stuff
             splash = new Splash();
             gameMenu = new GameMenu();
@@ -80,7 +84,8 @@ namespace Project_OD
             map = new Map(lvlID);
             map.setEnemies();
             map.setNPCs();
-            collision = new Collision(lvlID);
+            collision = new Collision();
+            collision.LoadCollisionMap(lvlID);
             collision.IsCollision();
             hero = new Player();
             hero.SetEntity(new Vector2(0, 720), 50, 46, "spritesheet-test2_1.png", null, 200, 5, 100, 5, 50, 0, 12, 2, collision.rectangles);
@@ -164,9 +169,36 @@ namespace Project_OD
             }
             //story.updateStory();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (hero.Position.X >= 6250)
+            {
+                lvlComplete = true;
+            }
 
+            if (lvlComplete == true)
+            {
+                lvlID = 0;
+                collision.ClearCollision();
+                collision.LoadCollisionMap(lvlID);
+                collision.IsCollision();
+                map.switchLevel(lvlID);
+                map.setNPCs();
+
+                if (init != true)
+                {
+                    hero.Position = new Vector2(0, 720);
+                    init = true;
+                }
+            }
+
+            if (lvlID == 0)
+            {
+                gameCamera.ViewportCalc(1600);
+            }
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
             base.Update(gameTime);
         }
 
@@ -198,11 +230,14 @@ namespace Project_OD
                     map.drawEnemies(igBatch);
                     map.drawNPCs(igBatch, hero);
                     hero.Draw(igBatch, hero.ATK, hero.skill);
-                    ui.DrawUI(igBatch, hero, gameCamera);
                 
                 //story.drawStory(igBatch);
 
                 igBatch.End();
+
+                uiBatch.Begin();
+                ui.DrawUI(uiBatch, hero);
+                uiBatch.End();
             }
             base.Draw(gameTime);
         }
